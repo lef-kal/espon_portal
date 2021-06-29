@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
+    <link      href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css"rel="stylesheet"/>
+    <script src="https://unpkg.com/papaparse@latest/papaparse.min.js"></script>
+    
+<style>
+          #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+</style>
+</head>
+  <body>
+    <div id="map">
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+  <script>
+            const csvUrl =
+        "CIRCTER/main-data/ind_1059/ind_1059_was_data.csv";
+
+      const csvPromise = papaPromise(csvUrl);
+      //YOUR TURN: Replace with your Mapbox Token
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZWxrYWxvbmFyaXMiLCJhIjoiY2twbXExOHcwMDg3ZzJvbnc0dXhyOWszOSJ9.AetSK7t4L_aaFVsCuNQmHg";
+      var map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/elkalonaris/ckqi5rs8aepjs18nqpd7lmx4m", // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
+        zoom: 3.5, // zoom level
+        center: [12, 50],
+        transformRequest: transformRequest,
+      });
+
+      map.on("load", function () {
+        csvPromise.then(function (results) {
+          console.log(results.data);
+          results.data.forEach((row) => {
+            map.setFeatureState(
+              {
+                //YOUR TURN: Replace with your source tileset and source layer
+                source: "NUTS_RG_10M_2021_4326-3kicp7",
+                sourceLayer: "NUTS_RG_10M_2021_4326-3kicp7",
+                //YOUR TURN: Replace with unqiue ID row name
+                id: row.tunit_code,
+              },
+              //YOUR TURN: Add rows you want to style/interact with
+              {
+                name: row.tunit_name,
+                values: row.y_2014,
+              }
+            );
+          });
+        });
+
+        //YOUR TURN: Add source layer
+        map.addSource("NUTS_RG_10M_2021_4326-3kicp7", {
+          type: "vector",
+          url: "mapbox://elkalonaris.45p3fez5",
+          promoteId: "NUTS_ID",
+        });
+        map.addLayer({
+          id: "NUTS_ID",
+          type: "fill",
+          source: "NUTS_RG_10M_2021_4326-3kicp7",
+          "source-layer": "NUTS_RG_10M_2021_4326-3kicp7",
+          layout: {},
+          paint: {
+            "fill-color": [
+              ["interpolate",
+              ["get", "values"],
+                1, '#fff7ec',
+                1.5, '#fee8c8',
+                2, '#fdd49e',
+                2.5, '#fdbb84',
+                3, '#fc8d59',
+                3.5, '#ef6548',
+                4.5, '#d7301f',
+                6.5, '#b30000',
+                8.5, '#7f0000',
+                10.5, '#000'
+            ],
+            '#000',
+          ]
+          }
+        });
+      });
+
+      var popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+      });
+
+      map.on("mousemove", "NUTS_RG_10M_2021_4326-3kicp7", function (e) {
+        map.getCanvas().style.cursor = "pointer";
+
+        var region = map.queryRenderedFeatures(e.point, {
+          layers: ["NUTS_RG_10M_2021_4326-3kicp7"],
+        });
+
+        var props = region[0].properties;
+
+        var state = region[0].state;
+
+        var content = "<b>" + "region Details" + "</b>" + "<br>";
+        content += "Representative: " + state.tunit_name + "<br>";
+        content += "region: " + props.y_2014 + "<br>";
+        popup.setLngLat(e.lngLat).setHTML(content).addTo(map);
+      });
+
+      map.on("mouseleave", "county-fill", function () {
+        map.getCanvas().style.cursor = "";
+        popup.remove();
+      });
+
+      function transformRequest(url, resourceType) {
+        var isMapboxRequest =
+          url.slice(8, 22) === "api.mapbox.com" ||
+          url.slice(10, 26) === "tiles.mapbox.com";
+        return {
+          url: isMapboxRequest
+            ? url.replace("?", "?pluginName=dataJoins&")
+            : url,
+        };
+      }
+      function papaPromise(url) {
+        return new Promise(function (resolve, reject) {
+          Papa.parse(url, {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: resolve,
+          });
+        });
+      }
+  </script>
+</html>
