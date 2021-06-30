@@ -5,236 +5,58 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js" integrity="sha512-EbdJQSugx0nVWrtyK3JdQQ/03mS3Q1UiAhRtErbwl1YL/+e2hZdlIcSURxxh7WXHTzn83sjlh2rysACoJGfb6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
+    <link      href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css"rel="stylesheet"/>
     <script src="https://unpkg.com/papaparse@latest/papaparse.min.js"></script>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
-
-  </head>
+    
+<style>
+          #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+</style>
+</head>
   <body>
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavId">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="#">Action 1</a>
-                    <a class="dropdown-item" href="#">Action 2</a>
-                </div>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+    <div id="map">
+
     </div>
-</nav>
- <!-- main content-->
-      <div class="container">
-          <div class="row mt-5">
-              <!-- accordeon with indicators-->
-              <div class="col-lg-4">
-              <div id="accordion">
-                <div class="card">
-                  <div class="card-header" id="headingOne">
-                    <h5 class="mb-0">
-                      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Featured map
-                      </button>
-                    </h5>
-                  </div>
-              
-                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                    <div class="card-body">
-                        <h5>
-                            Circular Economy and Territorial Consequences -the case of Luxembourg
-                        </h5>
-                        <p class="collapsable-card__paragraph">
-                            We published today a new report of our Circular Economy and Territorial Consequences (CIRCTER) project. This report will focus on the Grand Duchy of Luxembourg, which, at the moment, is developing its national Circular Economy Strategy. In this respect, CIRCTER’s evidence provides further critical insights into the internal ongoing policy processes carried out by different Ministries. 
-                        </p>
-                        <p class="collapsable-card__paragraph">
-                            Claude Turmes, Minister for Spatial Planning of Luxembourg, notes in his forward message: "The results of ESPON’s CIRCTER spin-off for Luxembourg come at the right moment, as they provide valuable data and information for setting objectives and drafting roadmaps for implementing circular economy principles in key economic sectors. The territorial analysis allows for the benchmarking of local and national efforts against other regions in Europe and designing tailor-made recommendations. The CIRCTER results position Luxembourg as one of the cutting-edge European regions in terms of circular business models already installed in the country.
-                        </p>
-                        <p class="collapsable-card__paragraph">
-                            On the other hand, the analysis highlights very different circularity performance scores across municipalities, thereby confirming the need for coherent governance and strong institutional cooperation along entire value chains, as identified in the National Circular Economy Strategy. This spin-off is also an opportunity for the CIRCTER research team to apply the project’s methodology and tailor the project’s policy recommendations to an almost unique territorial context characterised by a high degree of cross-border integration in the heart of Europe".
-                        </p>
-                        <p class="collapsable-card__paragraph">
-                            CIRCTER project produced regional estimates (at NUTS-2 level) for the main material consumption and waste generation and treatment indicators available from Eurostat. In addition, the CIRCTER project developed a sectoral perspective of the circular economy. This differentiates between the demand-side and supply-side of circular product and/or services
-                        </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="headingTwo">
-                    <h5 class="mb-0">
-                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Population and living conditions
-                      </button>
-                    </h5>
-                  </div>
-                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                    <div class="card-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-header" id="headingThree">
-                    <h5 class="mb-0">
-                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Environment and Energy
-                      </button>
-                    </h5>
-                  </div>
-                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                    <div class="card-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                  </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingFour">
-                      <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            Economy, finance and trade
-                        </button>
-                      </h5>
-                    </div>
-                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                      <div class="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card">
-                    <div class="card-header" id="headingFive">
-                      <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseFive">
-                        Territorial Structure
-                        </button>
-                      </h5>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                      <div class="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card">
-                    <div class="card-header" id="headingThree">
-                      <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Education
-                        </button>
-                      </h5>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                      <div class="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card">
-                    <div class="card-header" id="headingThree">
-                      <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          Labour market
-                        </button>
-                      </h5>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                      <div class="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                      </div>
-                    </div>
-                  </div>
-              </div>
 
-          <!-- indicators end-->
-
-                </div>
-          <div class="col-lg-8 ">
-            <div id='map' style='width:100%; height: 80vh' class="sticky-top"></div>
-
-              </div>
-          </div>
-      </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script>
-        const csvUrl =
-        "CIRCTER/main-data/ind_1059/ind_1059_was_data.csv";
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZWxrYWxvbmFyaXMiLCJhIjoiY2twbXExOHcwMDg3ZzJvbnc0dXhyOWszOSJ9.AetSK7t4L_aaFVsCuNQmHg';
-    var map = new mapboxgl.Map({
-    container: 'map', // container ID
-    style: 'mapbox://styles/mapbox/light-v10',
-    center: [12, 50],
-    zoom: 1.6
-    });
-    map.on('load', function () {
+  </body>
+  <script>
+            const csvUrl =
+        "waste_data.csv";
+        var hoveredStateId = null;
+      const csvPromise = papaPromise(csvUrl);
+      //YOUR TURN: Replace with your Mapbox Token
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZWxrYWxvbmFyaXMiLCJhIjoiY2twbXExOHcwMDg3ZzJvbnc0dXhyOWszOSJ9.AetSK7t4L_aaFVsCuNQmHg";
+      var map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/elkalonaris/ckqi5rs8aepjs18nqpd7lmx4m", // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
+        zoom: 3.5, // zoom level
+        center: [12, 50],
+        transformRequest: transformRequest,
+      });
 
-        map.addSource('regional', {
-        type: 'geojson',
-        // Use a URL for the value for the `data` property.
-        data: 'https://raw.githubusercontent.com/eurostat/Nuts2json/master/2021/4326/10M/nutsrg_2.json',
-        })
-
-        map.addLayer({
-        'id': 'regional-layer',
-        'type': 'fill',
-        'source': 'regional',
-        'paint': {
-          'fill-color': 'white',
-          "fill-opacity": 0.8
-        },
-
-        });
-
-        map.addLayer({
-        'id': 'regional-line',
-        'type': 'line',
-        'source': 'regional',
-        'paint': {
-          'line-color': 'blue',
-        }
-        });
-        const csvPromise = papaPromise(csvUrl);
-        
-        function papaPromise(url) {
-        return new Promise(function (resolve, reject) {
-          Papa.parse(url, {
-            download: true,
-            header: true,
-            skipEmptyLines: true,
-            complete: resolve,
-          });
-        });
-      }
-
+      map.on("load", function () {
         csvPromise.then(function (results) {
-          console.log(results.data);
           results.data.forEach((row) => {
             map.setFeatureState(
               {
                 //YOUR TURN: Replace with your source tileset and source layer
-                source: "regional",
+                source: "NUTS_RG_10M_2021_4326_LEVL_2-b1q4zu",
+                sourceLayer: "NUTS_RG_10M_2021_4326_LEVL_2-b1q4zu",
                 //YOUR TURN: Replace with unqiue ID row name
                 id: row.tunit_code,
               },
@@ -246,25 +68,82 @@
             );
           });
         });
-
-
-        map.setPaintProperty("regional-layer", "fill-color", [
-        "interpolate",
-        ["linear"],
-        ["feature-state", "values"],
-        0.3,
-        "#fef0d9",
-        0.6,
-        "#fdcc8a",
-        0.8,
-        "#fc8d59",
-        0.9,
-        "#e34a33",
-        1,
-        "#b30000"
-      ]);
-
+        //YOUR TURN: Add source layer
+        map.addSource("NUTS_RG_10M_2021_4326_LEVL_2-b1q4zu", {
+          type: "vector",
+          url: "mapbox://elkalonaris.d6d61r4x",
+          promoteId: "NUTS_ID",
         });
-</script>
-  </body>
+        map.addLayer({
+          id: "region-layer",
+          type: "fill",
+          source: "NUTS_RG_10M_2021_4326_LEVL_2-b1q4zu",
+          "source-layer": "NUTS_RG_10M_2021_4326_LEVL_2-b1q4zu",
+          layout: {},
+          paint: {
+           'fill-color': [
+              'interpolate',
+              ['linear'],
+              ['to-number',['feature-state', 'values']],
+              13688, 
+              '#ffb784',
+              20753739, 
+              '#007db4',
+
+          ],
+            "fill-opacity": 1
+          }
+        });
+
+      });
+
+      var popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+      });
+      
+
+      map.on("mousemove", "region-layer", function (e) {
+        map.getCanvas().style.cursor = "pointer";
+
+        var region = map.queryRenderedFeatures(e.point, {
+          layers: ["region-layer"],
+        });
+        console.log(region)
+        var props = region[0].properties;
+        var val = region[0].state;
+
+        var content = "<b>" + props.NUTS_NAME + "</b>" + "<br>";
+        content += "NUTS_2 code: " + props.FID + "<br>";
+        content += "Region: " + props.NUTS_NAME + "<br>";
+        content += "<b>" + "Waste: " + val.values +  "</b>" + "<br>";
+        popup.setLngLat(e.lngLat).setHTML(content).addTo(map);
+      });
+
+      map.on("mouseleave", "county-fill", function () {
+        map.getCanvas().style.cursor = "";
+        popup.remove();
+      });
+
+      function transformRequest(url, resourceType) {
+        var isMapboxRequest =
+          url.slice(8, 22) === "api.mapbox.com" ||
+          url.slice(10, 26) === "tiles.mapbox.com";
+        return {
+          url: isMapboxRequest
+            ? url.replace("?", "?pluginName=dataJoins&")
+            : url,
+        };
+      }
+      function papaPromise(url) {
+        return new Promise(function (resolve, reject) {
+          Papa.parse(url, {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: resolve,
+          });
+        });
+      }
+  </script>
 </html>

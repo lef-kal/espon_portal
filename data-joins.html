@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Data join with feature state</title>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
+  <script src="https://d3js.org/d3-dsv.v1.min.js"></script>
+  <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+  <script src="https://d3js.org/d3-format.v1.min.js"></script>
+
+  <style>
+    body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+
+<body>
+  <div id="map"></div>
+</body>
+<script type="text/javascript">
+  mapboxgl.accessToken =
+        "pk.eyJ1IjoiZWxrYWxvbmFyaXMiLCJhIjoiY2twbXExOHcwMDg3ZzJvbnc0dXhyOWszOSJ9.AetSK7t4L_aaFVsCuNQmHg";
+      var map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/elkalonaris/ckqi5rs8aepjs18nqpd7lmx4m", // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
+        zoom: 3.5, // zoom level
+        center: [12, 50],
+      });
+
+  let hoveredStateId = null;
+
+  const popup = new mapboxgl.Popup({
+    closeButton: false,
+    closeOnClick: false
+  });
+
+  map.on('load', () => {
+
+    d3.csv("CIRCTER/main-data/ind_1059/ind_1059_was_data.csv").then((data) => {
+      initFeatureState(data)
+    });
+
+    const initFeatureState = (data) => {
+      map.addSource('region', {
+        type: 'vector',
+        url: 'mapbox://elkalonaris.45p3fez5',
+        promoteId: 'NUTS_ID'
+      });
+
+
+      map.addLayer({
+        'id': 'region-fill',
+        'type': 'fill',
+        'source': 'region',
+        'source-layer': 'NUTS_RG_10M_2021_4326-3kicp7',
+        'paint': {
+          'fill-color': ['case',
+            ['!=', ['feature-state', 'y_2014'], null],
+            ['interpolate',
+              ['linear'],
+              ['to-number', ['feature-state', 'y_2014']],
+              0, '#ece2f0',
+              5, '#a6bddb',
+              10, '#1c9099'
+            ],
+            'rgb(140, 140, 140)'
+          ]
+        },
+        'filter': ['==', ['get', 'type'], 'NAME_LATN']
+      });
+
+      map.addLayer({
+        'id': 'region-line',
+        'type': 'line',
+        'source': 'region',
+        'source-layer': 'NUTS_RG_10M_2021_4326-3kicp7',
+        'layout': {
+          'line-join': 'round',
+          'line-cap': 'round'
+        },
+        'paint': {
+          'line-color': '#4b4b4b',
+          'line-width': [
+            'case',
+            ['boolean', ['feature-state', 'hover'], false],
+            2,
+            0
+          ]
+        },
+        'filter': ['==', ['get', 'type'], 'NAME_LATN']
+      });
+
+      map.on('mousemove', 'region-fill', (e) => {
+        if (e.features.length > 0) {
+          if (hoveredStateId) {
+            map.setFeatureState({
+              source: 'region',
+              'sourceLayer': 'NUTS_RG_10M_2021_4326-3kicp7',
+              id: hoveredStateId
+            }, {
+              hover: false
+            });
+          }
+          hoveredStateId = e.features[0].id;
+          map.setFeatureState({
+            source: 'region',
+            'sourceLayer': 'NUTS_RG_10M_2021_4326-3kicp7',
+            id: hoveredStateId
+          }, {
+            hover: true
+          });
+        }
+      });
+
+
+      map.on('mousemove', 'region-fill', (e) => {
+
+        map.getCanvas().style.cursor = 'pointer';
+        const description = `
+        <p>County Name: ${e.features[2].properties.NUTS_ID}</p>
+        <p>County FIPS: ${e.features[2].properties.NAME_LATN}</p>
+        <p>Contributions:  ${d3.format("($.2f")(e.features[0].state.y_2014)} per capita</p>`;
+	      
+        popup
+          .setLngLat(e.lngLat)
+          .setHTML(description)
+          .addTo(map);
+      });
+
+      map.on('mouseleave', 'region-fill', () => {
+        if (hoveredStateId) {
+          map.setFeatureState({
+            source: 'region',
+            'sourceLayer': 'NUTS_RG_10M_2021_4326-3kicp7',
+            id: hoveredStateId
+          }, {
+            hover: false
+          });
+        }
+        hoveredStateId = null;
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+      });
+
+
+      const setStates = (data) => {
+        data.forEach((row) => {
+          map.setFeatureState({
+            source: 'region',
+            'sourceLayer': 'NUTS_RG_10M_2021_4326-3kicp7',
+            id: row.tunit_code
+          }, {
+            y_2014: row.y_2014
+          })
+        })
+      }
+
+      const setAfterLoad = (e) => {
+        if (e.sourceId === 'region' && e.isSourceLoaded) {
+          setStates(data);
+          map.off('sourcedata', setAfterLoad);
+        }
+      }
+
+      if (map.isSourceLoaded('region')) {
+        setStates(data);
+      } else {
+        map.on('sourcedata', setAfterLoad);
+      }
+    }
+  })
+</script>
+</html>
