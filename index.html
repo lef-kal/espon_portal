@@ -26,17 +26,17 @@
     <script src="https://unpkg.com/papaparse@latest/papaparse.min.js"></script>
 
     <style>
-      *{
+      * {
         overflow: auto;
       }
-      nav{
-        z-index: 1050!important;
+      nav {
+        z-index: 1050 !important;
       }
       #map {
         /* position: absolute;
         top: 0;
         bottom: 0; */
-        min-height: 95vh;
+        min-height: 100vh;
       }
       .feature__p {
         font-size: 13px;
@@ -45,16 +45,38 @@
   </head>
   <body>
     <!-- nav-start-->
-    <nav class="navbar navbar-expand-sm navbar-light bg-white shadow fixed-top mb-5">
-      <a class="navbar-brand ml-5" href="#"><img src="ESPON-logo.png" alt="espon-logo" style="max-height: 70px;"></a>
-      <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-          aria-expanded="false" aria-label="Toggle navigation">
+    <nav
+      class="
+        navbar navbar-expand-sm navbar-light
+        bg-white
+        shadow
+        fixed-top
+        mb-5
+      "
+    >
+      <a class="navbar-brand ml-5" href="#"
+        ><img src="ESPON-logo.png" alt="espon-logo" style="max-height: 70px"
+      /></a>
+      <button
+        class="navbar-toggler d-lg-none"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapsibleNavId"
+        aria-controls="collapsibleNavId"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.html"
+              >Home<span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="explore.html">Explore</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="storytelling.html">Datastories</a>
@@ -66,7 +88,15 @@
             <a class="nav-link" href="storytelling.html">Data playground</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ESPON Tools</a>
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="dropdownId"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              >ESPON Tools</a
+            >
             <div class="dropdown-menu" aria-labelledby="dropdownId">
               <a class="dropdown-item" href="#">Rimap</a>
               <a class="dropdown-item" href="#">Fuore</a>
@@ -82,43 +112,51 @@
       <div class="col-lg-5">
         <!-- feature-start-->
         <div class="feature mt-5 ml-5 mr-5">
-          <br>
+          <br />
           <span class="badge badge-pill badge-primary">Featured map</span>
           <h3>
             Circular Economy and Territorial Consequences: The case of
             Luxembourg
           </h3>
           <p class="feature__p">
-            We published today a new report of our <b>Circular Economy and
-            Territorial Consequences (CIRCTER) project</b>. This report will focus
-            on the Grand Duchy of Luxembourg, which, at the moment, is
-            developing its national Circular Economy Strategy. In this respect,
-            CIRCTER’s evidence provides further critical insights into the
-            internal ongoing policy processes carried out by different
-            Ministries.
+            We published today a new report of our
+            <b
+              >Circular Economy and Territorial Consequences (CIRCTER)
+              project</b
+            >. This report will focus on the Grand Duchy of Luxembourg, which,
+            at the moment, is developing its national Circular Economy Strategy.
+            In this respect, CIRCTER’s evidence provides further critical
+            insights into the internal ongoing policy processes carried out by
+            different Ministries.
           </p>
           <p class="feature__p">
-            <b>Claude Turmes, Minister for Spatial Planning of Luxembourg</b>, notes in
-            his forward message: <i>"The results of ESPON’s CIRCTER spin-off for
-            Luxembourg come at the right moment, as they provide valuable data
-            and information for setting objectives and drafting roadmaps for
-            implementing circular economy principles in key economic sectors.
-            The territorial analysis allows for the benchmarking of local and
-            national efforts against other regions in Europe and designing
-            tailor-made recommendations. The CIRCTER results position Luxembourg
-            as one of the cutting-edge European regions in terms of circular
-            business models already installed in the country. </i>
+            <b>Claude Turmes, Minister for Spatial Planning of Luxembourg</b>,
+            notes in his forward message:
+            <i
+              >"The results of ESPON’s CIRCTER spin-off for Luxembourg come at
+              the right moment, as they provide valuable data and information
+              for setting objectives and drafting roadmaps for implementing
+              circular economy principles in key economic sectors. The
+              territorial analysis allows for the benchmarking of local and
+              national efforts against other regions in Europe and designing
+              tailor-made recommendations. The CIRCTER results position
+              Luxembourg as one of the cutting-edge European regions in terms of
+              circular business models already installed in the country.
+            </i>
           </p>
           <p class="feature__p">
-            <i>On the other hand, the analysis highlights very different
-            circularity performance scores across municipalities, thereby
-            confirming the need for coherent governance and strong institutional
-            cooperation along entire value chains, as identified in the National
-            Circular Economy Strategy. This spin-off is also an opportunity for
-            the CIRCTER research team to apply the project’s methodology and
-            tailor the project’s policy recommendations to an almost unique
-            territorial context characterised by a high degree of cross-border
-            integration in the heart of Europe". </i>
+            <i
+              >On the other hand, the analysis highlights very different
+              circularity performance scores across municipalities, thereby
+              confirming the need for coherent governance and strong
+              institutional cooperation along entire value chains, as identified
+              in the National Circular Economy Strategy. This spin-off is also
+              an opportunity for the CIRCTER research team to apply the
+              project’s methodology and tailor the project’s policy
+              recommendations to an almost unique territorial context
+              characterised by a high degree of cross-border integration in the
+              heart of Europe".
+            </i>
           </p>
           <p class="feature__p">
             CIRCTER project produced regional estimates (at NUTS-2 level) for
@@ -215,16 +253,142 @@
       </div>
       <!--- list-end-->
 
-
-
       <!-- map-start-->
-      <div class="col-lg-7  mt-5" >
+      <div class="col-lg-7 mt-5">
         <div id="map" class=""></div>
       </div>
       <!-- map-end-->
+    </div>
+    <!--footer-start-->
+    <!-- Footer -->
+<footer class="page-footer bg-white shadow font-small  pt-4">
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left">
+
+    <!-- Footer links -->
+    <div class="row text-center text-md-left mt-3 pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h6 class="text-uppercase mb-4 font-weight-bold">ESPON Portal</h6>
+        <p>The ESPON EGTC is a European Grouping on Territorial Cooperation. ESPON started in 2002 and have continued since then building a pan-European knowledge base related to territorial dynamics.</p>
+      </div>
+      <!-- Grid column -->
+
+      <hr class="w-100 clearfix d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+        <h6 class="text-uppercase mb-4 font-weight-bold">Explore</h6>
+        <p>
+          <a href="#">Datastories</a>
+        </p>
+        <p>
+          <a href="#!">Dashboards</a>
+        </p>
+        <p>
+          <a href="#!">Playground</a>
+        </p>
+        <p>
+          <a href="#!">ESPON tools</a>
+        </p>
+      </div>
+      <!-- Grid column -->
+
+      <hr class="w-100 clearfix d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+        <h6 class="text-uppercase mb-4 font-weight-bold">Useful links</h6>
+        <p>
+          <a href="#!">ESPON database</a>
+        </p>
+        <p>
+          <a href="#!">ESPON website</a>
+        </p>
+      </div>
+
+      <!-- Grid column -->
+      <hr class="w-100 clearfix d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+        <p>
+          <i class="fas fa-home mr-3"></i></p>
+        <p>
+          <i class="fas fa-envelope mr-3"></i></p>
+        <p>
+          <i class="fas fa-phone mr-3"></i></p>
+        <p>
+          <i class="fas fa-print mr-3"></i></p>
+      </div>
+      <!-- Grid column -->
 
     </div>
+    <!-- Footer links -->
 
+    <hr>
+
+    <!-- Grid row -->
+    <div class="row d-flex align-items-center">
+
+      <!-- Grid column -->
+      <div class="col-md-7 col-lg-8">
+
+        <!--Copyright-->
+        <p class="text-center text-md-left">© 2021 Copyright:
+          <a>
+            <strong> ESPON EGTC</strong>
+          </a>
+        </p>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-5 col-lg-4 ml-lg-0">
+
+        <!-- Social buttons -->
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                <i class="fab fa-google-plus-g"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+</footer>
+<!-- Footer -->
+
+    <!--footer-end-->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -321,45 +485,76 @@
       var props = region[0].properties;
       var val = region[0].state;
 
+      var r = region[0].layer.paint["fill-color"]["r"].toFixed(2);
+      var g = region[0].layer.paint["fill-color"]["g"].toFixed(2);
+      var b = region[0].layer.paint["fill-color"]["b"].toFixed(2);
 
+      var R = (255 * r).toFixed(0);
+      var G = (255 * g).toFixed(0);
+      var B = (255 * b).toFixed(0);
 
-
+      var color = "rgba(" + [R, G, B].join(",") + ",1)";
+      var theValues = val.values;
+      var theNames = val.name;
 
       var content = "<b>" + props.NUTS_NAME + "</b>" + "<br>";
       content += "NUTS_2 code: " + props.FID + "<br>";
       content += "Region: " + props.NUTS_NAME + "<br>";
-      content += "<b>" + "Waste: " + val.values + "</b>" + " per capita" + "<br>";
-      content += '<canvas id="bar-chart-horizontal" height="100"></canvas>'
-
+      content +=
+        "<div class='something'>" +
+        "<b>" +
+        "Waste: " +
+        val.values +
+        "</b>" +
+        " per capita" +
+        "</div>" +
+        "<br>";
+      content += '<canvas id="bar-chart-horizontal" height="100"></canvas>';
 
       popup.setLngLat(e.lngLat).setHTML(content).addTo(map);
-      var name = function(){
-        for (let i=0; i <10; i++) {
-          val.name[i]
-        }
-      }
-      const myChart = new Chart(document.getElementById("bar-chart-horizontal"), {
-      type: 'bar',
-      data: {
-        labels: val.name[0],
-        datasets: [
-          {
-            label: "waste",
-            data: val.values[0]
-          }
-        ]
-      },
-      options: {
-        indexAxis: 'y',
-        legend: { display: false },
-        title: {
-          display: false,
-        }
-      }
-  });
-      
-    });
 
+      const ctx = document
+        .getElementById("bar-chart-horizontal")
+        .getContext("2d");
+      // console.log(theNames)
+      // console.log(theValues)
+      var myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: [theNames],
+          datasets: [
+            {
+              label: "",
+              data: [theValues],
+              backgroundColor: [color],
+            },
+          ],
+        },
+        options: {
+          indexAxis: "y",
+          legend: { display: false },
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+          title: {
+            display: false,
+          },
+          scales: {
+            y: {
+              min: 10000000,
+              max: 1000000000,
+            },
+          },
+          yAxes: [
+            {
+              display: false,
+            },
+          ],
+        },
+      });
+    });
 
     map.on("mouseleave", "county-fill", function () {
       map.getCanvas().style.cursor = "";
