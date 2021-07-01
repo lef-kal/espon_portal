@@ -8,6 +8,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Bootstrap CSS -->
     <link
@@ -83,10 +84,10 @@
         <div class="feature mt-5 ml-5 mr-5">
           <br>
           <span class="badge badge-pill badge-primary">Featured map</span>
-          <h5>
+          <h3>
             Circular Economy and Territorial Consequences: The case of
             Luxembourg
-          </h5>
+          </h3>
           <p class="feature__p">
             We published today a new report of our <b>Circular Economy and
             Territorial Consequences (CIRCTER) project</b>. This report will focus
@@ -130,7 +131,7 @@
         </div>
         <!-- feature-end-->
         <!-- Accordeon start-->
-        <div id="accordion" class="mt-5 ml-5 mr-5 ">
+        <!-- <div id="accordion" class="mt-5 ml-5 mr-5 ">
           <div class="card">
             <div class="card-header" id="headingTwo">
               <h5 class="mb-0">
@@ -209,7 +210,7 @@
                 </div>
               </div>
             </div>
-      </div>
+      </div> -->
         <!-- Accordeon end-->
       </div>
       <!--- list-end-->
@@ -217,7 +218,7 @@
 
 
       <!-- map-start-->
-      <div class="col-lg-7 fixed-top ml-auto mt-5" >
+      <div class="col-lg-7  mt-5" >
         <div id="map" class=""></div>
       </div>
       <!-- map-end-->
@@ -320,16 +321,49 @@
       var props = region[0].properties;
       var val = region[0].state;
 
+
+
+
+
       var content = "<b>" + props.NUTS_NAME + "</b>" + "<br>";
       content += "NUTS_2 code: " + props.FID + "<br>";
       content += "Region: " + props.NUTS_NAME + "<br>";
-      content +=
-        "<b>" + "Waste: " + val.values + "</b>" + " per capita" + "<br>";
+      content += "<b>" + "Waste: " + val.values + "</b>" + " per capita" + "<br>";
+      content += '<canvas id="bar-chart-horizontal" height="100"></canvas>'
+
+
       popup.setLngLat(e.lngLat).setHTML(content).addTo(map);
+      var name = function(){
+        for (let i=0; i <10; i++) {
+          val.name[i]
+        }
+      }
+      const myChart = new Chart(document.getElementById("bar-chart-horizontal"), {
+      type: 'bar',
+      data: {
+        labels: val.name[0],
+        datasets: [
+          {
+            label: "waste",
+            data: val.values[0]
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        legend: { display: false },
+        title: {
+          display: false,
+        }
+      }
+  });
+      
     });
+
 
     map.on("mouseleave", "county-fill", function () {
       map.getCanvas().style.cursor = "";
+      myChart.destroy();
 
       popup.remove();
     });
