@@ -32,16 +32,27 @@
         /* position: absolute;
         top: 0;
         bottom: 0; */
-        min-height: 90vh;
+        min-height: 95vh;
       }
       .feature__p {
         font-size: 13px;
+      }
+      .card, .card-header{
+        background-color: transparent;
+        border: 0;
+        border-bottom: 1px solid blue;
+      }
+      .card-header{
+        padding: 10px;
+      }
+      .card-header > button{
+        color: black;
       }
     </style>
   </head>
   <body>
     <!-- nav-start-->
-    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top mb-5">
       <a class="navbar-brand ml-5" href="#">ESPON EGTC: Portal</a>
       <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
           aria-expanded="false" aria-label="Toggle navigation">
@@ -50,10 +61,10 @@
       <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"> Data visualization</a>
+            <a class="nav-link" href="storytelling.html"> Data visualization</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tools</a>
@@ -63,10 +74,6 @@
             </div>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
       </div>
     </nav>
 
@@ -124,18 +131,94 @@
         </div>
         <!-- feature-end-->
         <!-- Accordeon start-->
-
-        <div class="list-group mt-5 ml-5">
-          <button type="button" class="list-group-item list-group-item-action active">Active item</button>
-          <button type="button" class="list-group-item list-group-item-action">Item</button>
-          <button type="button" class="list-group-item list-group-item-action disabled">Disabled item</button>
-        </div>
+        <div id="accordion" class="mt-5 ml-5">
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Population and living conditions
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Environment and Energy
+                </button>
+              </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="card-body">
+              </div>
+            </div>
+          </div>
+          <div class="card">
+              <div class="card-header" id="headingFour">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                      Economy, finance and trade
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                <div class="card-body">
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingFive">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseFive">
+                  Territorial Structure
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      Education
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Labour market
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                </div>
+              </div>
+            </div>
+      </div>
         <!-- Accordeon end-->
       </div>
       <!--- list-end-->
 
+
+
       <!-- map-start-->
-      <div class="col-lg-8 sticky-top" >
+      <div class="col-lg-8 fixed-top ml-auto mt-5" >
         <div id="map" class=""></div>
       </div>
       <!-- map-end-->
@@ -176,6 +259,7 @@
       center: [12, 56],
       transformRequest: transformRequest,
     });
+    map.addControl(new mapboxgl.NavigationControl());
 
     map.on("load", function () {
       csvPromise.then(function (results) {
