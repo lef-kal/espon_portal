@@ -1,149 +1,274 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Title</title>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
-    <link      href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css"rel="stylesheet"/>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
     <script src="https://unpkg.com/papaparse@latest/papaparse.min.js"></script>
-    
-<style>
-          #map {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 100%;
+
+    <style>
+      *{
+        overflow: auto;
       }
-</style>
-</head>
+      #map {
+        /* position: absolute;
+        top: 0;
+        bottom: 0; */
+        min-height: 90vh;
+      }
+      .feature__p {
+        font-size: 13px;
+      }
+    </style>
+  </head>
   <body>
-    <div id="map">
+    <!-- nav-start-->
+    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+      <a class="navbar-brand ml-5" href="#">ESPON EGTC: Portal</a>
+      <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+          aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"> Data visualization</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tools</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownId">
+              <a class="dropdown-item" href="#">Rimap</a>
+              <a class="dropdown-item" href="#">Fuore</a>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <!-- nav-end-->
+    <div class="row mt-5">
+      <!--- list-start -->
+      <div class="col-lg-4">
+        <!-- feature-start-->
+        <div class="feature mt-5 ml-5">
+          <span class="badge badge-pill badge-primary">Featured map</span>
+          <h5>
+            Circular Economy and Territorial Consequences: The case of
+            Luxembourg
+          </h5>
+          <p class="feature__p">
+            We published today a new report of our Circular Economy and
+            Territorial Consequences (CIRCTER) project. This report will focus
+            on the Grand Duchy of Luxembourg, which, at the moment, is
+            developing its national Circular Economy Strategy. In this respect,
+            CIRCTER’s evidence provides further critical insights into the
+            internal ongoing policy processes carried out by different
+            Ministries.
+          </p>
+          <p class="feature__p">
+            Claude Turmes, Minister for Spatial Planning of Luxembourg, notes in
+            his forward message: "The results of ESPON’s CIRCTER spin-off for
+            Luxembourg come at the right moment, as they provide valuable data
+            and information for setting objectives and drafting roadmaps for
+            implementing circular economy principles in key economic sectors.
+            The territorial analysis allows for the benchmarking of local and
+            national efforts against other regions in Europe and designing
+            tailor-made recommendations. The CIRCTER results position Luxembourg
+            as one of the cutting-edge European regions in terms of circular
+            business models already installed in the country.
+          </p>
+          <p class="feature__p">
+            On the other hand, the analysis highlights very different
+            circularity performance scores across municipalities, thereby
+            confirming the need for coherent governance and strong institutional
+            cooperation along entire value chains, as identified in the National
+            Circular Economy Strategy. This spin-off is also an opportunity for
+            the CIRCTER research team to apply the project’s methodology and
+            tailor the project’s policy recommendations to an almost unique
+            territorial context characterised by a high degree of cross-border
+            integration in the heart of Europe".
+          </p>
+          <p class="feature__p">
+            CIRCTER project produced regional estimates (at NUTS-2 level) for
+            the main material consumption and waste generation and treatment
+            indicators available from Eurostat. In addition, the CIRCTER project
+            developed a sectoral perspective of the circular economy. This
+            differentiates between the demand-side and supply-side of circular
+            product and/or services
+          </p>
+        </div>
+        <!-- feature-end-->
+        <!-- Accordeon start-->
+
+        <div class="list-group mt-5 ml-5">
+          <button type="button" class="list-group-item list-group-item-action active">Active item</button>
+          <button type="button" class="list-group-item list-group-item-action">Item</button>
+          <button type="button" class="list-group-item list-group-item-action disabled">Disabled item</button>
+        </div>
+        <!-- Accordeon end-->
+      </div>
+      <!--- list-end-->
+
+      <!-- map-start-->
+      <div class="col-lg-8 sticky-top" >
+        <div id="map" class=""></div>
+      </div>
+      <!-- map-end-->
 
     </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
   </body>
   <script>
-            const csvUrl =
-        "waste_data.csv";
-        var hoveredStateId = null;
-      const csvPromise = papaPromise(csvUrl);
-      //YOUR TURN: Replace with your Mapbox Token
-      mapboxgl.accessToken =
-        "pk.eyJ1IjoiZWxrYWxvbmFyaXMiLCJhIjoiY2twbXExOHcwMDg3ZzJvbnc0dXhyOWszOSJ9.AetSK7t4L_aaFVsCuNQmHg";
-      var map = new mapboxgl.Map({
-        container: "map",
-        style: "mapbox://styles/elkalonaris/ckqi5rs8aepjs18nqpd7lmx4m", // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
-        zoom: 3.5, // zoom level
-        center: [12, 50],
-        transformRequest: transformRequest,
+    const csvUrl = "waste_data.csv";
+    const csvPromise = papaPromise(csvUrl);
+    //YOUR TURN: Replace with your Mapbox Token
+    mapboxgl.accessToken =
+      "pk.eyJ1IjoiZWxrYWxvbmFyaXMiLCJhIjoiY2twbXExOHcwMDg3ZzJvbnc0dXhyOWszOSJ9.AetSK7t4L_aaFVsCuNQmHg";
+
+    var map = new mapboxgl.Map({
+      container: "map",
+      style: "mapbox://styles/elkalonaris/ckqi5rs8aepjs18nqpd7lmx4m", // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
+      zoom: 3, // zoom level
+      maxZoom: 6,
+      minZoom: 3,
+      center: [12, 56],
+      transformRequest: transformRequest,
+    });
+
+    map.on("load", function () {
+      csvPromise.then(function (results) {
+        results.data.forEach((row) => {
+          map.setFeatureState(
+            {
+              //YOUR TURN: Replace with your source tileset and source layer
+              source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+              sourceLayer: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+              //YOUR TURN: Replace with unqiue ID row name
+              id: row.tunit_code,
+            },
+            //YOUR TURN: Add rows you want to style/interact with
+            {
+              name: row.tunit_name,
+              values: row.y_2014,
+            }
+          );
+        });
       });
-
-      map.on("load", function () {
-        csvPromise.then(function (results) {
-          results.data.forEach((row) => {
-            map.setFeatureState(
-              {
-                //YOUR TURN: Replace with your source tileset and source layer
-                source: "NUTS_RG_10M_2021_4326_LEVL_2-b1q4zu",
-                sourceLayer: "NUTS_RG_10M_2021_4326_LEVL_2-b1q4zu",
-                //YOUR TURN: Replace with unqiue ID row name
-                id: row.tunit_code,
-              },
-              //YOUR TURN: Add rows you want to style/interact with
-              {
-                name: row.tunit_name,
-                values: row.y_2014,
-              }
-            );
-          });
-        });
-        //YOUR TURN: Add source layer
-        map.addSource("NUTS_RG_10M_2021_4326_LEVL_2-b1q4zu", {
-          type: "vector",
-          url: "mapbox://elkalonaris.d6d61r4x",
-          promoteId: "NUTS_ID",
-        });
-        map.addLayer({
-          id: "region-layer",
-          type: "fill",
-          source: "NUTS_RG_10M_2021_4326_LEVL_2-b1q4zu",
-          "source-layer": "NUTS_RG_10M_2021_4326_LEVL_2-b1q4zu",
-          layout: {},
-          paint: {
-           'fill-color': [
-              'interpolate',
-              ['linear'],
-              ['to-number',['feature-state', 'values']],
-              13688, 
-              '#ffb784',
-              20753739, 
-              '#007db4',
-
+      //YOUR TURN: Add source layer
+      map.addSource("NUTS_RG_10M_2013_4326_LEVL_2-344mre", {
+        type: "vector",
+        url: "mapbox://elkalonaris.3tp4ou5e",
+        promoteId: "NUTS_ID",
+        generateId: true,
+      });
+      map.addLayer({
+        id: "region-layer",
+        type: "fill",
+        source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+        "source-layer": "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+        layout: {},
+        paint: {
+          "fill-color": [
+            "interpolate",
+            ["linear"],
+            ["to-number", ["feature-state", "values"]],
+            13688,
+            "#ffb784",
+            20753739,
+            "#007db4",
           ],
-            "fill-opacity": 1
-          }
+        },
+      });
+    });
+
+    var popup = new mapboxgl.Popup({
+      closeButton: false,
+      closeOnClick: false,
+    });
+
+    map.on("mousemove", "region-layer", function (e) {
+      map.getCanvas().style.cursor = "pointer";
+
+      var region = map.queryRenderedFeatures(e.point, {
+        layers: ["region-layer"],
+      });
+      console.log(region);
+      var props = region[0].properties;
+      var val = region[0].state;
+
+      var content = "<b>" + props.NUTS_NAME + "</b>" + "<br>";
+      content += "NUTS_2 code: " + props.FID + "<br>";
+      content += "Region: " + props.NUTS_NAME + "<br>";
+      content +=
+        "<b>" + "Waste: " + val.values + "</b>" + " per capita" + "<br>";
+      popup.setLngLat(e.lngLat).setHTML(content).addTo(map);
+    });
+
+    map.on("mouseleave", "county-fill", function () {
+      map.getCanvas().style.cursor = "";
+
+      popup.remove();
+    });
+
+    function transformRequest(url, resourceType) {
+      var isMapboxRequest =
+        url.slice(8, 22) === "api.mapbox.com" ||
+        url.slice(10, 26) === "tiles.mapbox.com";
+      return {
+        url: isMapboxRequest ? url.replace("?", "?pluginName=dataJoins&") : url,
+      };
+    }
+    function papaPromise(url) {
+      return new Promise(function (resolve, reject) {
+        Papa.parse(url, {
+          download: true,
+          header: true,
+          skipEmptyLines: true,
+          complete: resolve,
         });
-
       });
-
-      var popup = new mapboxgl.Popup({
-        closeButton: false,
-        closeOnClick: false,
-      });
-      
-
-      map.on("mousemove", "region-layer", function (e) {
-        map.getCanvas().style.cursor = "pointer";
-
-        var region = map.queryRenderedFeatures(e.point, {
-          layers: ["region-layer"],
-        });
-        console.log(region)
-        var props = region[0].properties;
-        var val = region[0].state;
-
-        var content = "<b>" + props.NUTS_NAME + "</b>" + "<br>";
-        content += "NUTS_2 code: " + props.FID + "<br>";
-        content += "Region: " + props.NUTS_NAME + "<br>";
-        content += "<b>" + "Waste: " + val.values +  "</b>" + "<br>";
-        popup.setLngLat(e.lngLat).setHTML(content).addTo(map);
-      });
-
-      map.on("mouseleave", "county-fill", function () {
-        map.getCanvas().style.cursor = "";
-        popup.remove();
-      });
-
-      function transformRequest(url, resourceType) {
-        var isMapboxRequest =
-          url.slice(8, 22) === "api.mapbox.com" ||
-          url.slice(10, 26) === "tiles.mapbox.com";
-        return {
-          url: isMapboxRequest
-            ? url.replace("?", "?pluginName=dataJoins&")
-            : url,
-        };
-      }
-      function papaPromise(url) {
-        return new Promise(function (resolve, reject) {
-          Papa.parse(url, {
-            download: true,
-            header: true,
-            skipEmptyLines: true,
-            complete: resolve,
-          });
-        });
-      }
+    }
   </script>
 </html>

@@ -1,332 +1,294 @@
 tunit_code,tunit_name,y_2014
-AL01,Veri,
-AL02,Qender,
-AL03,Jug,
-AT11,Burgenland (AT),487320.0
-AT12,Niederosterreich,2807950.0
-AT13,Wien,3211003.0
-AT21,Karnten,987381.0
-AT22,Steiermark,2263313.0
-AT31,Oberosterreich,2646911.0
-AT32,Salzburg,1106533.0
-AT33,Tirol,1480864.0
-AT34,Vorarlberg,719755.0
-BA01,Distrikt Brcko,
-BA02,Federavja Bosnia i Hercegovina,
-BA03,Republika Srpska,
-BE10,Region de Bruxelles-Capitale / Brussels Hoofdstedelijk Gewest,3075919.0
-BE21,Prov. Antwerpen,6780390.0
-BE22,Prov. Limburg (BE),2729138.0
-BE23,Prov. Oost-Vlaanderen,4973812.0
-BE24,Prov. Vlaams-Brabant,3304595.0
-BE25,Prov. West-Vlaanderen,4136396.0
-BE31,Prov. Brabant Wallon,1132918.0
-BE32,Prov. Hainaut,3961735.0
-BE33,Prov. Liege,3255176.0
-BE34,Prov. Luxembourg (BE),645208.0
-BE35,Prov. Namur,1034183.0
-BG31,Severozapaden,1451851.0
-BG32,Severen tsentralen,2334790.0
-BG33,Severoiztochen,2602792.0
-BG34,Yugoiztochen,2859987.0
-BG41,Yugozapaden,5845374.0
-BG42,Yuzhen tsentralen,2780185.0
-CH01,Region lemanique,3572209.0
-CH02,Espace Mittelland,3982106.0
-CH03,Nordwestschweiz,2391906.0
-CH04,Zurich,3557371.0
-CH05,Ostschweiz,2455873.0
-CH06,Zentralschweiz,1643363.0
-CH07,Ticino,719791.0
-CY00,Kypros,675335.0
-CZ01,Praha,1759555.0
-CZ02,Stredni Cechy,1292907.0
-CZ03,Jihozapad,1295688.0
-CZ04,Severozapad,1081467.0
-CZ05,Severovychod,1616801.0
-CZ06,Jihovychod,2129809.0
-CZ07,Stredni Morava,1321070.0
-CZ08,Moravskoslezsko,1271571.0
-DE11,Stuttgart,7375276.0
-DE12,Karlsruhe,5570877.0
-DE13,Freiburg,4240502.0
-DE14,Tubingen,3388349.0
-DE21,Oberbayern,9348018.0
-DE22,Niederbayern,2318163.0
-DE23,Oberpfalz,2001343.0
-DE24,Oberfranken,1962378.0
-DE25,Mittelfranken,3329067.0
-DE26,Unterfranken,2580225.0
-DE27,Schwaben,3557348.0
-DE30,Berlin,5685325.0
-DE40,Brandenburg,4248016.0
-DE50,Bremen,1446041.0
-DE60,Hamburg,3087601.0
-DE71,Darmstadt,8110668.0
-DE72,Giessen,1985145.0
-DE73,Kassel,2202956.0
-DE80,Mecklenburg-Vorpommern,2540119.0
-DE91,Braunschweig,2531539.0
-DE92,Hannover,4138503.0
-DE93,Luneburg,3220274.0
-DE94,Weser-Ems,4776170.0
-DEA1,Dusseldorf,10659993.0
-DEA2,Koln,8495440.0
-DEA3,Munster,4970409.0
-DEA4,Detmold,4339896.0
-DEA5,Arnsberg,7034130.0
-DEB1,Koblenz,2695477.0
-DEB2,Trier,921613.0
-DEB3,Rheinhessen-Pfalz,3858829.0
-DEC0,Saarland,1824604.0
-DED2,Dresden,2809808.0
-DED4,Chemnitz,2503115.0
-DED5,Leipzig,1834382.0
-DEE0,Sachsen-Anhalt,4052551.0
-DEF0,Schleswig-Holstein,5246267.0
-DEG0,Thuringen,3636336.0
-DK01,Hovedstaden,3503450.0
-DK02,Sjaelland,1352713.0
-DK03,Syddanmark,1965683.0
-DK04,Midtjylland,2324232.0
-DK05,Nordjylland,886863.0
-EE00,Eesti,12506210.0
-EL30,Attiki,8986017.0
-EL41,Boreio Aigaio,221809.0
-EL42,Notio Aigaio,542979.0
-EL43,Kriti,906346.0
-EL51,"Anatoliki Makedonia, Thraki",945404.0
-EL52,Kentriki Makedonia,3626796.0
-EL53,Ditiki Makedonia,428204.0
-EL54, ,573364.0
-EL61, ,1275413.0
-EL62, ,327864.0
-EL63,Ditiki Ellada,1067978.0
-EL64,Sterea Ellada,951243.0
-EL65,Peloponnisos,1148936.0
-ES11,Galicia,3609515.0
-ES12,Principado de Asturias,1381989.0
-ES13,Cantabria,958957.0
-ES21,Pais Vasco,3967625.0
-ES22,Comunidad Foral de Navarra,1234849.0
-ES23,La Rioja,548295.0
-ES24,Aragon,2251605.0
-ES30,Comunidad de Madrid,8729225.0
-ES41,Castilla Y Leon,4007292.0
-ES42,Castilla-La Mancha,3216354.0
-ES43,,1439154.0
-ES51,Cataluna,12717420.0
-ES52,Comunidad Valenciana,7416767.0
-ES53,Illes Balears,885596.0
-ES61,Andalucia,9930666.0
-ES62, ,2263113.0
-ES63,Ciudad Autonoma de Ceuta,29745.0
-ES64,Ciudad Autonoma de Melilla,13688.0
-ES70, ,1768981.0
-FI19, ,3409992.0
-FI1B, ,4509611.0
-FI1C,Etela-Suomi,2917227.0
-FI1D,Pohjois- Ja Ita-Suomi,2805546.0
-FI20,Aland,57583.0
-FR10,Ile de France,18988882.0
-FR21,Champagne-Ardenne,1916472.0
-FR22,Picardie,2683256.0
-FR23,Haute-Normandie,2672306.0
-FR24,Centre,3585631.0
-FR25,Basse-Normandie,2128391.0
-FR26,Bourgogne,2453334.0
-FR30,Nord - Pas-de-Calais,5674740.0
-FR41,Lorraine,3223022.0
-FR42,Alsace,2721720.0
-FR43,Franche-Comte,1615835.0
-FR51,Pays de la Loire,5321123.0
-FR52,Bretagne,4711788.0
-FR53,Poitou-Charentes,2460742.0
-FR61,Aquitaine,5042126.0
-FR62,Midi-Pyrenees,4350329.0
-FR63,Limousin,995206.0
-FR71,Rhone-Alpes,9665323.0
-FR72,Auvergne,1946199.0
-FR81,Languedoc-Roussillon,3548385.0
-FR82,Provence-Alpes-Cote d'Azur,7112828.0
-FR83,Corse,365364.0
-FRA1,Guadeloupe,436881.0
-FRA2,Martinique,498277.0
-FRA3,Guyane,298022.0
-FRA4,La Reunion,1003395.0
-FRA5,Mayotte,
-HR03, ,853729.0
-HR04,Kontinentalna Hrvatska,2209667.0
-HU10,Kozep-Magyarorszag,4415053.0
-HU21,Kozep-Dunantul,1157355.0
-HU22,Nyugat-Dunantul,1088929.0
-HU23, ,997776.0
-HU31,Eszak-Magyarorszag,1209405.0
-HU32,Eszak-Alfold,1619235.0
-HU33,Del-Alfold,1485923.0
-IE01,"Border, Midland and Western",1463164.0
-IE02,Southern and Eastern,6296939.0
-IS00,Island,410394.0
-ITC1,Piemonte,8327235.0
-ITC2,Valle d'Aosta/Vallee D'Aoste,259642.0
-ITC3,Liguria,3120442.0
-ITC4,Lombardia,20753739.0
-ITF1,Abruzzo,2594476.0
-ITF2,Molise,422971.0
-ITF3,Campania,10042693.0
-ITF4,Puglia,6002694.0
-ITF5,Basilicata,998727.0
-ITF6,Calabria,1934456.0
-ITG1,Sicilia,6399338.0
-ITG2, ,1694403.0
-ITH1, ,963731.0
-ITH2,Provincia Autonoma di Trento,1112237.0
-ITH3,Veneto,9993309.0
-ITH4,Friuli-Venezia Giulia,2497297.0
-ITH5,Emilia-Romagna,9334458.0
-ITI1,Toscana,7017503.0
-ITI2,Umbria,1695174.0
-ITI3,Marche,2650495.0
-ITI4,Lazio,9890068.0
-LI00,Liechtenstein,42788.0
-LT00,Lietuva,3280039.0
-LU00,Luxembourg,899383.0
-LV00,Latvija,1995992.0
-ME00,Crna Gora,774089.0
-MK00,Poranesna jugoslovenska Republika Makedonija,2068085.0
-MT00,Malta,411012.0
-NL11,Groningen,3210157.0
-NL12,Friesland (NL),1294705.0
-NL13,Drenthe,1047873.0
-NL21,Overijssel,3122069.0
-NL22,Gelderland,4827634.0
-NL23,Flevoland,427014.0
-NL31,Utrecht,3178879.0
-NL32,Noord-Holland,5957028.0
-NL33, ,8220204.0
-NL34,Zeeland,872111.0
-NL41,Noord-Brabant,8268660.0
-NL42,Limburg (NL),3097034.0
-NO01,Oslo og Akershus,2328269.0
-NO02,Hedmark og Oppland,560430.0
-NO03,Sor-Ostlandet,1812733.0
-NO04,Agder og Rogaland,1622363.0
-NO05,Vestlandet,1769867.0
-NO06,Trondelag,843831.0
-NO07,Nord-Norge,716349.0
-PL11,Lodzkie,4853770.0
-PL12,Mazowieckie,13454363.0
-PL21,Malopolskie,6547852.0
-PL22,Slaskie,9953576.0
-PL31,Lubelskie,3289974.0
-PL32,Podkarpackie,3586770.0
-PL33,Swietokrzyskie,2194419.0
-PL34,Podlaskie,1714680.0
-PL41,Wielkopolskie,7357121.0
-PL42,Zachodniopomorskie,2793960.0
-PL43,Lubuskie,1871667.0
-PL51,Dolnoslaskie,5884817.0
-PL52,Opolskie,1532240.0
-PL61,Kujawsko-Pomorskie,3707501.0
-PL62,Warminsko-Mazurskie,2376429.0
-PL63,Pomorskie,4102615.0
-PT11,Norte,4054878.0
-PT15,Algarve,346112.0
-PT16,Centro (PT),2923643.0
-PT17,Area Metropolitana de Lisboa,3606648.0
-PT18,Alentejo,811560.0
-PT20, ,222405.0
-PT30,Regiao Autonoma da Madeira,348984.0
-RO11,Nord-Vest,3013798.0
-RO12,Centru,2549812.0
-RO21,Nord-Est,3527807.0
-RO22, ,2139822.0
-RO31,Sud - Muntenia,3120614.0
-RO32,Bucuresti - Ilfov,2529002.0
-RO41,Sud-Vest Oltenia,1685118.0
-RO42,Vest,2257575.0
-RS11,Beograd,
-RS12,Vojvodina,
-RS21,Sumadija and Western Serbia,
-RS22,Southern and Eastern Serbia,
-SE11,Stockholm,4220711.0
-SE12,Ostra Mellansverige,3190177.0
-SE21,Smaland med oarna,1544351.0
-SE22,Sydsverige,2781437.0
-SE23,Vastsverige,3561788.0
-SE31,Norra Mellansverige,1687522.0
-SE32,Mellersta Norrland,668337.0
-SE33,Ovre Norrland,781340.0
-SI03, ,1517762.0
-SI04,Zahodna Slovenija,1790232.0
-SK01, ,681221.0
-SK02,Zapadne Slovensko,1910321.0
-SK03,Stredne Slovensko,1510864.0
-SK04,Vychodne Slovensko,1365782.0
-TR10,Istanbul,
-TR21,"Tekirdag, Edirne, Kirklareli",
-TR22, ,
-TR31,Izmir,
-TR32,"Aydin, Denizli, Mugla",
-TR33, ,
-TR41,"Bursa, Eskisehir, Bilecik",
-TR42,"Kocaeli, Sakarya, Duzce, Bolu, Yalova",
-TR51,Ankara,
-TR52,"Konya, Karaman",
-TR61,"Antalya, Isparta, Burdur",
-TR62,"Adana, Mersin",
-TR63,"Hatay, Kahramanmaras, Osmaniye",
-TR71,"Kirikkale, Aksaray, Nigde, Nevsehir, Kirsehir",
-TR72,"Kayseri, Sivas, Yozgat",
-TR81,"Zonguldak, Karabuk, Bartin",
-TR82,"Kastamonu, Cankiri, Sinop",
-TR83, ,
-TR90,Trabzon,
-TRA1, ,
-TRA2,"Agri, Kars, Igdir, Ardahan",
-TRB1, ,
-TRB2,"Van, Mus, Bitlis, Hakkari",
-TRC1,"Gaziantep, Adiyaman, Kilis",
-TRC2, ,
-TRC3,"Mardin, Batman, Sirnak, Siirt",
-UKC1, ,1679404.0
-UKC2,Northumberland and Tyne And Wear,2235050.0
-UKD1,Cumbria,855299.0
-UKD3,Greater Manchester,4781230.0
-UKD4,Lancashire,2461220.0
-UKD6,Cheshire,1695988.0
-UKD7,Merseyside,2341898.0
-UKE1,East Yorkshire and Northern Lincolnshire,1505567.0
-UKE2,North Yorkshire,1302981.0
-UKE3,South Yorkshire,2172638.0
-UKE4,West Yorkshire,3766116.0
-UKF1,Derbyshire and Nottinghamshire,3496731.0
-UKF2,"Leicestershire, Rutland and Northamptonshire",3515616.0
-UKF3,Lincolnshire,1141214.0
-UKG1, ,2105221.0
-UKG2,Shropshire and Staffordshire,2586727.0
-UKG3,West Midlands,4511228.0
-UKH1,East Anglia,4032686.0
-UKH2,Bedfordshire and Hertfordshire,3079273.0
-UKH3,Essex,2900651.0
-UKI3,Inner London - West,649653.0
-UKI4, ,2294714.0
-UKI5,Outer London - East and North East,2616970.0
-UKI6,Outer London - South,1415886.0
-UKI7,Outer London - West and North West,2296207.0
-UKJ1,"Berkshire, Buckinghamshire and Oxfordshire",3803248.0
-UKJ2,"Surrey, East and West Sussex",4204586.0
-UKJ3,Hampshire and Isle of Wight,3261016.0
-UKJ4,Kent,2455756.0
-UKK1, ,4337570.0
-UKK2,Dorset and Somerset,1968229.0
-UKK3,Cornwall and Isles of Scilly,744164.0
-UKK4,Devon,1646102.0
-UKL1,West Wales and the Valleys,3097994.0
-UKL2,East Wales,1835721.0
-UKM2,Eastern Scotland,3246920.0
-UKM3,South Western Scotland,3710093.0
-UKM5,North Eastern Scotland,292637.0
-UKM6,Highlands and Islands,692899.0
-UKN0, ,3043003.0
-XK00,Republica e Kosovas / Republika Kosovo,822583.0
+AT11,Burgenland (AT),487320
+AT12,Niederosterreich,2807950
+AT13,Wien,3211003
+AT21,Karnten,987381
+AT22,Steiermark,2263313
+AT31,Oberosterreich,2646911
+AT32,Salzburg,1106533
+AT33,Tirol,1480864
+AT34,Vorarlberg,719755
+BE10,Region de Bruxelles-Capitale / Brussels Hoofdstedelijk Gewest,3075919
+BE21,Prov. Antwerpen,6780390
+BE22,Prov. Limburg (BE),2729138
+BE23,Prov. Oost-Vlaanderen,4973812
+BE24,Prov. Vlaams-Brabant,3304595
+BE25,Prov. West-Vlaanderen,4136396
+BE31,Prov. Brabant Wallon,1132918
+BE32,Prov. Hainaut,3961735
+BE33,Prov. Liege,3255176
+BE34,Prov. Luxembourg (BE),645208
+BE35,Prov. Namur,1034183
+BG31,Severozapaden,1451851
+BG32,Severen tsentralen,2334790
+BG33,Severoiztochen,2602792
+BG34,Yugoiztochen,2859987
+BG41,Yugozapaden,5845374
+BG42,Yuzhen tsentralen,2780185
+CH01,Region lemanique,3572209
+CH02,Espace Mittelland,3982106
+CH03,Nordwestschweiz,2391906
+CH04,Zurich,3557371
+CH05,Ostschweiz,2455873
+CH06,Zentralschweiz,1643363
+CH07,Ticino,719791
+CY00,Kypros,675335
+CZ01,Praha,1759555
+CZ02,Stredni Cechy,1292907
+CZ03,Jihozapad,1295688
+CZ04,Severozapad,1081467
+CZ05,Severovychod,1616801
+CZ06,Jihovychod,2129809
+CZ07,Stredni Morava,1321070
+CZ08,Moravskoslezsko,1271571
+DE11,Stuttgart,7375276
+DE12,Karlsruhe,5570877
+DE13,Freiburg,4240502
+DE14,Tubingen,3388349
+DE21,Oberbayern,9348018
+DE22,Niederbayern,2318163
+DE23,Oberpfalz,2001343
+DE24,Oberfranken,1962378
+DE25,Mittelfranken,3329067
+DE26,Unterfranken,2580225
+DE27,Schwaben,3557348
+DE30,Berlin,5685325
+DE40,Brandenburg,4248016
+DE50,Bremen,1446041
+DE60,Hamburg,3087601
+DE71,Darmstadt,8110668
+DE72,Giessen,1985145
+DE73,Kassel,2202956
+DE80,Mecklenburg-Vorpommern,2540119
+DE91,Braunschweig,2531539
+DE92,Hannover,4138503
+DE93,Luneburg,3220274
+DE94,Weser-Ems,4776170
+DEA1,Dusseldorf,10659993
+DEA2,Koln,8495440
+DEA3,Munster,4970409
+DEA4,Detmold,4339896
+DEA5,Arnsberg,7034130
+DEB1,Koblenz,2695477
+DEB2,Trier,921613
+DEB3,Rheinhessen-Pfalz,3858829
+DEC0,Saarland,1824604
+DED2,Dresden,2809808
+DED4,Chemnitz,2503115
+DED5,Leipzig,1834382
+DEE0,Sachsen-Anhalt,4052551
+DEF0,Schleswig-Holstein,5246267
+DEG0,Thuringen,3636336
+DK01,Hovedstaden,3503450
+DK02,Sjaelland,1352713
+DK03,Syddanmark,1965683
+DK04,Midtjylland,2324232
+DK05,Nordjylland,886863
+EE00,Eesti,12506210
+EL30,Attiki,8986017
+EL41,Boreio Aigaio,221809
+EL42,Notio Aigaio,542979
+EL43,Kriti,906346
+EL51,"Anatoliki Makedonia, Thraki",945404
+EL52,Kentriki Makedonia,3626796
+EL53,Ditiki Makedonia,428204
+EL54, ,573364
+EL61, ,1275413
+EL62, ,327864
+EL63,Ditiki Ellada,1067978
+EL64,Sterea Ellada,951243
+EL65,Peloponnisos,1148936
+ES11,Galicia,3609515
+ES12,Principado de Asturias,1381989
+ES13,Cantabria,958957
+ES21,Pais Vasco,3967625
+ES22,Comunidad Foral de Navarra,1234849
+ES23,La Rioja,548295
+ES24,Aragon,2251605
+ES30,Comunidad de Madrid,8729225
+ES41,Castilla Y Leon,4007292
+ES42,Castilla-La Mancha,3216354
+ES51,Cataluna,12717420
+ES52,Comunidad Valenciana,7416767
+ES53,Illes Balears,885596
+ES61,Andalucia,9930666
+ES62, ,2263113
+ES63,Ciudad Autonoma de Ceuta,29745
+ES64,Ciudad Autonoma de Melilla,13688
+ES70, ,1768981
+FI19, ,3409992
+FI1B, ,4509611
+FI1C,Etela-Suomi,2917227
+FI1D,Pohjois- Ja Ita-Suomi,2805546
+FI20,Aland,57583
+FR10,Ile de France,18988882
+FR21,Champagne-Ardenne,1916472
+FR22,Picardie,2683256
+FR23,Haute-Normandie,2672306
+FR24,Centre,3585631
+FR25,Basse-Normandie,2128391
+FR26,Bourgogne,2453334
+FR30,Nord - Pas-de-Calais,5674740
+FR41,Lorraine,3223022
+FR42,Alsace,2721720
+FR43,Franche-Comte,1615835
+FR51,Pays de la Loire,5321123
+FR52,Bretagne,4711788
+FR53,Poitou-Charentes,2460742
+FR61,Aquitaine,5042126
+FR62,Midi-Pyrenees,4350329
+FR63,Limousin,995206
+FR71,Rhone-Alpes,9665323
+FR72,Auvergne,1946199
+FR81,Languedoc-Roussillon,3548385
+FR82,Provence-Alpes-Cote d'Azur,7112828
+FR83,Corse,365364
+FRA1,Guadeloupe,436881
+FRA2,Martinique,498277
+FRA3,Guyane,298022
+FRA4,La Reunion,1003395
+HR03, ,853729
+HR04,Kontinentalna Hrvatska,2209667
+HU10,Kozep-Magyarorszag,4415053
+HU21,Kozep-Dunantul,1157355
+HU22,Nyugat-Dunantul,1088929
+HU23, ,997776
+HU31,Eszak-Magyarorszag,1209405
+HU32,Eszak-Alfold,1619235
+HU33,Del-Alfold,1485923
+IE01,"Border, Midland and Western",1463164
+IE02,Southern and Eastern,6296939
+IS00,Island,410394
+ITC1,Piemonte,8327235
+ITC2,Valle d'Aosta/Vallee D'Aoste,259642
+ITC3,Liguria,3120442
+ITC4,Lombardia,20753739
+ITF1,Abruzzo,2594476
+ITF2,Molise,422971
+ITF3,Campania,10042693
+ITF4,Puglia,6002694
+ITF5,Basilicata,998727
+ITF6,Calabria,1934456
+ITG1,Sicilia,6399338
+ITG2, ,1694403
+ITH1, ,963731
+ITH2,Provincia Autonoma di Trento,1112237
+ITH3,Veneto,9993309
+ITH4,Friuli-Venezia Giulia,2497297
+ITH5,Emilia-Romagna,9334458
+ITI1,Toscana,7017503
+ITI2,Umbria,1695174
+ITI3,Marche,2650495
+ITI4,Lazio,9890068
+LI00,Liechtenstein,42788
+LT00,Lietuva,3280039
+LU00,Luxembourg,899383
+LV00,Latvija,1995992
+ME00,Crna Gora,774089
+MK00,Poranesna jugoslovenska Republika Makedonija,2068085
+MT00,Malta,411012
+NL11,Groningen,3210157
+NL12,Friesland (NL),1294705
+NL13,Drenthe,1047873
+NL21,Overijssel,3122069
+NL22,Gelderland,4827634
+NL23,Flevoland,427014
+NL31,Utrecht,3178879
+NL32,Noord-Holland,5957028
+NL33, ,8220204
+NL34,Zeeland,872111
+NL41,Noord-Brabant,8268660
+NL42,Limburg (NL),3097034
+NO01,Oslo og Akershus,2328269
+NO02,Hedmark og Oppland,560430
+NO03,Sor-Ostlandet,1812733
+NO04,Agder og Rogaland,1622363
+NO05,Vestlandet,1769867
+NO06,Trondelag,843831
+NO07,Nord-Norge,716349
+PL11,Lodzkie,4853770
+PL12,Mazowieckie,13454363
+PL21,Malopolskie,6547852
+PL22,Slaskie,9953576
+PL31,Lubelskie,3289974
+PL32,Podkarpackie,3586770
+PL33,Swietokrzyskie,2194419
+PL34,Podlaskie,1714680
+PL41,Wielkopolskie,7357121
+PL42,Zachodniopomorskie,2793960
+PL43,Lubuskie,1871667
+PL51,Dolnoslaskie,5884817
+PL52,Opolskie,1532240
+PL61,Kujawsko-Pomorskie,3707501
+PL62,Warminsko-Mazurskie,2376429
+PL63,Pomorskie,4102615
+PT11,Norte,4054878
+PT15,Algarve,346112
+PT16,Centro (PT),2923643
+PT17,Area Metropolitana de Lisboa,3606648
+PT18,Alentejo,811560
+PT20, ,222405
+PT30,Regiao Autonoma da Madeira,348984
+RO11,Nord-Vest,3013798
+RO12,Centru,2549812
+RO21,Nord-Est,3527807
+RO22, ,2139822
+RO31,Sud - Muntenia,3120614
+RO32,Bucuresti - Ilfov,2529002
+RO41,Sud-Vest Oltenia,1685118
+RO42,Vest,2257575
+SE11,Stockholm,4220711
+SE12,Ostra Mellansverige,3190177
+SE21,Smaland med oarna,1544351
+SE22,Sydsverige,2781437
+SE23,Vastsverige,3561788
+SE31,Norra Mellansverige,1687522
+SE32,Mellersta Norrland,668337
+SE33,Ovre Norrland,781340
+SI03, ,1517762
+SI04,Zahodna Slovenija,1790232
+SK01, ,681221
+SK02,Zapadne Slovensko,1910321
+SK03,Stredne Slovensko,1510864
+SK04,Vychodne Slovensko,1365782
+UKC1, ,1679404
+UKC2,Northumberland and Tyne And Wear,2235050
+UKD1,Cumbria,855299
+UKD3,Greater Manchester,4781230
+UKD4,Lancashire,2461220
+UKD6,Cheshire,1695988
+UKD7,Merseyside,2341898
+UKE1,East Yorkshire and Northern Lincolnshire,1505567
+UKE2,North Yorkshire,1302981
+UKE3,South Yorkshire,2172638
+UKE4,West Yorkshire,3766116
+UKF1,Derbyshire and Nottinghamshire,3496731
+UKF2,"Leicestershire, Rutland and Northamptonshire",3515616
+UKF3,Lincolnshire,1141214
+UKG1, ,2105221
+UKG2,Shropshire and Staffordshire,2586727
+UKG3,West Midlands,4511228
+UKH1,East Anglia,4032686
+UKH2,Bedfordshire and Hertfordshire,3079273
+UKH3,Essex,2900651
+UKI3,Inner London - West,649653
+UKI4, ,2294714
+UKI5,Outer London - East and North East,2616970
+UKI6,Outer London - South,1415886
+UKI7,Outer London - West and North West,2296207
+UKJ1,"Berkshire, Buckinghamshire and Oxfordshire",3803248
+UKJ2,"Surrey, East and West Sussex",4204586
+UKJ3,Hampshire and Isle of Wight,3261016
+UKJ4,Kent,2455756
+UKK1, ,4337570
+UKK2,Dorset and Somerset,1968229
+UKK3,Cornwall and Isles of Scilly,744164
+UKK4,Devon,1646102
+UKL1,West Wales and the Valleys,3097994
+UKL2,East Wales,1835721
+UKM2,Eastern Scotland,3246920
+UKM3,South Western Scotland,3710093
+UKM5,North Eastern Scotland,292637
+UKM6,Highlands and Islands,692899
+UKN0, ,3043003
+XK00,Republica e Kosovas / Republika Kosovo,822583
