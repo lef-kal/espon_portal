@@ -28,6 +28,9 @@
       *{
         overflow: auto;
       }
+      nav{
+        z-index: 1050!important;
+      }
       #map {
         /* position: absolute;
         top: 0;
@@ -37,23 +40,12 @@
       .feature__p {
         font-size: 13px;
       }
-      .card, .card-header{
-        background-color: transparent;
-        border: 0;
-        border-bottom: 1px solid blue;
-      }
-      .card-header{
-        padding: 10px;
-      }
-      .card-header > button{
-        color: black;
-      }
     </style>
   </head>
   <body>
     <!-- nav-start-->
-    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top mb-5">
-      <a class="navbar-brand ml-5" href="#">ESPON EGTC: Portal</a>
+    <nav class="navbar navbar-expand-sm navbar-light bg-white shadow fixed-top mb-5">
+      <a class="navbar-brand ml-5" href="#"><img src="ESPON-logo.png" alt="espon-logo" style="max-height: 70px;"></a>
       <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
           aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -64,10 +56,16 @@
             <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="storytelling.html"> Data visualization</a>
+            <a class="nav-link" href="storytelling.html">Datastories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="storytelling.html">Dashboards</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="storytelling.html">Data playground</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tools</a>
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ESPON Tools</a>
             <div class="dropdown-menu" aria-labelledby="dropdownId">
               <a class="dropdown-item" href="#">Rimap</a>
               <a class="dropdown-item" href="#">Fuore</a>
@@ -80,17 +78,18 @@
     <!-- nav-end-->
     <div class="row mt-5">
       <!--- list-start -->
-      <div class="col-lg-4">
+      <div class="col-lg-5">
         <!-- feature-start-->
-        <div class="feature mt-5 ml-5">
+        <div class="feature mt-5 ml-5 mr-5">
+          <br>
           <span class="badge badge-pill badge-primary">Featured map</span>
           <h5>
             Circular Economy and Territorial Consequences: The case of
             Luxembourg
           </h5>
           <p class="feature__p">
-            We published today a new report of our Circular Economy and
-            Territorial Consequences (CIRCTER) project. This report will focus
+            We published today a new report of our <b>Circular Economy and
+            Territorial Consequences (CIRCTER) project</b>. This report will focus
             on the Grand Duchy of Luxembourg, which, at the moment, is
             developing its national Circular Economy Strategy. In this respect,
             CIRCTER’s evidence provides further critical insights into the
@@ -98,8 +97,8 @@
             Ministries.
           </p>
           <p class="feature__p">
-            Claude Turmes, Minister for Spatial Planning of Luxembourg, notes in
-            his forward message: "The results of ESPON’s CIRCTER spin-off for
+            <b>Claude Turmes, Minister for Spatial Planning of Luxembourg</b>, notes in
+            his forward message: <i>"The results of ESPON’s CIRCTER spin-off for
             Luxembourg come at the right moment, as they provide valuable data
             and information for setting objectives and drafting roadmaps for
             implementing circular economy principles in key economic sectors.
@@ -107,10 +106,10 @@
             national efforts against other regions in Europe and designing
             tailor-made recommendations. The CIRCTER results position Luxembourg
             as one of the cutting-edge European regions in terms of circular
-            business models already installed in the country.
+            business models already installed in the country. </i>
           </p>
           <p class="feature__p">
-            On the other hand, the analysis highlights very different
+            <i>On the other hand, the analysis highlights very different
             circularity performance scores across municipalities, thereby
             confirming the need for coherent governance and strong institutional
             cooperation along entire value chains, as identified in the National
@@ -118,7 +117,7 @@
             the CIRCTER research team to apply the project’s methodology and
             tailor the project’s policy recommendations to an almost unique
             territorial context characterised by a high degree of cross-border
-            integration in the heart of Europe".
+            integration in the heart of Europe". </i>
           </p>
           <p class="feature__p">
             CIRCTER project produced regional estimates (at NUTS-2 level) for
@@ -131,7 +130,7 @@
         </div>
         <!-- feature-end-->
         <!-- Accordeon start-->
-        <div id="accordion" class="mt-5 ml-5">
+        <div id="accordion" class="mt-5 ml-5 mr-5 ">
           <div class="card">
             <div class="card-header" id="headingTwo">
               <h5 class="mb-0">
@@ -218,7 +217,7 @@
 
 
       <!-- map-start-->
-      <div class="col-lg-8 fixed-top ml-auto mt-5" >
+      <div class="col-lg-7 fixed-top ml-auto mt-5" >
         <div id="map" class=""></div>
       </div>
       <!-- map-end-->
@@ -259,7 +258,6 @@
       center: [12, 56],
       transformRequest: transformRequest,
     });
-    map.addControl(new mapboxgl.NavigationControl());
 
     map.on("load", function () {
       csvPromise.then(function (results) {
