@@ -8,8 +8,10 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <script src='https://cdn.plot.ly/plotly-2.2.0.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+    <script src="https://cdn.plot.ly/plotly-2.2.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <script src="https://unpkg.com/underscore@1.13.1/underscore-umd-min.js
+    "></script>
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -17,7 +19,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-        <script
+    <script
       src="https://code.jquery.com/jquery-3.6.0.js"
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
       crossorigin="anonymous"
@@ -28,11 +30,10 @@
       href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css"
       rel="stylesheet"
     />
-    <script src="https://unpkg.com/papaparse@latest/papaparse.min.js"></script>
 
     <style>
       * {
-        overflow: auto;
+        overflow: unset!important;
       }
       nav {
         z-index: 1050 !important;
@@ -46,12 +47,10 @@
       .feature__p {
         font-size: 13px;
       }
-      .first{
-        margin-top: 20vh;
-      }
-      .card-body{
+      .card-body {
         padding: 0;
       }
+
     </style>
   </head>
   <body>
@@ -61,7 +60,7 @@
         navbar navbar-expand-sm navbar-light
         bg-white
         shadow
-        fixed-top
+        
         mb-5
       "
     >
@@ -120,7 +119,7 @@
     <!-- nav-end-->
     <div class="row first">
       <!--- list-start -->
-      <div class="col-lg-5">
+      <div class="col-lg-5 sidebar">
         <!-- feature-start-->
 
         <!-- feature-end-->
@@ -130,7 +129,7 @@
             <div class="card-header" id="headingTwo">
               <h5 class="mb-0">
                 <button
-                  class="btn btn-link collapsed changer"
+                  class="btn btn-link collapsed"
                   data-ind="2183"
                   data-toggle="collapse"
                   data-target="#collapseTwo"
@@ -148,13 +147,28 @@
               data-parent="#accordion"
             >
               <div class="card-body">
-                <div class="list-group ">
-                  <a href="#" class="list-group-item list-group-item-action active">Cras justo odio</a>
-                  <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                  <a href="#" class="list-group-item list-group-item-action disabled">Morbi leo risus</a>
+                <div class="list-group">
+                  <a
+                    href="#"
+                    class="
+                      list-group-item list-group-item-action
+                      changer
+                    "
+                    data-ind="1393"
+                    >Total number of material cultural heritage objects</a
+                  >
+                  <a
+                    href="#"
+                    class="list-group-item list-group-item-action changer"
+                    data-ind="2183"
+                    >Dapibus ac facilisis in</a
+                  >
+                  <a
+                    href="#"
+                    class="list-group-item list-group-item-action disabled"
+                    >Morbi leo risus</a
+                  >
                 </div>
-
-
               </div>
             </div>
           </div>
@@ -162,8 +176,7 @@
             <div class="card-header" id="headingThree">
               <h5 class="mb-0">
                 <button
-                  class="btn btn-link collapsed changer"
-                  data-ind="2023"
+                  class="btn btn-link collapsed"
                   data-toggle="collapse"
                   data-target="#collapseThree"
                   aria-expanded="false"
@@ -282,33 +295,53 @@
       <!-- map-start-->
       <div class="col-lg-7 mt-5">
         <div class="row">
-          <div class="col-lg-6 ">
-          <div class="btn-group btn-group-sm ">
-            <button type="button" class="btn btn-outline-primary">NUTS 0</button>
-            <button type="button" class="btn btn-outline-primary">NUTS 1</button>
-            <button type="button" class="btn btn-primary">NUTS 2</button>
-            <button type="button" class="btn btn-outline-primary">NUTS 3</button>
-          </div>
+          <div class="col-lg-6">
+            <div class="btn-group btn-group-sm">
+              <button type="button" class="btn btn-outline-primary">
+                NUTS 0
+              </button>
+              <button type="button" class="btn btn-outline-primary">
+                NUTS 1
+              </button>
+              <button type="button" class="btn btn-primary">NUTS 2</button>
+              <button type="button" class="btn btn-outline-primary">
+                NUTS 3
+              </button>
+            </div>
           </div>
           <div class="col-lg-2 mr-auto">
-          <div class="form-group">
-            <select class="form-control form-control-sm" name="" id="area-focus">
-              <option value=""></option>
-            </select>
+            <div class="form-group">
+              <select
+                class="form-control form-control-sm"
+                name=""
+                id="area-focus"
+              >
+                <option value=""></option>
+              </select>
+            </div>
           </div>
-          </div>
         </div>
+        <div class="row">
         <div class="col-lg-12">
-          <div id="map" class=""></div>
-        </div>
-        <div class="col-lg-12">
-          <div id="chartID" ></div>
-        </div>
-        <div class="col-lg-12">
-          <div id="output" style="margin: 30px;"></div>
+          <div id="map" class="">
 
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <h1 id="chartTitle">
+
+          </h1>
+          <p class="description">
+          </p>
+        </div>
+        <div class="col-lg-12">
+          <div id="chartID"></div>
+        </div>
+        <div class="col-lg-12">
+          <div id="output" style="margin: 30px"></div>
         </div>
       </div>
+    </div>
       <!-- map-end-->
     </div>
     <!--footer-start-->
@@ -454,113 +487,213 @@
   </body>
   <script>
 
-        $(".changer").on("click", function () {
-          mapboxgl.accessToken =
-            "pk.eyJ1IjoiZWxrYWxvbmFyaXMiLCJhIjoiY2twbXExOHcwMDg3ZzJvbnc0dXhyOWszOSJ9.AetSK7t4L_aaFVsCuNQmHg";
+      $('.list-group-item').click(function () {
 
-          var map = new mapboxgl.Map({
-            container: "map",
-            style: "mapbox://styles/mapbox/light-v10",
-            zoom: 3, // zoom level
-            maxZoom: 6,
-            minZoom: 3,
-            center: [12, 56],
-            transformRequest: transformRequest,
-          });
-          var chartData = [[],[],[]]
-          var ind = $(this).attr("data-ind");
-          var url = "https://database.espon.eu/api/select/indicator-data/?";
-          var params = "obj" + "=" + ind;
-          map.on("load", function () {
-            $.getJSON(url + params, function (data) {
-              data.forEach((row) => {
-                chartData[0].push(row.value)
-                chartData[1].push(row.tunit[0].tunit_name)
-                chartData[2].push(row.tunit[0].tunit_code)
-                console.log(row)
-                map.setFeatureState(
-                  {
-                    source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
-                    sourceLayer: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
-                    //YOUR TURN: Replace with unqiue ID row name
-                    id: row.tunit[0].tunit_code,
-                  },
-                  {
-                    name: row.tunit[0].tunit_name,
-                    value: row.value,
-                  }
-                );
-                //loop
-              });
+        $('.list-group-item.active').removeClass('active')
+        $(this).addClass('active')
 
-              //get-json
-            });
-           
-            map.addSource("NUTS_RG_10M_2013_4326_LEVL_2-344mre", {
-              type: "vector",
-              url: "mapbox://elkalonaris.3tp4ou5e",
-              promoteId: "NUTS_ID",
-              generateId: true,
-            });
-            map.addLayer({
-              id: "regional",
-              type: "fill",
-              source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
-              "source-layer": "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
-              layout: {},
-              paint: {
-                "fill-color": [
-                  "interpolate",
-                  ["linear"],
-                  ["to-number", ["feature-state", "value"]],
-                  0,
-                  "#ffb784",
-                  10000000,
-                  "#007db4",
-                ],
+       })
+  </script>
+  <script>
+
+    $(".changer").on("click", function () {
+      var chartTitle = $(this).innerHTML;
+      console.log(chartTitle)
+      $('#chartTitle').html(chartTitle)
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoiZWxrYWxvbmFyaXMiLCJhIjoiY2twbXExOHcwMDg3ZzJvbnc0dXhyOWszOSJ9.AetSK7t4L_aaFVsCuNQmHg";
+
+      var map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/light-v10",
+        zoom: 3, // zoom level
+        maxZoom: 6,
+        minZoom: 3,
+        center: [12, 56],
+        transformRequest: transformRequest,
+      });
+      map.triggerRepaint();
+      var chartData = [[], [], []];
+      var ind = $(this).attr("data-ind");
+      var url = "https://database.espon.eu/api/select/indicator-data/?";
+      var params = "obj" + "=" + ind;
+
+      map.on("load", function () {
+        $.getJSON(url + params, function (data) {
+          data.forEach((row) => {
+            chartData[0].push(row.value);
+            chartData[1].push(row.tunit[0].tunit_name);
+            chartData[2].push(row.tunit[0].tunit_code);
+            var maxValues = Math.max(chartData[0])
+            console.log(maxValues)
+            map.setFeatureState(
+              {
+                source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+                sourceLayer: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+                //YOUR TURN: Replace with unqiue ID row name
+                id: row.tunit[0].tunit_code,
               },
-            });
-            
-            setTimeout((timely) => {
-            for (var i=0; i < chartData[1].length; i++) {
-                var opt1 = chartData[2][i]
-                var opt2 = chartData[1][i]
-                var el = document.createElement("option");
-                el.textContent = opt1 + ": " +opt2;
-                el.value = opt1;
-                $('#area-focus').append(el);
-          }
-
-        }, 1000);
-        setTimeout((theTime) => {
-          
-        
-        var boxPlotData = [
-        {
-          y: chartData[0],
-          boxpoints: 'all',
-          jitter: 0.3,
-          pointpos: -1.8,
-          text: chartData[1],
-          type: 'box'
-        }
-      ];
-
-      Plotly.newPlot('chartID', boxPlotData);
-    }, 1000);
-
-
+              {
+                name: row.tunit[0].tunit_name,
+                value: row.value,
+              }
+            );
+            //loop
           });
-          function transformRequest(url, resourceType) {
-            var isMapboxRequest =
-              url.slice(8, 22) === "api.mapbox.com" ||
-              url.slice(10, 26) === "tiles.mapbox.com";
-            return {
-              url: isMapboxRequest
-                ? url.replace("?", "?pluginName=dataJoins&")
-                : url,
-            };
-          }
+
+          //get-json
         });
+
+        //scale
+        var scale = new mapboxgl.ScaleControl({
+          maxWidth: 80,
+          unit: "imperial",
+        });
+        map.addControl(scale);
+        scale.setUnit("metric");
+        //scale
+        var layers = map.getStyle().layers;
+          var firstSymbolId;
+          for (var i = 0; i < layers.length; i++) {
+          if (layers[i].type === 'symbol') {
+          firstSymbolId = layers[i].id;
+          break;
+          }
+        }
+        console.log(firstSymbolId)
+
+        //core-map
+        map.addSource("NUTS_RG_10M_2013_4326_LEVL_2-344mre", {
+          type: "vector",
+          url: "mapbox://elkalonaris.3tp4ou5e",
+          promoteId: "NUTS_ID",
+          generateId: true,
+        });
+        map.addLayer({
+          id: "regional",
+          type: "fill",
+          source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+          "source-layer": "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+          layout: {},
+          paint: {
+            'fill-opacity': 0.7,
+            "fill-color": [
+              "interpolate",
+              ["linear"],
+              ["to-number", ["feature-state", "value"]],
+              0,
+              'transparent',
+              1,
+              "#ffb784",
+              10000000,
+              "#007db4",
+            ],
+          },
+          
+        },firstSymbolId);
+        map.addLayer({
+          id: "regional-line",
+          type: "line",
+          source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+          "source-layer": "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+          layout: {},
+          paint: {
+            "line-color": 'lightgray',
+            'line-width': 0.1
+          },
+        });
+        //core-map-end
+
+        //options-start
+        setTimeout((timely) => {
+          for (var i = 0; i < chartData[1].length; i++) {
+            var opt1 = chartData[2][i];
+            var opt2 = chartData[1][i];
+            var el = document.createElement("option");
+            el.textContent = opt1 + ": " + opt2;
+            el.value = opt1;
+            $("#area-focus").append(el);
+          }
+        }, 1400);
+        //options-end
+
+        //box-plot-start
+        setTimeout((theTime) => {
+          var region = map.queryRenderedFeatures({
+            layers: ["regional"],
+          })
+          console.log(region)
+          var boxPlotData = [
+            {
+              y: chartData[0],
+              boxpoints: "all",
+              jitter: 0.3,
+              pointpos: -1.8,
+              text: chartData[1],
+              type: "box",
+            },
+          ];
+
+          Plotly.newPlot("chartID", boxPlotData);
+        }, 1400);
+        //boxplot-end
+
+        //pop-up-start
+        var popup = new mapboxgl.Popup({
+          closeButton: false,
+          closeOnClick: false,
+        });
+        map.on("mousemove", "regional", function (e) {
+          map.getCanvas().style.cursor = "pointer";
+
+          var region = map.queryRenderedFeatures(e.point, {
+            layers: ["regional"],
+          });
+          var props = region[0].properties;
+          var val = region[0].state;
+          var theValue = val.value.toLocaleString()
+
+          var content = "<b>" + props.NUTS_NAME + "</b>" + "<br>";
+          content += "Tunit code: " + props.FID + "<br>";
+          content += "Region: " + props.NUTS_NAME + "<br>";
+          content += "Value: " + "<b>" + theValue + "</b>";
+
+          popup.setLngLat(e.lngLat).setHTML(content).addTo(map);
+        });
+          map.on("mouseleave", "regional", function () {
+          map.getCanvas().style.cursor = "";
+
+          popup.remove();
+        });
+        //pop-up-end
+
+        //metadata-start
+        
+          
+          // $('.description')
+
+        //metadata-end
+
+
+
+        //map-end
+      });
+
+
+
+      //transformrequest-function-start
+      function transformRequest(url, resourceType) {
+        var isMapboxRequest =
+          url.slice(8, 22) === "api.mapbox.com" ||
+          url.slice(10, 26) === "tiles.mapbox.com";
+        return {
+          url: isMapboxRequest
+            ? url.replace("?", "?pluginName=dataJoins&")
+            : url,
+        };
+      }
+      //transform-request-function-end
+
+    });
   </script>
 </html>

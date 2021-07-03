@@ -255,6 +255,9 @@
 
       <!-- map-start-->
       <div class="col-lg-7 mt-5">
+        <button type="button" class="btn btn-sm btn-primary" id="flyer" data-toggle="button" aria-pressed="false" autocomplete="off">Focus on area</button>
+        <button type="button" class="btn btn-sm btn-primary" id="home" data-toggle="button" aria-pressed="false" autocomplete="off">Home</button>
+
         <div id="map" class=""></div>
       </div>
       <!-- map-end-->
@@ -471,11 +474,12 @@
       closeOnClick: false,
     });
 
-    map.on("mousemove", "region-layer", function (e) {
+    map.on("mousemove", function (e) {
       map.getCanvas().style.cursor = "pointer";
 
+      var theLayer = "region-layer"
       var region = map.queryRenderedFeatures(e.point, {
-        layers: ["region-layer"],
+        layers: [theLayer],
       });
       console.log(region);
       var props = region[0].properties;
@@ -566,6 +570,26 @@
         url: isMapboxRequest ? url.replace("?", "?pluginName=dataJoins&") : url,
       };
     }
+    document.getElementById('flyer').addEventListener('click', function () {
+    // Fly to a random location by offsetting the point -74.50, 40
+    // by up to 5 degrees.
+    map.flyTo({
+    center: [
+    6, 49
+    ],
+    zoom: 12.5,
+    essential: true // this animation is considered essential with respect to prefers-reduced-motion
+    });
+    });
+    document.getElementById('home').addEventListener('click', function () {
+    // Fly to a random location by offsetting the point -74.50, 40
+    // by up to 5 degrees.
+    map.flyTo({
+      zoom: 3, // zoom level
+      center: [12, 56],
+    essential: true // this animation is considered essential with respect to prefers-reduced-motion
+    });
+    });
     function papaPromise(url) {
       return new Promise(function (resolve, reject) {
         Papa.parse(url, {
