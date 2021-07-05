@@ -27,6 +27,8 @@
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
       crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <!-- <link rel="stylesheet" href="flatly.min.css"> -->
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
     <link
@@ -37,6 +39,7 @@
     <style>
       * {
         overflow: unset!important;
+        scroll-behavior: smooth;
       }
       nav {
         z-index: 1050 !important;
@@ -164,12 +167,17 @@
                     href="#"
                     class="list-group-item list-group-item-action changer"
                     data-ind="2183"
-                    >Dapibus ac facilisis in</a
+                    >Population by NUTS 2 regions</a
                   >
                   <a
                     href="#"
                     class="list-group-item list-group-item-action disabled"
-                    >Morbi leo risus</a
+                    >Female population by NUTS 2 regions</a
+                  >
+                  <a
+                    href="#"
+                    class="list-group-item list-group-item-action disabled"
+                    >Male population by NUTS 2 regions</a
                   >
                 </div>
               </div>
@@ -368,15 +376,15 @@
           </div>
         </div>
         <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-11">
           
           <div id="map" class="">
 
           </div>
         </div>
-        <div class="col-lg-12">
+        
  
-        <div class="col-lg-12">
+        <div class="col-lg-10">
           <div class="text-center spinner mt-5" >
             <div class="spinner-border" role="status">
               <span class="sr-only">Loading...</span>
@@ -384,11 +392,24 @@
           </div>
           <div id="chartID"></div>
         </div>
-        <div class="col-lg-12">
-          <div id="output" style="margin: 30px"></div>
+        <div class="col-lg-10">
+          <div class="text-center spinner mt-5" >
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+          <table id="output" class="mb-5 mt-5">
+            <thead>
+              <tr>
+                  <th>Tunit</th>
+                  <th>Name</th>
+                  <th>Value</th>
+
+              </tr>
+          </thead>
+          </table>
         </div>
       </div>
-    </div>
       <!-- map-end-->
     </div>
     <!--footer-start-->
@@ -559,6 +580,8 @@
 
     $(".changer").on("click", function () {
       $('#chartID').hide()
+      $('#output').hide()
+
       const theButton = document.getElementById('modal-button');
       theButton.setAttribute('disabled', 'disabled');
       $('.spinner').show()
@@ -594,7 +617,6 @@
             chartData[1].push(row.tunit[0].tunit_name);
             chartData[2].push(row.tunit[0].tunit_code);
             toDownload.push({tunit: row.tunit[0].tunit_code, name: row.tunit[0].tunit_name, value: row.value})
-            console.log(toDownload)
             map.setFeatureState(
               {
                 source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
@@ -613,7 +635,7 @@
           //get-json
         });
 
-        console.log(chartData)
+        // console.log(chartData)
         //scale
         var scale = new mapboxgl.ScaleControl({
           maxWidth: 80,
@@ -684,6 +706,8 @@
             el.value = opt1;
             $("#area-focus").append(el);
           }
+          //       ;
+
         }, 1400);
         //options-end
 
@@ -692,7 +716,21 @@
           var region = map.queryRenderedFeatures({
             layers: ["regional"],
           })
-          // console.log(region)
+          // for(let z=0;z < region.length; z++){
+          // var colored = []
+          // var r = region[i].layer.paint["fill-color"]["r"].toFixed(2);
+          // var g = region[i].layer.paint["fill-color"]["g"].toFixed(2);
+          // var b = region[i].layer.paint["fill-color"]["b"].toFixed(2);
+
+          // var R = (255 * r).toFixed(0);
+          // var G = (255 * g).toFixed(0);
+          // var B = (255 * b).toFixed(0);
+          // var toPush = "rgba(" + [R, G, B].join(",") + ",1)";
+          // colored.push(toPush)
+          // }
+
+          // console.log(colored)
+          
           var boxPlotData = [
             {
               y: chartData[0],
@@ -701,8 +739,13 @@
               pointpos: -1.8,
               text: chartData[1],
               type: "box",
+              name: 'Region data',
+              marker:{
+              color: 'rgba(0,120,255,0.4)'
+              }
             },
           ];
+          console.log(this)
           $('.spinner').hide()
           $('#chartID').show()
           theButton.removeAttribute('disabled')
@@ -728,7 +771,16 @@
             $(dlAnchorElem).on('click', function () { 
               window.open(dataStr)
              })
-        
+             $('#output').show()
+              $('#output').DataTable({
+                destroy: true,
+                data: toDownload,
+                columns: [
+                    { data: 'tunit' },
+                    { data: 'name' },
+                    { data: 'value' },
+                ]
+            } );
         Plotly.newPlot("chartID", boxPlotData);
         }, 1400);
         //boxplot-end
@@ -770,8 +822,8 @@
             var minPosition = chartData[0].indexOf(min)
             var maxName = chartData[1][maxPosition]
             var minName = chartData[1][minPosition]
-            console.log(maxName)
-            console.log(minName)
+            // console.log(maxName)
+            // console.log(minName)
             // function isMaximum(valueThis) { 
             //   return valueThis.
             //  }
@@ -780,9 +832,18 @@
           // 
 
         //metadata-end
-
-
-
+        map.on('idle', 'regional', function () {  
+          var theRegion = map.queryRenderedFeatures({
+            layers: ["regional"],
+          });
+          console.log(theRegion)
+          
+        // $('select').on('change', function () { 
+        //     var tunitValue = $(this).val()
+        //     // var focusCoordinated = region.find(obj => obj.name === props.NUTS_ID)
+        //    })
+        //    console.log(tunitValue)
+          })
         //map-end
       });
 

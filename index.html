@@ -9,7 +9,8 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <script src="https://cdn.plot.ly/plotly-2.2.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -17,7 +18,9 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="flatly.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="flatly.min.css" />
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
     <link
@@ -28,7 +31,7 @@
 
     <style>
       * {
-        overflow: unset!important;
+        overflow: unset !important;
       }
       nav {
         z-index: 1050 !important;
@@ -42,6 +45,10 @@
       .feature__p {
         font-size: 13px;
       }
+      #chartID{
+        width: 100%;
+      }
+
     </style>
   </head>
   <body>
@@ -256,8 +263,50 @@
 
       <!-- map-start-->
       <div class="col-lg-7 mt-5">
-        <button type="button" class="btn btn-sm btn-primary" id="flyer" data-toggle="button" aria-pressed="false" autocomplete="off">Focus on area</button>
-        <button type="button" class="btn btn-sm btn-primary" id="home" data-toggle="button" aria-pressed="false" autocomplete="off">Home</button>
+        <div class="row">
+          <div class="col-lg-4">
+        <button
+          type="button"
+          class="btn btn-sm btn-primary"
+          id="flyer"
+          data-toggle="button"
+          aria-pressed="false"
+          autocomplete="off"
+        >
+          Focus <i class="bi bi-geo-alt-fill"></i>
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-primary"
+          id="home"
+          data-toggle="button"
+          aria-pressed="false"
+          autocomplete="off"
+        >
+        <i class="bi bi-house-door-fill"></i>
+        </button>
+      </div>
+      <div class="col-lg-4">
+        <div class="form-check">
+          <input class="form-check-input radio-toggles" type="checkbox" value="" id="flexCheckDefault" checked disabled data-layer='region-layer'>
+          <label class="form-check-label" for="flexCheckDefault">
+            2014 data
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input radio-toggles" type="checkbox" value="" id="flexCheckChecked" data-layer="region-layer-2006" >
+          <label class="form-check-label" for="flexCheckChecked">
+            2006 data
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input radio-toggles" type="checkbox" value="" id="flexCheckChecked" data-layer="region-layer-dif">
+          <label class="form-check-label" for="flexCheckChecked">
+            Show difference
+          </label>
+        </div>
+      </div>
+      </div>
 
         <div id="map" class=""></div>
       </div>
@@ -409,7 +458,7 @@
     ></script>
   </body>
   <script>
-    const csvUrl = "waste_data.csv";
+    const csvUrl = "waste_data_time.csv";
     const csvPromise = papaPromise(csvUrl);
     //YOUR TURN: Replace with your Mapbox Token
     mapboxgl.accessToken =
@@ -424,10 +473,11 @@
       center: [12, 56],
       transformRequest: transformRequest,
     });
-
+    var chartData = []
     map.on("load", function () {
       csvPromise.then(function (results) {
         results.data.forEach((row) => {
+          chartData.push({new: row.y_2014, old: row.y_2006, dif: row.dif, name: row.tunit_code})
           map.setFeatureState(
             {
               //YOUR TURN: Replace with your source tileset and source layer
@@ -438,8 +488,10 @@
             },
             //YOUR TURN: Add rows you want to style/interact with
             {
-              name: row.tunit_name,
-              values: row.y_2014,
+              name: row.tunit_name ,
+              values: row.y_2014 /1000000,
+              values_2006: row.y_2006 /1000000,
+              difference: row.dif /1000000,
             }
           );
         });
@@ -459,29 +511,114 @@
         layout: {},
         paint: {
           "fill-color": [
-            "interpolate",
-            ["linear"],
+            "step",
             ["to-number", ["feature-state", "values"]],
-            13688,
             "#ffb784",
-            20753739,
-            "#007db4",
+            1, "#ffb784",
+            2, "#e3dabf",
+            4, "#79929c",
+            6,"#42d4f5",
+            8,'#007db4',
           ],
         },
       });
+      map.addLayer({
+        id: "region-layer-2006",
+        type: "fill",
+        source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+        "source-layer": "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+        layout: {'visibility':'none'},
+        paint: {
+          "fill-color": [
+            "step",
+            ["to-number", ["feature-state", "values_2006"]],
+            "#ffb784",
+            1, "#ffb784",
+            2, "#e3dabf",
+            4, "#79929c",
+            6,"#42d4f5",
+            8,'#007db4',
+          ],
+        },
+      });
+      map.addLayer({
+        id: "region-layer-dif",
+        type: "fill",
+        source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+        "source-layer": "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+        layout: {'visibility':'none'},
+        paint: {
+          "fill-color": [
+            "step",
+            ["to-number", ["feature-state", "difference"]],
+            "#c2e3af",
+            -10, "#c2e3af",
+            -5, "#c2e3af",
+            0, "#79929c",
+            5,"#42d4f5",
+            10,'#007db4',
+          ]
+        },
+      });
+
+      map.addLayer({
+        id: "region-line-layer",
+        type: "line",
+        source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+        "source-layer": "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+        layout: {},
+        paint: {
+          'line-color': 'white',
+          'line-opacity': 0.5,
+          'line-width': 0.5
+        },
+      });
+
+
     });
+
+      $('.radio-toggles').click(function () {
+
+        var clickedLayer = this.dataset.layer;
+        // console.log(clickedLayer)
+        var visibility = map.getLayoutProperty(
+        clickedLayer,
+        'visibility'
+        );
+      
+      // Toggle layer visibility by changing the layout object's visibility property.
+      if (visibility === 'visible') {
+          map.setLayoutProperty(
+          clickedLayer,
+          'visibility',
+          'none'
+          );
+          } else {
+
+          map.setLayoutProperty(
+          clickedLayer,
+          'visibility',
+          'visible'
+          );
+          }
+
+
+       })
+
+
     var popup = new mapboxgl.Popup({
       closeButton: false,
       closeOnClick: false,
     });
 
-    map.on("mousemove", 'region-layer',function (e) {
+    map.on("mousemove", "region-layer", function (e) {
       map.getCanvas().style.cursor = "pointer";
 
-      var theLayer = "region-layer"
+      var theLayer = "region-layer";
       var region = map.queryRenderedFeatures(e.point, {
         layers: [theLayer],
       });
+
       // console.log(region);
       var props = region[0].properties;
       var val = region[0].state;
@@ -495,8 +632,17 @@
       var B = (255 * b).toFixed(0);
 
       var color = "rgba(" + [R, G, B].join(",") + ",1)";
-      var theValues = val.values.toLocaleString();
-      var theNames = val.name;
+      var theValues = val.values.toLocaleString()
+      var theNames = props.NUTS_NAME
+      // var allTheOld = chartData.old
+ 
+
+      var otherData = chartData.find(obj => obj.name === props.NUTS_ID);
+      var theDif = otherData.dif / 1000000
+      var theOld = otherData.old  /1000000
+      // console.log(theDif)
+      // console.log(theOld)
+
 
       var content = "<b>" + props.NUTS_NAME + "</b>" + "<br>";
       content += "NUTS_2 code: " + props.FID + "<br>";
@@ -507,77 +653,177 @@
         "Waste: " +
         theValues +
         "</b>" +
-        " per capita" +
-        "</div>" +
-        "<br>";
-      content += '<canvas id="bar-chart-horizontal" height="100"></canvas>';
+        " mt per capita" +
+        "</div>";
+        content += '<canvas id="bh1" height="80"></canvas>';
+        content +=
+        "<div class='something'>" +
+          "<b>"+
+        "Waste: " +
+        theOld +
+        "</b>" +
+        " mt per capita" +
+        "</div>";
+        content += '<canvas id="bh2" height="80"></canvas>';
+        content +=
+        "<div class='something'>" +
+          "<b>"+
+        "Waste: " +
+        theDif +
+        "</b>" +
+        " mt per capita" +
+        "</div>";
+      content += '<canvas id="bh3" height="80"></canvas>';
 
-      popup.setLngLat(e.lngLat).setHTML(content).addTo(map);
+popup.setLngLat(e.lngLat).setHTML(content).addTo(map);
 
+var difColors = ["#c2e3af", "#c2e3af", "#79929c","#42d4f5", '#007db4']
+const ctx_one = document
+  .getElementById("bh1")
+  .getContext("2d");
+  const ctx_two = document
+  .getElementById("bh2")
+  .getContext("2d");
+  const ctx_three = document
+  .getElementById("bh3")
+  .getContext("2d");
+var chart_one = new Chart(ctx_one, {
+  type: "bar",
+  data: {
+    labels: [''],
+    datasets: [
+      {
+        label: "",
+        data: [theValues],
+        backgroundColor: [color],
+      },
+    ],
+  },
+  options: {
+    indexAxis: "y",
+    legend: { display: false },
+    scaleShowLabels : false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    title: {
+      display: false,
+    },
+    scales: {
+      x: {
+        min: 0,
+        max: 20,
+      },
+    },
+    yAxes: [
+      {
+        
+        display: false,
+        
+      },
+    ],
+  },
+});
+var chart_two = new Chart(ctx_two, {
+  type: "bar",
+  data: {
+    labels: [''],
+    datasets: [
+      {
+        label: "",
+        data: [theOld],
+        backgroundColor: [color],
+      },
+    ],
+  },
+  options: {
+    indexAxis: "y",
+    legend: { display: false },
+    scaleShowLabels : false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    title: {
+      display: false,
+    },
+    scales: {
+      x: {
+        min: 0,
+        max: 20,
+      },
+    },
+    yAxes: [
+      {
+        
+        display: false,
+        
+      },
+    ],
+  },
+});
+var chart_three = new Chart(ctx_three, {
+  type: "bar",
+  data: {
+    labels: [''],
+    datasets: [
+      {
+        label: "",
+        data: [theDif],
+        backgroundColor: difColors,
+      },
+    ],
+  },
+  options: {
+    indexAxis: "y",
+    legend: { display: false },
+    scaleShowLabels : false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    title: {
+      display: false,
+    },
+    scales: {
+      x: {
+        min: -10,
+        max: 10,
+      },
+    },
+    yAxes: [
+      {
+        
+        display: false,
+        
+      },
+    ],
+  },
+});
+});
+    // map.on("idle", function (e) {
+    //   var region = map.queryRenderedFeatures(e.point, {
+    //     layers: ["region-layer"],
+    //   });
+    //   // console.log(region);
+    //   var values = [];
+    //   for (var i = 0; i < 299; i++) {
+    //     var arr = region[i].state.values;
+    //     // console.log(arr)
+    //     values.push(arr);
 
-      const ctx = document
-        .getElementById("bar-chart-horizontal")
-        .getContext("2d");
-
-      var myChart = new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: [theNames],
-          datasets: [
-            {
-              label: "",
-              data: [theValues],
-              backgroundColor: [color],
-            },
-          ],
-        },
-        options: {
-          indexAxis: "y",
-          legend: { display: false },
-          scaleShowLabels : false,
-          plugins: {
-            legend: {
-              display: false,
-            },
-          },
-          title: {
-            display: false,
-          },
-          scales: {
-            x: {
-              min: 100,
-              suggestedMax: 10000000,
-            },
-          },
-          yAxes: [
-            {
-              
-              display: false,
-              
-            },
-          ],
-        },
-      });
-    });
-    map.on('idle', function(e) {
-      var region = map.queryRenderedFeatures(e.point, {
-        layers: ['region-layer'],
-      });
-      console.log(region)
-      var values = []
-      for(var i=0; i < 299; i++){
-      var arr = region[i].state.values
-      // console.log(arr)
-      values.push(arr)
-      
-      // var maxPeak = arr.sort((p, c) => p - c)[0];
-      // console.log(maxPeak);
-    }
-    var max = values.sort((a, b) => b - a)[0]
-    var min = values.sort((a,b)=> a-b)[0]
-    console.log(max)
-    console.log(min)
-    })
+    //     // var maxPeak = arr.sort((p, c) => p - c)[0];
+    //     // console.log(maxPeak);
+    //   }
+    //   var max = values.sort((a, b) => b - a)[0];
+    //   var min = values.sort((a, b) => a - b)[0];
+    //   console.log(max);
+    //   console.log(min);
+    // });
 
     map.on("mouseleave", "region-layer", function () {
       map.getCanvas().style.cursor = "";
@@ -593,25 +839,23 @@
         url: isMapboxRequest ? url.replace("?", "?pluginName=dataJoins&") : url,
       };
     }
-    document.getElementById('flyer').addEventListener('click', function () {
-    // Fly to a random location by offsetting the point -74.50, 40
-    // by up to 5 degrees.
-    map.flyTo({
-    center: [
-    6, 49
-    ],
-    zoom: 12.5,
-    essential: true // this animation is considered essential with respect to prefers-reduced-motion
+    document.getElementById("flyer").addEventListener("click", function () {
+      // Fly to a random location by offsetting the point -74.50, 40
+      // by up to 5 degrees.
+      map.flyTo({
+        center: [6, 49],
+        zoom: 12.5,
+        essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+      });
     });
-    });
-    document.getElementById('home').addEventListener('click', function () {
-    // Fly to a random location by offsetting the point -74.50, 40
-    // by up to 5 degrees.
-    map.flyTo({
-      zoom: 3, // zoom level
-      center: [12, 56],
-    essential: true // this animation is considered essential with respect to prefers-reduced-motion
-    });
+    document.getElementById("home").addEventListener("click", function () {
+      // Fly to a random location by offsetting the point -74.50, 40
+      // by up to 5 degrees.
+      map.flyTo({
+        zoom: 3, // zoom level
+        center: [12, 56],
+        essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+      });
     });
     function papaPromise(url) {
       return new Promise(function (resolve, reject) {
