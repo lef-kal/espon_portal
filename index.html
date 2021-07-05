@@ -17,6 +17,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="flatly.min.css">
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
     <link
@@ -27,7 +28,7 @@
 
     <style>
       * {
-        overflow: auto;
+        overflow: unset!important;
       }
       nav {
         z-index: 1050 !important;
@@ -50,7 +51,7 @@
         navbar navbar-expand-sm navbar-light
         bg-white
         shadow
-        fixed-top
+        sticky-top
         mb-5
       "
     >
@@ -474,14 +475,14 @@
       closeOnClick: false,
     });
 
-    map.on("mousemove", function (e) {
+    map.on("mousemove", 'region-layer',function (e) {
       map.getCanvas().style.cursor = "pointer";
 
       var theLayer = "region-layer"
       var region = map.queryRenderedFeatures(e.point, {
         layers: [theLayer],
       });
-      console.log(region);
+      // console.log(region);
       var props = region[0].properties;
       var val = region[0].state;
 
@@ -494,7 +495,7 @@
       var B = (255 * b).toFixed(0);
 
       var color = "rgba(" + [R, G, B].join(",") + ",1)";
-      var theValues = val.values;
+      var theValues = val.values.toLocaleString();
       var theNames = val.name;
 
       var content = "<b>" + props.NUTS_NAME + "</b>" + "<br>";
@@ -504,7 +505,7 @@
         "<div class='something'>" +
         "<b>" +
         "Waste: " +
-        val.values +
+        theValues +
         "</b>" +
         " per capita" +
         "</div>" +
@@ -512,6 +513,7 @@
       content += '<canvas id="bar-chart-horizontal" height="100"></canvas>';
 
       popup.setLngLat(e.lngLat).setHTML(content).addTo(map);
+
 
       const ctx = document
         .getElementById("bar-chart-horizontal")
@@ -532,6 +534,7 @@
         options: {
           indexAxis: "y",
           legend: { display: false },
+          scaleShowLabels : false,
           plugins: {
             legend: {
               display: false,
@@ -541,24 +544,44 @@
             display: false,
           },
           scales: {
-            y: {
-              min: 10000000,
-              max: 1000000000,
+            x: {
+              min: 100,
+              suggestedMax: 10000000,
             },
           },
           yAxes: [
             {
+              
               display: false,
+              
             },
           ],
         },
       });
     });
+    map.on('idle', function(e) {
+      var region = map.queryRenderedFeatures(e.point, {
+        layers: ['region-layer'],
+      });
+      console.log(region)
+      var values = []
+      for(var i=0; i < 299; i++){
+      var arr = region[i].state.values
+      // console.log(arr)
+      values.push(arr)
+      
+      // var maxPeak = arr.sort((p, c) => p - c)[0];
+      // console.log(maxPeak);
+    }
+    var max = values.sort((a, b) => b - a)[0]
+    var min = values.sort((a,b)=> a-b)[0]
+    console.log(max)
+    console.log(min)
+    })
 
-    map.on("mouseleave", "county-fill", function () {
+    map.on("mouseleave", "region-layer", function () {
       map.getCanvas().style.cursor = "";
-      myChart.destroy();
-
+      // myChart.destroy();
       popup.remove();
     });
 

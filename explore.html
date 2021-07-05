@@ -12,6 +12,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
     <script src="https://unpkg.com/underscore@1.13.1/underscore-umd-min.js
     "></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -19,6 +21,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="flatly.min.css">
     <script
       src="https://code.jquery.com/jquery-3.6.0.js"
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -50,7 +53,7 @@
       .card-body {
         padding: 0;
       }
-
+      .spinner{display: none;}
     </style>
   </head>
   <body>
@@ -295,7 +298,7 @@
       <!-- map-start-->
       <div class="col-lg-7 mt-5">
         <div class="row">
-          <div class="col-lg-6">
+          <div class="col-lg-4">
             <div class="btn-group btn-group-sm">
               <button type="button" class="btn btn-outline-primary">
                 NUTS 0
@@ -309,32 +312,76 @@
               </button>
             </div>
           </div>
-          <div class="col-lg-2 mr-auto">
+          <div class="col-lg-7 mr-auto">
             <div class="form-group">
               <select
                 class="form-control form-control-sm"
                 name=""
                 id="area-focus"
               >
-                <option value=""></option>
+              <option default>Focus on area</option>
+
               </select>
+            </div>
+          </div>
+          <div class="col-lg-1">
+            <button type="button" class="btn btn-sm btn-primary" id='modal-button'data-toggle="modal" data-target="#exampleModal" disabled>
+              <i class="bi bi-download"></i>
+            </button>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Retrieve indicator data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <h6>
+                      Download options
+                    </h6>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Include metadata
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
+                      <label class="form-check-label" for="defaultCheck2">
+                        Include null values
+                      </label>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-sm btn-primary"> <a id="csv">CSV</a> </button>
+                    <button type="button" class="btn btn-sm btn-primary"> <a id='json'>JSON</a></button>
+
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div class="row">
         <div class="col-lg-12">
+          
           <div id="map" class="">
 
           </div>
         </div>
-        <div class="col-lg-8">
-          <h1 id="chartTitle">
-
-          </h1>
-          <p class="description">
-          </p>
-        </div>
         <div class="col-lg-12">
+ 
+        <div class="col-lg-12">
+          <div class="text-center spinner mt-5" >
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
           <div id="chartID"></div>
         </div>
         <div class="col-lg-12">
@@ -484,6 +531,20 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script>
+      function mapExists(map) {
+        if (map && Object.keys(map).length > 0) {
+          if (map.style && Object.keys(map.style).length > 0) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+      }
+  
+    </script>
   </body>
   <script>
 
@@ -497,8 +558,15 @@
   <script>
 
     $(".changer").on("click", function () {
+      $('#chartID').hide()
+      const theButton = document.getElementById('modal-button');
+      theButton.setAttribute('disabled', 'disabled');
+      $('.spinner').show()
+
+      mapExists() && map.remove()
+
       var chartTitle = $(this).innerHTML;
-      console.log(chartTitle)
+      // console.log(chartTitle)
       $('#chartTitle').html(chartTitle)
       mapboxgl.accessToken =
         "pk.eyJ1IjoiZWxrYWxvbmFyaXMiLCJhIjoiY2twbXExOHcwMDg3ZzJvbnc0dXhyOWszOSJ9.AetSK7t4L_aaFVsCuNQmHg";
@@ -513,6 +581,7 @@
         transformRequest: transformRequest,
       });
       map.triggerRepaint();
+      var toDownload = []
       var chartData = [[], [], []];
       var ind = $(this).attr("data-ind");
       var url = "https://database.espon.eu/api/select/indicator-data/?";
@@ -524,8 +593,8 @@
             chartData[0].push(row.value);
             chartData[1].push(row.tunit[0].tunit_name);
             chartData[2].push(row.tunit[0].tunit_code);
-            var maxValues = Math.max(chartData[0])
-            console.log(maxValues)
+            toDownload.push({tunit: row.tunit[0].tunit_code, name: row.tunit[0].tunit_name, value: row.value})
+            console.log(toDownload)
             map.setFeatureState(
               {
                 source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
@@ -544,6 +613,7 @@
           //get-json
         });
 
+        console.log(chartData)
         //scale
         var scale = new mapboxgl.ScaleControl({
           maxWidth: 80,
@@ -560,7 +630,7 @@
           break;
           }
         }
-        console.log(firstSymbolId)
+        // console.log(firstSymbolId)
 
         //core-map
         map.addSource("NUTS_RG_10M_2013_4326_LEVL_2-344mre", {
@@ -622,7 +692,7 @@
           var region = map.queryRenderedFeatures({
             layers: ["regional"],
           })
-          console.log(region)
+          // console.log(region)
           var boxPlotData = [
             {
               y: chartData[0],
@@ -633,8 +703,33 @@
               type: "box",
             },
           ];
+          $('.spinner').hide()
+          $('#chartID').show()
+          theButton.removeAttribute('disabled')
+          let csvContent = "data:text/csv;charset=utf-8,"
+          + chartData.map(e => e.join(",")).join("\n");
+          var encodedUri = encodeURI(csvContent);
+          
+          var clAnchorElem = document.getElementById('csv');
+              // clAnchorElem.setAttribute("href",     csvContent     );
+              // clAnchorElem.setAttribute("download", "ind.csv");
+            $(clAnchorElem).on('click', function () { 
+              window.open(csvContent)
+             })
 
-          Plotly.newPlot("chartID", boxPlotData);
+        // var dataStr = "data:text/json;charset=utf-8," + JSON.stringify(chartData);
+        var dataStr = JSON.stringify(toDownload);
+
+
+        var dlAnchorElem = document.getElementById('json');
+            // dlAnchorElem.setAttribute("href",     dataStr     );
+            // dlAnchorElem.setAttribute("download", "scene.json");
+
+            $(dlAnchorElem).on('click', function () { 
+              window.open(dataStr)
+             })
+        
+        Plotly.newPlot("chartID", boxPlotData);
         }, 1400);
         //boxplot-end
 
@@ -668,9 +763,21 @@
         //pop-up-end
 
         //metadata-start
-        
-          
-          // $('.description')
+        setTimeout((time) => {
+            var max = chartData[0].sort((a, b) => b - a)[0]
+            var min = chartData[0].sort((a,b)=> a-b)[0]
+            var maxPosition = chartData[0].indexOf(max)
+            var minPosition = chartData[0].indexOf(min)
+            var maxName = chartData[1][maxPosition]
+            var minName = chartData[1][minPosition]
+            console.log(maxName)
+            console.log(minName)
+            // function isMaximum(valueThis) { 
+            //   return valueThis.
+            //  }
+            // document.getElementById('chartTitle').innerHTML= '<span>The maximum value identified is ' + max.toLocaleString() + ' at '+maxName+'</span> <span> and the min is  ' +min.toLocaleString()+' at ' +minName+ '</span>'
+        },1000)
+          // 
 
         //metadata-end
 
