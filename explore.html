@@ -57,6 +57,7 @@
         padding: 0;
       }
       .spinner{display: none;}
+ 
     </style>
   </head>
   <body>
@@ -619,8 +620,8 @@
             toDownload.push({tunit: row.tunit[0].tunit_code, name: row.tunit[0].tunit_name, value: row.value})
             map.setFeatureState(
               {
-                source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
-                sourceLayer: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+                source: "NUTS_RG_10M_2016_4326_LEVL_2-68764t",
+                sourceLayer: "NUTS_RG_10M_2016_4326_LEVL_2-68764t",
                 //YOUR TURN: Replace with unqiue ID row name
                 id: row.tunit[0].tunit_code,
               },
@@ -655,17 +656,17 @@
         // console.log(firstSymbolId)
 
         //core-map
-        map.addSource("NUTS_RG_10M_2013_4326_LEVL_2-344mre", {
+        map.addSource("NUTS_RG_10M_2016_4326_LEVL_2-68764t", {
           type: "vector",
-          url: "mapbox://elkalonaris.3tp4ou5e",
+          url: "mapbox://elkalonaris.96tatdr7",
           promoteId: "NUTS_ID",
           generateId: true,
         });
         map.addLayer({
           id: "regional",
           type: "fill",
-          source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
-          "source-layer": "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+          source: "NUTS_RG_10M_2016_4326_LEVL_2-68764t",
+          "source-layer": "NUTS_RG_10M_2016_4326_LEVL_2-68764t",
           layout: {},
           paint: {
             'fill-opacity': 0.7,
@@ -686,8 +687,8 @@
         map.addLayer({
           id: "regional-line",
           type: "line",
-          source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
-          "source-layer": "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+          source: "NUTS_RG_10M_2016_4326_LEVL_2-68764t",
+          "source-layer": "NUTS_RG_10M_2016_4326_LEVL_2-68764t",
           layout: {},
           paint: {
             "line-color": 'lightgray',
@@ -782,6 +783,8 @@
                 ]
             } );
         Plotly.newPlot("chartID", boxPlotData);
+
+        $('.paginate_button .current').css({'background-color':'#2c3e50', 'background':'#2c3e50'})
         }, 1400);
         //boxplot-end
 
