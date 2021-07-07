@@ -1,13 +1,11 @@
 const csvUrl = "coal.csv";
     const csvPromise = papaPromise(csvUrl);
-    var chartDom = document.getElementById('chart_one');
-    var myChart = echarts.init(chartDom);
+    var theDom = document.getElementById('chart_one');
+    var myChart = echarts.init(theDom);
     var option;
-    var chartData = []
     var theData = [[],[],[]]
     csvPromise.then(function (results) {
         results.data.forEach((row) => {
-          chartData.push({year: row.time, coal: row.coal, lignite: row.lignite})
           theData[0].push(row.time)
           theData[1].push(row.coal)
           theData[2].push(row.lignite)
@@ -75,7 +73,10 @@ option = {
             },
             emphasis: {
                 focus: 'series'
+            },animationDelay: function (idx) {
+                return idx * 10;
             },
+            
             data: theData[1]
         },
         {
@@ -99,13 +100,15 @@ option = {
             emphasis: {
                 focus: 'series'
             },
+            animationDelay: function (idx) {
+                return idx * 10+200;
+            },
             data: theData[2]
         },
-    ]
+    ],
 };
 
 myChart.setOption(option);
-console.log(chartData)
 window.onresize = function() {
   myChart.resize();
 };

@@ -1,5 +1,5 @@
 var config = {
-    style: 'mapbox://styles/mapbox/light-v10',
+    style: 'mapbox://styles/mapbox/dark-v10',
     accessToken: 'pk.eyJ1IjoiZWxrYWxvbmFyaXMiLCJhIjoiY2twbXExOHcwMDg3ZzJvbnc0dXhyOWszOSJ9.AetSK7t4L_aaFVsCuNQmHg',
     showMarkers: false,
     theme: 'light',
@@ -9,149 +9,49 @@ var config = {
     footer: '',
     chapters: [
         {
-            id: 'phl',
+            id: 'First',
             alignment: 'lefty',
             title: 'Coal dependend economies',
             image: '',
-            description: 'Just transition fund policy',
+            description: 'The EU has over 300 power plants with 738 separate generating units (as of July 2016). These are not evenly distributed across the individual member states and those most reliant on coal are Poland, Germany, Bulgaria, the Czech Republic and Romania. <br> Germany and Poland alone are jointly responsible for 51% of the EU’s installed coal capacity and 54% of emissions from coal.',
             location: {
                 center: [12, 56],
-                zoom: 2.7,
-                pitch: 0.00,
-                bearing: 0.00
+                zoom: 3,
+                pitch: 0,
+                bearing: 0,
             },
             onChapterEnter: [
                 {
-                    layer: 'powerplant-layer',
-                    opacity: 0.8
+                    layer: 'pplants-heat',
+                    opacity: 1
                 }
             ],
             onChapterExit: [
                 {
-                    layer: 'country-layer',
-                    opacity: 0.3
+                    layer: 'pplants-point',
+                    opacity: 1
                 }
             ]
         },
         {
-            id: 'bike-lanes',
+            id: 'Second',
             alignment: 'right',
-            title: 'The case of Northwest Germany',
+            title: 'Air quality indexes and CO2 emmissions',
             image: '',
-            description: 'Data values',
+            description: 'Apart from being the largest source of CO2 emissions, coal combustion is also a major threat to public health globally. Pollution from coal plants is responsible for about 23,000 premature death in the EU every year. About 82% of EU, 80% German and virtually all Polish coal power plants do not comply with a new EU regulation on industry air pollution emissions standards that they need to meet by 2021.',
             location: {
-                center: [7, 52],
-                zoom: 7.62,
+                center: [17.46797, 51.19208],
+                zoom: 5,
                 pitch: 3.50,
                 bearing: 2.20
             },
             onChapterEnter: [
                 {
-                    layer: 'powerplant-layer',
-                    opacity: 0.7
+                    layer: 'pplants-point',
+                    opacity: 1
                 }
             ],
             onChapterExit: []
         },
-        {
-            id: 'indego',
-            alignment: 'right',
-            title: 'Indego Bike Share',
-            image: '',
-            description: 'Indego has been operating in Philadelphia since 20XX. The system initally was focused on Center City, but has expanded service to neighboring areas to support equitable mobility options to the city\'s residents.',
-            location: {
-                center: [-75.16468, 39.94503],
-                zoom: 13.15,
-                pitch: 60.00,
-                bearing: -16.80
-            },
-            onChapterEnter: [
-                {
-                    layer: 'indego-stations',
-                    opacity: 0.8
-                }
-            ],
-            onChapterExit: [
-                {
-                    layer: 'indego-stations',
-                    opacity: 0
-                }
-            ]
-        },
-        {
-            id: 'belmont',
-            alignment: 'right',
-            title: 'Belmont Plateau Trails',
-            image: '',
-            description: 'A short ride along the Schuylkill River Trail from the Art Museum, Belmont is a twisty, log-ridden rollercoaster of a trail network. It is easy to get turned around, the underbrush is at times impenetrable, and short steep sections come out of nowhere. In other words, it\'s really fun',
-            location: {
-                center: [-75.20325, 39.99574],
-                zoom: 14.99,
-                pitch: 44.00,
-                bearing: -40.00
-            },
-            onChapterEnter: [
-                {
-                    layer: 'belmont',
-                    opacity: 1
-                }
-            ],
-            onChapterExit: [
-                {
-                    layer: 'belmont',
-                    opacity: 0
-                }
-            ]
-        },
-        {
-            id: 'wiss',
-            alignment: 'right',
-            title: 'Wissahickon Park Trails',
-            image: '',
-            description: 'This steep, rocky gorge can be surprisingly technical. Follow the orange and yellow trails to repeatedly climb and descend through the schist hillsides (careful of the cliffs), or stick to the gravel Forbidden Drive for a relaxing ride along the creek. You\'ll forget you\'re in a city.',
-            location: {
-                center: [-75.21223, 40.05028],
-                zoom: 13.08,
-                pitch: 47.50,
-                bearing: 32.80
-            },
-            onChapterEnter: [
-                {
-                    layer: 'wissahickon',
-                    opacity: 1
-                }
-            ],
-            onChapterExit: [
-                {
-                    layer: 'wissahickon',
-                    opacity: 0
-                }
-            ]
-        },
-        {
-            id: 'pennypack',
-            alignment: 'right',
-            title: 'Pennypack Park Trails',
-            image: '',
-            description: 'Pennypack is a great introduction trail system. Not too steep and not too technical, the beautiful wooded park also provides a great escape from urban life. The south side trails are originally bridle trails, so be nice to equestrians and dismount when you approach them.',
-            location: {
-                center: [-75.05685, 40.06839],
-                zoom: 13.73,
-                pitch: 43.50,
-                bearing: 96.80
-            },
-            onChapterEnter: [
-                {
-                    layer: 'pennypack',
-                    opacity: 1
-                }
-            ],
-            onChapterExit: [
-                {
-                    layer: 'pennypack',
-                    opacity: 0
-                }
-            ]
-        }
     ]
 };

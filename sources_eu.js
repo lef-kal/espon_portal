@@ -1,70 +1,52 @@
-
-    const url_nrg = "CO2_energy_sectors.csv";
+    const url_nrg = "GIC.csv";
     const csvPrm = papaPromise(url_nrg);
     var theDom = document.getElementById('chart_two');
     var theChart = echarts.init(theDom);
     var option;
-    var theData2 = []
-    var theData3 =[]
-    csvPrm.then(function (results) {
-        results.data.forEach((row) => {
-            
-            theData3.push(row.Year)
-            theData2.push({Name: row.Year, Coal: row.Coal, Oil: row.Oil, NG: row.Natural_gas, NA: row.Other})
-
+    var theData2 =[[],[]]
+    csvPrm.then(function (these) {
+        these.data.forEach((col) => {
+            theData2[0].push(col.Year)
+            theData2[1].push(col.Spending)
         })
-console.log(theData2)
-var keyNames = Object.keys(theData2[0]);
 
+console.log(theData2)
 option = {
-    tooltip: {
-        position: 'top'
-    },
-    grid: {
-        height: '50%',
-        top: '10%'
+    title: {
+        text: "Global renewable energy capacity spending",
+        subtext:"calculated in USD"
     },
     xAxis: {
         type: 'category',
-        data: Object.keys(theData2[0]),
-        splitArea: {
-            show: true
+        data: theData2[0]
+    },
+    tooltip: {
+        trigger: 'axis',
+        formatter: '<b>{b0}: {c0} </b> billion (USD)',
+        axisPointer: {
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {title: ''},
         }
     },
     yAxis: {
-        type: 'category',
-        data: theData2,
-        splitArea: {
-            show: true
-        }
-    },
-    visualMap: {
-        min: 0,
-        max: 10,
-        calculable: true,
-        orient: 'horizontal',
-        left: 'center',
-        bottom: '15%'
+        type: 'value'
     },
     series: [{
-        name: '',
-        type: 'heatmap',
-        data: theData2,
-        label: {
-            show: true
-        },
-        emphasis: {
-            itemStyle: {
-                shadowBlur: 10,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
-            }
-        }
+        data: theData2[1],
+        type: 'line',
+        smooth: true
     }]
 };
 
 theChart.setOption(option)
 window.onresize = function() {
-    myChart.resize();
+    theChart.resize();
   };
   });
   function papaPromise(url) {
