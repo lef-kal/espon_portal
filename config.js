@@ -1,5 +1,5 @@
 var config = {
-    style: 'mapbox://mapbox/styles/light-v10',
+    style: 'mapbox://styles/mapbox/light-v10',
     accessToken: 'pk.eyJ1IjoiZWxrYWxvbmFyaXMiLCJhIjoiY2twbXExOHcwMDg3ZzJvbnc0dXhyOWszOSJ9.AetSK7t4L_aaFVsCuNQmHg',
     showMarkers: false,
     theme: 'light',
@@ -10,45 +10,45 @@ var config = {
     chapters: [
         {
             id: 'phl',
-            alignment: 'right',
-            title: 'Change in annual mean number of days with heavy rainfall',
+            alignment: 'lefty',
+            title: 'Coal dependend economies',
             image: '',
-            description: '',
+            description: 'Just transition fund policy',
             location: {
-                center: [12, 50],
-                zoom: 2.99,
+                center: [12, 56],
+                zoom: 2.7,
                 pitch: 0.00,
                 bearing: 0.00
             },
             onChapterEnter: [
                 {
-                    layer: 'terrain',
-                    opacity: .95
+                    layer: 'powerplant-layer',
+                    opacity: 0.8
                 }
             ],
             onChapterExit: [
                 {
-                    layer: 'terrain',
-                    opacity: 0
+                    layer: 'country-layer',
+                    opacity: 0.3
                 }
             ]
         },
         {
             id: 'bike-lanes',
             alignment: 'right',
-            title: 'Bike Lanes',
+            title: 'The case of Northwest Germany',
             image: '',
-            description: 'In territorial units: 97.00 / In GDP: / In area: 96.00 / In population: 79.00',
+            description: 'Data values',
             location: {
-                center: [12, 50],
-                zoom: 11.62,
-                pitch: 55.50,
-                bearing: -7.20
+                center: [7, 52],
+                zoom: 7.62,
+                pitch: 3.50,
+                bearing: 2.20
             },
             onChapterEnter: [
                 {
-                    layer: 'terrain',
-                    opacity: 1
+                    layer: 'powerplant-layer',
+                    opacity: 0.7
                 }
             ],
             onChapterExit: []

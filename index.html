@@ -33,6 +33,10 @@
       * {
         overflow: unset !important;
       }
+      section{
+        max-width: 1450px;
+        margin: auto
+      }
       nav {
         z-index: 1050 !important;
       }
@@ -40,7 +44,31 @@
         /* position: absolute;
         top: 0;
         bottom: 0; */
-        min-height: 100vh;
+        min-height: 550px;
+        height: 600px;
+        max-height: 750px;
+
+        
+        border-left: 10px solid blue;
+        border-right: 10px solid blue;
+      }
+      .attribution{
+        font-size: 10px;
+      }
+      .only-top{
+        border-top: 2px solid blue;
+
+      }
+      .only-left{
+        border-left: 10px solid blue;
+        height: 40px;
+        margin-left: 12px;
+
+      }
+      .only-right{
+        border-right: 10px solid blue;
+        height: 60px;
+      margin-right: 12px!important;
       }
       .feature__p {
         font-size: 13px;
@@ -87,13 +115,13 @@
             <a class="nav-link" href="explore.html">Explore</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="storytelling.html">Datastories</a>
+            <a class="nav-link" href="datastory.html">Datastories</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="storytelling.html">Dashboards</a>
+            <a class="nav-link" href="#">Dashboards</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="storytelling.html">Data playground</a>
+            <a class="nav-link" href="#">Data playground</a>
           </li>
           <li class="nav-item dropdown">
             <a
@@ -115,6 +143,9 @@
     </nav>
 
     <!-- nav-end-->
+
+    <section>
+
     <div class="row mt-5">
       <!--- list-start -->
       <div class="col-lg-5">
@@ -176,88 +207,7 @@
           </p>
         </div>
         <!-- feature-end-->
-        <!-- Accordeon start-->
-        <!-- <div id="accordion" class="mt-5 ml-5 mr-5 ">
-          <div class="card">
-            <div class="card-header" id="headingTwo">
-              <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Population and living conditions
-                </button>
-              </h5>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-              <div class="card-body">
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header" id="headingThree">
-              <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Environment and Energy
-                </button>
-              </h5>
-            </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-              <div class="card-body">
-              </div>
-            </div>
-          </div>
-          <div class="card">
-              <div class="card-header" id="headingFour">
-                <h5 class="mb-0">
-                  <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                      Economy, finance and trade
-                  </button>
-                </h5>
-              </div>
-              <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                <div class="card-body">
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-header" id="headingFive">
-                <h5 class="mb-0">
-                  <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseFive">
-                  Territorial Structure
-                  </button>
-                </h5>
-              </div>
-              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                <div class="card-body">
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-header" id="headingThree">
-                <h5 class="mb-0">
-                  <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                      Education
-                  </button>
-                </h5>
-              </div>
-              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                <div class="card-body">
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-header" id="headingThree">
-                <h5 class="mb-0">
-                  <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Labour market
-                  </button>
-                </h5>
-              </div>
-              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                <div class="card-body">
-                </div>
-              </div>
-            </div>
-      </div> -->
-        <!-- Accordeon end-->
+
       </div>
       <!--- list-end-->
 
@@ -307,11 +257,35 @@
         </div>
       </div>
       </div>
-
-        <div id="map" class=""></div>
+      <div class="row">
+        <div class="col-lg-12 only-left"></div>
+<div class="row">
+  <div class="col-lg-3  col-sm-2 col-md-2 only-top"></div>
+  <div class="col-lg-8"></div>
+  <div class="col-lg-1"></div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div id="map" class=""></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-8"></div>
+  <div class="col-lg-4  col-sm-2 col-md-2 only-top"></div>
+</div>
+<div class="row">
+  <div class="col-lg-11 ml-auto only-right text-right attribution">
+    <span>Regional level: NUTS 2 (2013)</span> <br>
+    <span>Source: CIRCTER Project,2018</span> <br>
+    <span>Source: CIRCTER Project,2018</span> <br>
+  </div>
+  </div>
+      </div>
       </div>
       <!-- map-end-->
     </div>
+  </section>
+
     <!--footer-start-->
     <!-- Footer -->
     <footer class="page-footer bg-white shadow font-small pt-4">
@@ -466,10 +440,10 @@
 
     var map = new mapboxgl.Map({
       container: "map",
-      style: "mapbox://styles/elkalonaris/ckqi5rs8aepjs18nqpd7lmx4m", // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
-      zoom: 3, // zoom level
+      style: "mapbox://styles/mapbox/light-v10", // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
+      zoom: 2.7, // zoom level
       maxZoom: 6,
-      minZoom: 3,
+      minZoom: 2.4,
       center: [12, 56],
       transformRequest: transformRequest,
     });
@@ -481,8 +455,7 @@
           map.setFeatureState(
             {
               //YOUR TURN: Replace with your source tileset and source layer
-              source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
-              sourceLayer: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+              source: "NUTS_RG_03M_2013_4326_LEVL_2.geojson",
               //YOUR TURN: Replace with unqiue ID row name
               id: row.tunit_code,
             },
@@ -497,17 +470,17 @@
         });
       });
       //YOUR TURN: Add source layer
-      map.addSource("NUTS_RG_10M_2013_4326_LEVL_2-344mre", {
-        type: "vector",
-        url: "mapbox://elkalonaris.3tp4ou5e",
-        promoteId: "NUTS_ID",
+      map.addSource("NUTS_RG_03M_2013_4326_LEVL_2.geojson", {
+        type: "geojson",
+        data: "NUTS_RG_03M_2013_4326_LEVL_2.geojson",
         generateId: true,
+        promoteId: "FID",
+
       });
       map.addLayer({
         id: "region-layer",
         type: "fill",
-        source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
-        "source-layer": "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+        source: "NUTS_RG_03M_2013_4326_LEVL_2.geojson",
         layout: {},
         paint: {
           "fill-color": [
@@ -525,8 +498,7 @@
       map.addLayer({
         id: "region-layer-2006",
         type: "fill",
-        source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
-        "source-layer": "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+        source: "NUTS_RG_03M_2013_4326_LEVL_2.geojson",
         layout: {'visibility':'none'},
         paint: {
           "fill-color": [
@@ -544,8 +516,7 @@
       map.addLayer({
         id: "region-layer-dif",
         type: "fill",
-        source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
-        "source-layer": "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+        source: "NUTS_RG_03M_2013_4326_LEVL_2.geojson",
         layout: {'visibility':'none'},
         paint: {
           "fill-color": [
@@ -564,8 +535,7 @@
       map.addLayer({
         id: "region-line-layer",
         type: "line",
-        source: "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
-        "source-layer": "NUTS_RG_10M_2013_4326_LEVL_2-344mre",
+        source: "NUTS_RG_03M_2013_4326_LEVL_2.geojson",
         layout: {},
         paint: {
           'line-color': 'white',
@@ -637,7 +607,7 @@
       // var allTheOld = chartData.old
  
 
-      var otherData = chartData.find(obj => obj.name === props.NUTS_ID);
+      var otherData = chartData.find(obj => obj.name === props.FID);
       var theDif = otherData.dif / 1000000
       var theOld = otherData.old  /1000000
       // console.log(theDif)
@@ -650,7 +620,7 @@
       content +=
         "<div class='something'>" +
         "<b>" +
-        "Waste: " +
+        "2014 waste: " +
         theValues +
         "</b>" +
         " mt per capita" +
@@ -659,7 +629,7 @@
         content +=
         "<div class='something'>" +
           "<b>"+
-        "Waste: " +
+        "2016 waste: " +
         theOld +
         "</b>" +
         " mt per capita" +
@@ -668,7 +638,7 @@
         content +=
         "<div class='something'>" +
           "<b>"+
-        "Waste: " +
+        "Difference" +
         theDif +
         "</b>" +
         " mt per capita" +

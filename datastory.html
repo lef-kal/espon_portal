@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <script src="https://cdn.plot.ly/plotly-2.2.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <script src="https://unpkg.com/underscore@1.13.1/underscore-umd-min.js
+    "></script>
+    <script src="https://unpkg.com/papaparse@latest/papaparse.min.js"></script>
+    <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+    <script src="https://unpkg.com/scrollama"></script>
+ 
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.1.2/echarts.min.js" integrity="sha512-ppWbHq6q2f7HAwS481w6qikuC0XEeBnmkRg6KWnWg3zSIbJwWWBgsCDMAxzSB7SVqXzWwSYQ2s8TSJKjnaikMg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="flatly.min.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"
+    />
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <!-- <link rel="stylesheet" href="flatly.min.css"> -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+
+    <style>
+              * {
+        overflow: unset!important;
+        scroll-behavior: smooth;
+      }
+      nav {
+        z-index: 1050 !important;
+      }
+      #map {
+          margin-top: 10vh;;
+            top:0;
+            height: 100vh;
+            width:100vw;
+            position: sticky;
+        }
+      .feature__p {
+        font-size: 13px;
+      }
+      .card-body {
+        padding: 0;
+      }
+      .spinner {
+        display: none;
+      }
+      .p_desc {
+        font-size: 13px;
+      }
+      .chart{
+          height: 300px;
+      }
+      #features {
+            padding-top: 10vh;
+            padding-bottom: 10vh;
+        }
+        .hidden {
+            visibility: hidden;
+        }
+        .centered {
+            width: 50vw;
+            margin: 0 auto;
+        }
+        .lefty {
+            width: 33vw;
+            margin-left: 5vw;
+        }
+        .righty {
+            width: 33vw;
+            margin-left: 62vw;
+        }
+        .fully {
+            width: 100%;
+            margin: auto;
+        }
+        .light {
+            color: #444;
+            background-color: #fafafa;
+        }
+        .dark {
+            color: #fafafa;
+            background-color: #444;
+        }
+        .step {
+            padding-bottom: 50vh;
+            /* margin-bottom: 10vh; */
+            opacity: 0.25;
+        }
+        .step.active {
+            opacity: 0.9;
+        }
+
+        .step div {
+            padding:  25px 50px;
+            line-height: 25px;
+            font-size: 13px;
+        }
+
+        .step img {
+            width: 100%;
+        }
+
+        @media (max-width: 750px) {
+            .centered, .lefty, .righty, .fully {
+                width: 90vw;
+                margin: 0 auto;
+            }
+        }
+
+        /* Fix issue on mobile browser where scroll breaks  */
+        .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan, 
+        .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan .mapboxgl-canvas {
+            touch-action: unset;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- nav-start-->
+    <nav class="navbar navbar-expand-sm navbar-light bg-white shadow mb-5">
+      <a class="navbar-brand ml-5" href="#"
+        ><img src="ESPON-logo.png" alt="espon-logo" style="max-height: 70px"
+      /></a>
+      <button
+        class="navbar-toggler d-lg-none"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapsibleNavId"
+        aria-controls="collapsibleNavId"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html"
+              >Home<span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="explore.html">Explore</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="storytelling.html">Datastories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="storytelling.html">Dashboards</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="storytelling.html">Data playground</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="dropdownId"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              >ESPON Tools</a
+            >
+            <div class="dropdown-menu" aria-labelledby="dropdownId">
+              <a class="dropdown-item" href="#">Rimap</a>
+              <a class="dropdown-item" href="#">Fuore</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- nav-end-->
+
+    <!--core-start-->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-3 mt-5">
+          <h3 class="text-center">
+            <b>Structural change in coal phase-out regions</b>
+          </h3>
+          <span> </span>
+          <p class="p_desc text-center">
+            Οn Wednesday 16 September, the European Parliament adopted with an
+            overwhelming majority its position on the Commission’s proposal on
+            the Just Transition Fund. The Parliament asks for an increased
+            budget (up to 25 billion EUR) and to broaden the types of potential
+            beneficiaries and its scope to also include investments related to
+            natural gas, “for regions heavily reliant on the extraction and
+            combustion of coal, lignite, oil shale or peat if they qualify as
+            “environmentally sustainable”. The parliament also proposes a number
+            of measures like the creation of a “Green awarding mechanism,
+            special allocation for the islands and outmost regions.
+          </p>
+          <p class="p_desc text-center">
+            On the same day, the ESPON EGTC introduced its work on structural
+            change in coal phase-out regions to the Network of Territorial
+            Cohesion Contact Points (NTCCP). This work is commissioned by the
+            German Presidency of the Council of the European Union and is
+            strongly relating to the investment actions proposed by the JTF.
+            ESPON had embarked on efforts to advance the current policy-research
+            discourse through territorial evidence.
+          </p>
+          <div id="chart_one" class="chart mt-5"></div>
+        </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="sticky-top">
+        <div id="map"></div>
+        <div id="story"></div>
+    </div>
+
+    <script src="./config.js"></script>
+    <!--core-end-->
+
+    <!--footer-start-->
+    <footer class="page-footer bg-white shadow font-small pt-4">
+      <!-- Footer Links -->
+      <div class="container text-center text-md-left">
+        <!-- Footer links -->
+        <div class="row text-center text-md-left mt-3 pb-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">ESPON Portal</h6>
+            <p>
+              The ESPON EGTC is a European Grouping on Territorial Cooperation.
+              ESPON started in 2002 and have continued since then building a
+              pan-European knowledge base related to territorial dynamics.
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Explore</h6>
+            <p>
+              <a href="#">Datastories</a>
+            </p>
+            <p>
+              <a href="#!">Dashboards</a>
+            </p>
+            <p>
+              <a href="#!">Playground</a>
+            </p>
+            <p>
+              <a href="#!">ESPON tools</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Useful links</h6>
+            <p>
+              <a href="#!">ESPON database</a>
+            </p>
+            <p>
+              <a href="#!">ESPON website</a>
+            </p>
+          </div>
+
+          <!-- Grid column -->
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+            <p>
+              <i class="fas fa-home mr-3"></i>
+            </p>
+            <p>
+              <i class="fas fa-envelope mr-3"></i>
+            </p>
+            <p>
+              <i class="fas fa-phone mr-3"></i>
+            </p>
+            <p>
+              <i class="fas fa-print mr-3"></i>
+            </p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Footer links -->
+
+        <hr />
+
+        <!-- Grid row -->
+        <div class="row d-flex align-items-center">
+          <!-- Grid column -->
+          <div class="col-md-7 col-lg-8">
+            <!--Copyright-->
+            <p class="text-center text-md-left">
+              © 2021 Copyright:
+              <a>
+                <strong> ESPON EGTC</strong>
+              </a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-5 col-lg-4 ml-lg-0">
+            <!-- Social buttons -->
+            <div class="text-center text-md-right">
+              <ul class="list-unstyled list-inline">
+                <li class="list-inline-item">
+                  <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                    <i class="fab fa-google-plus-g"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+      <!-- Footer Links -->
+    </footer>
+    <!--footer-end-->
+
+    <!-- Optional JS -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="coal_chart.js"></script>
+    <!-- <script src="sources_eu.js"></script> -->
+
+  </body>
+  <script>
+      mapboxgl.accessToken =
+      "pk.eyJ1IjoiZWxrYWxvbmFyaXMiLCJhIjoiY2twbXExOHcwMDg3ZzJvbnc0dXhyOWszOSJ9.AetSK7t4L_aaFVsCuNQmHg";
+var layerTypes = {
+    'fill': ['fill-opacity'],
+    'line': ['line-opacity'],
+    'circle': ['circle-opacity', 'circle-stroke-opacity'],
+    'symbol': ['icon-opacity', 'text-opacity'],
+    'raster': ['raster-opacity'],
+    'fill-extrusion': ['fill-extrusion-opacity'],
+    'heatmap': ['heatmap-opacity']
+}
+
+var alignments = {
+    'left': 'lefty',
+    'center': 'centered',
+    'right': 'righty',
+    'full': 'fully'
+}
+
+function getLayerPaintType(layer) {
+    var layerType = map.getLayer(layer).type;
+    return layerTypes[layerType];
+}
+
+function setLayerOpacity(layer) {
+    var paintProps = getLayerPaintType(layer.layer);
+    paintProps.forEach(function(prop) {
+        var options = {};
+        if (layer.duration) {
+            var transitionProp = prop + "-transition";
+            options = { "duration": layer.duration };
+            map.setPaintProperty(layer.layer, transitionProp, options);
+        }
+        map.setPaintProperty(layer.layer, prop, layer.opacity, options);
+    });
+}
+
+var story = document.getElementById('story');
+var features = document.createElement('div');
+features.setAttribute('id', 'features');
+
+var header = document.createElement('div');
+
+if (config.title) {
+    var titleText = document.createElement('h1');
+    titleText.innerText = config.title;
+    header.appendChild(titleText);
+}
+
+if (config.subtitle) {
+    var subtitleText = document.createElement('h2');
+    subtitleText.innerText = config.subtitle;
+    header.appendChild(subtitleText);
+}
+
+if (config.byline) {
+    var bylineText = document.createElement('p');
+    bylineText.innerText = config.byline;
+    header.appendChild(bylineText);
+}
+
+if (header.innerText.length > 0) {
+    header.classList.add(config.theme);
+    header.setAttribute('id', 'header');
+    story.appendChild(header);
+}
+
+config.chapters.forEach((record, idx) => {
+    var container = document.createElement('div');
+    var chapter = document.createElement('div');
+
+    if (record.title) {
+        var title = document.createElement('h3');
+        title.innerText = record.title;
+        chapter.appendChild(title);
+    }
+
+    if (record.image) {
+        var image = new Image();
+        image.src = record.image;
+        chapter.appendChild(image);
+    }
+
+    if (record.description) {
+        var story = document.createElement('p');
+        story.innerHTML = record.description;
+        chapter.appendChild(story);
+    }
+
+    container.setAttribute('id', record.id);
+    container.classList.add('step');
+    if (idx === 0) {
+        container.classList.add('active');
+    }
+
+    chapter.classList.add(config.theme);
+    container.appendChild(chapter);
+    container.classList.add(alignments[record.alignment] || 'centered');
+    if (record.hidden) {
+        container.classList.add('hidden');
+    }
+    features.appendChild(container);
+});
+
+story.appendChild(features);
+
+var footer = document.createElement('div');
+
+if (config.footer) {
+    var footerText = document.createElement('p');
+    footerText.innerHTML = config.footer;
+    footer.appendChild(footerText);
+}
+
+if (footer.innerText.length > 0) {
+    footer.classList.add(config.theme);
+    footer.setAttribute('id', 'footer');
+    story.appendChild(footer);
+}
+
+mapboxgl.accessToken = config.accessToken;
+
+const transformRequest = (url) => {
+    const hasQuery = url.indexOf("?") !== -1;
+    const suffix = hasQuery ? "&pluginName=scrollytellingV2" : "?pluginName=scrollytellingV2";
+
+    return {
+      url: url + suffix
+    }
+}
+
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: config.style,
+    center: config.chapters[0].location.center,
+    zoom: config.chapters[0].location.zoom,
+    bearing: config.chapters[0].location.bearing,
+    pitch: config.chapters[0].location.pitch,
+    interactive: false,
+    transformRequest: transformRequest
+});
+
+if (config.showMarkers) {
+    var marker = new mapboxgl.Marker({ color: config.markerColor });
+    marker.setLngLat(config.chapters[0].location.center).addTo(map);
+}
+
+// instantiate the scrollama
+var scroller = scrollama();
+
+map.on("load", function() {
+
+        map.addSource('powerplant-source', {
+            type: 'geojson',
+            data: 'Powerplants.geojson'
+        })
+        map.addLayer({
+            'id': 'powerplant-layer',
+            'type': 'circle',
+            'source': 'powerplant-source',
+            'layout':{},
+            'paint':{
+                'circle-color': 'blue'
+            }
+        })
+        var layers = map.getStyle().layers;
+          var firstSymbolId;
+          for (var i = 0; i < layers.length; i++) {
+          if (layers[i].type === 'symbol') {
+          firstSymbolId = layers[i].id;
+          break;
+          }
+        }
+        map.addSource('country_level', {
+            type: 'geojson',
+            // Use a URL for the value for the `data` property.
+            data: 'country_level.geojson'
+            });
+        map.addLayer({
+        'id': 'country-layer',
+        'type': 'fill',
+        'source': 'country_level',
+        'paint': {
+            'fill-color': [
+              "interpolate",
+              ["linear"],
+              ["get", "capacity_mw"],
+              0,
+              'transparent',
+              1,
+              "lightgreen",
+              100000,
+              "pink",
+            ],
+            'fill-opacity': 0
+            
+        }
+        },firstSymbolId
+        );
+
+    // setup the instance, pass callback functions
+    scroller
+    .setup({
+        step: '.step',
+        offset: 0.5,
+        progress: true
+    })
+    .onStepEnter(response => {
+        var chapter = config.chapters.find(chap => chap.id === response.element.id);
+        response.element.classList.add('active');
+        map[chapter.mapAnimation || 'flyTo'](chapter.location);
+
+        if (config.showMarkers) {
+            marker.setLngLat(chapter.location.center);
+        }
+        if (chapter.onChapterEnter.length > 0) {
+            chapter.onChapterEnter.forEach(setLayerOpacity);
+        }
+        if (chapter.callback) {
+            window[chapter.callback]();
+        }
+        if (chapter.rotateAnimation) {
+            map.once('moveend', function() {
+                const rotateNumber = map.getBearing();
+                map.rotateTo(rotateNumber + 90, {
+                    duration: 24000, easing: function (t) {
+                        return t;
+                    }
+                });
+            });
+        }
+    })
+    .onStepExit(response => {
+        var chapter = config.chapters.find(chap => chap.id === response.element.id);
+        response.element.classList.remove('active');
+        if (chapter.onChapterExit.length > 0) {
+            chapter.onChapterExit.forEach(setLayerOpacity);
+        }
+    });
+});
+
+// setup resize event
+window.addEventListener('resize', scroller.resize);
+
+//     var firstMap = new mapboxgl.Map({
+//       container: "map",
+//       style: "mapbox://styles/mapbox/light-v10", // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
+//       zoom: 3, // zoom level
+//       maxZoom: 6,
+//       minZoom: 3,
+//       center: [12, 56],
+//     });
+//     firstMap.on('load', function () { 
+
+//         firstMap.addSource('country_level', {
+//         type: 'geojson',
+//         // Use a URL for the value for the `data` property.
+//         data: 'country_level.geojson'
+//         });
+//         firstMap.addLayer({
+//         'id': 'country-layer',
+//         'type': 'fill',
+//         'source': 'country_level',
+//         'paint': {
+//             'fill-color': [
+//                 'step', // arg 1
+//                 ['get', 'capacity_mw'], // arg 2
+//                 '#800026', // arg 3
+//                 10, '#bd0026', // rest of the expression is arg 4
+//                 116, '#e31a1c',
+//                 300, '#fc4e2a',
+//                 803, '#fd8d3c',
+//                 1266, '#feb24c',
+//                 1650, '#fed976',
+//                 2033, '#ffeda0',
+//                 2506, '#ffffcc',
+//                 10000, '#ffffff'
+//                 ]
+            
+//         }
+//         });
+
+//      })
+ </script>
+</html>
