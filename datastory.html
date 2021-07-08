@@ -585,7 +585,10 @@ map.on("load", function() {
             type: 'geojson',
             data: 'Powerplants.geojson'
         })
-
+        map.addSource('ren', {
+            type: 'geojson',
+            data: 'ren_avail.geojson'
+        })
         var layers = map.getStyle().layers;
           var firstSymbolId;
           for (var i = 0; i < layers.length; i++) {
@@ -594,7 +597,23 @@ map.on("load", function() {
           break;
           }
         }
-
+        map.addLayer(
+          {
+            'id': 'ren_avail',
+            'type': 'fill',
+            'source': 'ren',
+            'paint':{
+              'fill-color':[
+                'interpolate',
+                ['linear'],
+                ['get','solar'],
+                5,'blue',
+                20,'lightgreen'
+              ],
+              'fill-opacity':0
+            }
+          }
+        ),
 map.addLayer(
 {
 'id': 'pplants-heat',
@@ -626,13 +645,13 @@ map.addLayer(
 0,
 'rgba(236,222,239,0)',
 0.2,
-'rgb(208,209,230)',
+'rgb(208,120,230)',
 0.4,
-'rgb(166,189,219)',
+'rgb(166,33,219)',
 0.6,
-'rgb(103,169,207)',
+'rgb(103,14,207)',
 0.8,
-'rgb(28,144,153)'
+'rgb(200,10,153)'
 ],
 // increase radius as zoom increases
 'heatmap-radius': {
@@ -643,16 +662,45 @@ map.addLayer(
 },
 // decrease opacity to transition into the circle layer
 'heatmap-opacity': {
-'default': 1,
+'default': 0,
 'stops': [
-[14, 1],
+[14, 0],
 [15, 0]
 ]
 }
 }
 },
 );
- 
+map.addLayer(
+{
+'id': 'pplants-showcase',
+'type': 'circle',
+'source': 'pplants-source',
+'paint': {
+'circle-radius': 2,
+'circle-color':[
+  'interpolate',
+  ['linear'],
+  ['get', 'capacity'],
+  100, 'blue',
+  400, 'red',
+  1000, 'green'
+],
+'circle-opacity': 1
+}
+})
+map.addLayer(
+  {
+    "id": '3d',
+    "type": 'fill-extrusion',
+    'source': 'pplants-source',
+    'paint': {
+      'fill-extrusion-height': 100,
+      'fill-extrusion-color': 'blue',
+      'fill-extrusion-base': 100
+    }
+  }
+)
 map.addLayer(
 {
 'id': 'pplants-point',
@@ -693,19 +741,36 @@ map.addLayer(
 ]
 }
 }
-},
-'waterway-label'
+}
 );
-})
-map.on('mousemove', 'pplants-heat', function(e){
-      map.getCanvas().style.cursor = "pointer";
-      console.log('moved')
 
-      var heatmapLayer = map.queryRenderedFeatures(e.point, {
-        layers: ['pplants-heat']
-      })
-      console.log(heatmapLayer)
-    })  
+
+})
+// map.on('idle', function (e) { 
+
+//     var heatmapLayer = map.queryRenderedFeatures({
+//       layers: ['ren_avail']
+//     })
+//     console.log(heatmapLayer)
+//     var allLayers = map.getStyle().layers
+//     var dLayer = allLayers.filter(obj => {
+//     return obj.id === '3d'
+//     })
+//     var lz = dLayer[0]
+//     var radius = 5;
+//     var options = {steps: 10, units: 'kilometers'};
+//   for(var i=0;i< heatmapLayer.length;i++){
+//     var ln = heatmapLayer[i].properties.longitude
+//     var lt = heatmapLayer[i].properties.latitude
+
+//     var circle = turf.circle([ln,lt], radius, options);
+//     $.extend(lz, circle)
+//   }
+
+//     console.log(dLayer)
+
+//  })
+
     // setup the instance, pass callback functions
     scroller
     .setup({
@@ -749,47 +814,6 @@ map.on('mousemove', 'pplants-heat', function(e){
 
 // setup resize event
 window.addEventListener('resize', scroller.resize);
-
-//     var firstMap = new mapboxgl.Map({
-//       container: "map",
-//       style: "mapbox://styles/mapbox/light-v10", // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
-//       zoom: 3, // zoom level
-//       maxZoom: 6,
-//       minZoom: 3,
-//       center: [12, 56],
-//     });
-//     firstMap.on('load', function () { 
-
-//         firstMap.addSource('country_level', {
-//         type: 'geojson',
-//         // Use a URL for the value for the `data` property.
-//         data: 'country_level.geojson'
-//         });
-//         firstMap.addLayer({
-//         'id': 'country-layer',
-//         'type': 'fill',
-//         'source': 'country_level',
-//         'paint': {
-//             'fill-color': [
-//                 'step', // arg 1
-//                 ['get', 'capacity_mw'], // arg 2
-//                 '#800026', // arg 3
-//                 10, '#bd0026', // rest of the expression is arg 4
-//                 116, '#e31a1c',
-//                 300, '#fc4e2a',
-//                 803, '#fd8d3c',
-//                 1266, '#feb24c',
-//                 1650, '#fed976',
-//                 2033, '#ffeda0',
-//                 2506, '#ffffcc',
-//                 10000, '#ffffff'
-//                 ]
-            
-//         }
-//         });
-
-//      })
-
 
  </script>
 </html>
