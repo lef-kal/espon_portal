@@ -48,14 +48,14 @@
     />
 
     <style>
-              * {
+       * {
         overflow: unset!important;
         scroll-behavior: smooth;
       }
       nav {
         z-index: 1050 !important;
       }
-      #map {
+      #map, #map2 {
           margin-top: 10vh;;
             top:0;
             height: 100vh;
@@ -126,7 +126,10 @@
         .step img {
             width: 100%;
         }
-
+        .first{
+          border-bottom: 1px solid blue;
+          padding-bottom: 3px;
+        }
         @media (max-width: 750px) {
             .centered, .lefty, .righty, .fully {
                 width: 90vw;
@@ -200,8 +203,12 @@
     <!--core-start-->
     <div class="container">
       <div class="row">
-        <div class="col-lg-6 offset-lg-3 mt-5">
-          <h1 class="text-center mt-5">
+        <div class="col-lg-4 offset-lg-4  mt-5">
+          <p class="p_desc text-center first">ESPON DATASTORIES</p>
+        </div>
+        <div class="col-lg-6 offset-lg-3">
+
+          <h1 class="text-center">
             <b>Structural change in coal phase-out regions</b>
           </h1>
           <span> </span>
@@ -237,7 +244,9 @@
           <div class="row">
             <p class="p_desc text-center">
               Coal is the most carbon intensive fossil fuel and phasing it out is a key step to achieve the emissions reductions targets set in the European Green Deal. 
-              Most emissions from coal are in the electricity sector and, as renewable technologies that can replace coal emerge, 
+              Coal has historically been one of the European economy’s main fuels. Today, it accounts
+for 16% of gross inland energy consumption in the EU, and 24% of the power generation
+mix. Nevertheless, most emissions from coal are in the electricity sector and, as renewable technologies that can replace coal emerge, 
               coal phase out becomes a relatively cheap and easy option to reduce emissions.
             </p>
           </div>
@@ -246,12 +255,83 @@
 
           </div>
           <div class="row">
-            <div id="chart_two" class="chart mt-5"></div>
+            <div class="p_desc text-center">As part of the European Green Deal, the Commission proposed in September 2020 to raise the 2030 greenhouse gas emission reduction target, including emissions and removals, to at least 55% compared to 1990.
+
+              It looked at the actions required across all sectors, including increased energy efficiency and renewable energy, and started the process of making detailed legislative proposals by July 2021 to implement and achieve the increased ambition.
+              
+              This will enable the EU to move towards a climate-neutral economy and implement its commitments under the Paris Agreement by updating its Nationally Determined Contribution.
+              
+              </div>
+          </div>
+
 
           </div>
 
         </div>
 
+        <div class="row mt-5">
+          <h3 class="text-center">
+            <b>Just Transition Mechanism
+          </h3>
+          <h6 class="text-center">
+            The Market Perspective
+          </h6>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 offset-lg-3">
+          <p class="p_desc text-center">
+            While emission targets and energy efficiency are in the top of the EU agenda, policy makers need to account for the market implications of the phase out plan. 
+            Coal activities offer direct employment to around 237,000 people across Europe.
+            78% of these jobs are in the mining sector.
+          </p>
+          </div>
+        </div>
+        <div class="col-lg-6 offset-lg-3">
+          <div id="chart_two" class="chart mt-5"></div>
+          </div>
+        <div class="row">
+          <div class="col-lg-6 offset-lg-3">
+            <p class="p_desc text-center font-weight-normal">
+              In a briefing requested by the European Parliament’s
+Committee on Regional Development, Cameron et al.
+(2020, p. 3) regroup the proposed types of actions eligible
+under the JTF as follows1:
+▪▪ economic revitalisation: (a) productive investments in
+small and medium-sized enterprises (SMEs), including
+start-ups, leading to economic diversification and
+reconversion; (b) investments in the creation of new
+firms, including through business incubators and consulting
+services; (c) investments in research and innovation
+activities and fostering the transfer of advanced
+technologies; (d) investments in the deployment of
+technology and infrastructures for affordable clean
+energy, and in greenhouse gas emission reduction,
+energy efficiency and renewable energy; (e) investments
+in digitalisation and digital connectivity; (g)
+investments in enhancing the circular economy, including
+through waste prevention, reduction, resource efficiency,
+reuse, repair and recycling;
+            </p>
+          </div>
+        </div>
+        
+
+        <div class="row mt-5">
+          <h3 class="text-center">
+            <b>ESPON territorial evidence </b>
+          </h3>
+          <h6 class="text-center">
+            Reconciling the different angles of the ‘just’ epithet.
+          </h6>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 offset-lg-3">
+          <p class="p_desc text-center">
+            While emission targets and energy efficiency are in the top of the EU agenda, policy makers need to account for the market implications of the phase out plan. 
+            Coal activities offer direct employment to around 237,000 people across Europe.
+            78% of these jobs are in the mining sector.
+          </p>
+          </div>
         </div>
       </div>
 
@@ -262,23 +342,20 @@
         <div id="story"></div>
     </div>
     </div>
-    <div class="row mt-5">
-      <h3 class="text-center">
-        <b>Just Transition Mechanism
-      </h3>
-      <h6 class="text-center">
-        The Market Perspective
-      </h6>
-    </div>
-    <div class="row">
-      <div id="chart_one" class="chart mt-5"></div>
+    <div class="container">
 
-    </div>
-    <div class="row">
-      <div id="chart_two" class="chart mt-5"></div>
 
+    
+  </div>
+  <div class="row">
+    <div class="sticky-top">
+        <div id="map2"></div>
+        <div id="story2"></div>
+    </div>
     </div>
     <script src="./config.js"></script>
+    <script src="./config2.js"></script>
+
     <script type="text/javascript">
 
     </script>
@@ -565,16 +642,16 @@ var map = new mapboxgl.Map({
     pitch: config.chapters[0].location.pitch,
     interactive: true,
     transformRequest: transformRequest
-});
-map.scrollZoom.disable()
-map.dragPan.disable()
-map.boxZoom.disable()
-map.doubleClickZoom.disable()
-map.touchZoomRotate.disable()
-if (config.showMarkers) {
-    var marker = new mapboxgl.Marker({ color: config.markerColor });
-    marker.setLngLat(config.chapters[0].location.center).addTo(map);
-}
+    });
+    map.scrollZoom.disable()
+    map.dragPan.disable()
+    map.boxZoom.disable()
+    map.doubleClickZoom.disable()
+    map.touchZoomRotate.disable()
+    if (config.showMarkers) {
+        var marker = new mapboxgl.Marker({ color: config.markerColor });
+        marker.setLngLat(config.chapters[0].location.center).addTo(map);
+    }
 
 // instantiate the scrollama
 var scroller = scrollama();
@@ -589,6 +666,22 @@ map.on("load", function() {
             type: 'geojson',
             data: 'ren_avail.geojson'
         })
+        map.addSource('job-source',{
+          type: 'geojson',
+          data: 'jobs_affected.geojson'
+        })
+        map.addSource('total-source',{
+          type: 'geojson',
+          data: 'jobs_all.geojson'
+        })
+        map.addSource('total-mort',{
+          type: 'geojson',
+          data: 'ent_mort.geojson'
+        })
+        map.addSource('total-patent',{
+          type: 'geojson',
+          data: 'patent.geojson'
+        })
         var layers = map.getStyle().layers;
           var firstSymbolId;
           for (var i = 0; i < layers.length; i++) {
@@ -597,6 +690,89 @@ map.on("load", function() {
           break;
           }
         }
+        map.addLayer({
+          'id':'patent',
+          'type': 'fill',
+          'source':'total-patent',
+          'paint':{
+            'fill-color':[
+              'interpolate',
+              ['linear'],
+              ['get', 'VALUE'],
+              -10,'transparent',
+              1, 'blue',
+              9, 'red',
+              16,'pink',
+            ],
+            'fill-opacity':0
+
+          }
+        })
+        map.addLayer({
+          'id':'mort',
+          'type': 'fill',
+          'source':'total-mort',
+          'paint':{
+            'fill-color':[
+              'interpolate',
+              ['linear'],
+              ['get', 'VALUE'],
+              10, 'blue',
+              2000, 'red',
+              4000,'pink'
+            ],
+            'fill-opacity':0
+          }
+        })
+        map.addLayer(
+          {
+            'id': 'jobs-a',
+            'type': 'circle',
+            'source': 'total-source',
+            'paint': {
+              'circle-radius':[
+                'interpolate',
+                ['linear'],
+                ['get', 'Unnamed: 4'],
+                -10, 1,
+                50, 5,
+                150, 8,
+                1200, 20
+              ],
+              'circle-color': [
+                'match',
+                ['get', 'Risk zone'],
+                'Low', 'blue', 
+                 'Medium', 'orange',
+                'High', 'red', 
+                'transparent'
+              ],
+              'circle-opacity':0
+            }
+          }
+        )
+        map.addLayer(
+          {
+            'id': 'jobs',
+            'type': 'circle',
+            'source': 'job-source',
+            'paint': {
+              'circle-radius':[
+                'interpolate',
+                ['linear'],
+                ['get', 'TOTAL'],
+                -10, 1,
+                50, 5,
+                150, 8,
+                1200, 20
+              ],
+              'circle-color': 'transparent',
+              'circle-stroke-color':'blue',
+              'circle-stroke-width': 2,
+              'circle-stroke-opacity': 0
+            }
+          }
+        )
         map.addLayer(
           {
             'id': 'ren_avail',
@@ -612,29 +788,29 @@ map.on("load", function() {
               ],
               'fill-opacity':0
             }
-          }
+          },firstSymbolId
         ),
-map.addLayer(
-{
-'id': 'pplants-heat',
-'type': 'heatmap',
-'source': 'pplants-source',
-'maxzoom': 15,
-'paint': {
-// increase weight as diameter breast height increases
-'heatmap-weight': {
-'property': 'capacity',
-'type': 'exponential',
-'stops': [
-[1, 0],
-[1100, 1]
-]
-},
+      map.addLayer(
+      {
+      'id': 'pplants-heat',
+      'type': 'heatmap',
+      'source': 'pplants-source',
+      'maxzoom': 15,
+      'paint': {
+      // increase weight as diameter breast height increases
+      'heatmap-weight': {
+      'property': 'capacity',
+      'type': 'exponential',
+      'stops': [
+      [1, 0],
+      [1100, 1]
+      ]
+      },
 // increase intensity as zoom level increases
 'heatmap-intensity': {
 'stops': [
-[11, 1],
-[15, 3]
+[11, 3],
+[15, 5]
 ]
 },
 // use sequential color palette to use exponentially as the weight increases
@@ -656,8 +832,8 @@ map.addLayer(
 // increase radius as zoom increases
 'heatmap-radius': {
 'stops': [
-[1, 15],
-[2, 20]
+[3, 15],
+[5, 20]
 ]
 },
 // decrease opacity to transition into the circle layer
@@ -665,7 +841,7 @@ map.addLayer(
 'default': 0,
 'stops': [
 [14, 0],
-[15, 0]
+[15, 1]
 ]
 }
 }
@@ -796,7 +972,7 @@ map.addLayer(
             map.once('moveend', function() {
                 const rotateNumber = map.getBearing();
                 map.rotateTo(rotateNumber + 90, {
-                    duration: 24000, easing: function (t) {
+                    duration: 33000, easing: function (t) {
                         return t;
                     }
                 });
