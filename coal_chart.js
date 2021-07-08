@@ -1,26 +1,30 @@
-const csvUrl = "coal.csv";
+    const csvUrl = "europe_electricity_sources.csv";
     const csvPromise = papaPromise(csvUrl);
     var theDom = document.getElementById('chart_one');
     var myChart = echarts.init(theDom);
     var option;
-    var theData = [[],[],[]]
+    var theData = [[],[],[],[],[],[]]
     csvPromise.then(function (results) {
         results.data.forEach((row) => {
-          theData[0].push(row.time)
-          theData[1].push(row.coal)
-          theData[2].push(row.lignite)
+          theData[0].push(row.Year)
+          theData[1].push(row.Coal)
+          theData[2].push(row.Renewables)
+          theData[3].push(row.Solar)
+          theData[4].push(row.Hydro)
+          theData[5].push(row.Wind)
+
         })
 
 option = {
     color: ['#80FFA5', '#00DDFF', '#37A2FF'],
-    title: {
-        text: 'Energy balance values: Coal, lignite (1990-2019)',
-        subtext: 'European Union - 27 countries'
-    },
-    // legend: {
-    //     y: 'bottom',
-    //     margin: 5,
+    // title: {
+    //     text: 'Electricity production by sector (TWh)',
+    //     subtext: 'Europe, geographical boundaries'
     // },
+    legend: {
+        y: 'top',
+        margin: 5,
+    },
     tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -56,6 +60,8 @@ option = {
         {
             name: 'Coal',
             type: 'line',
+            stack: '总量',
+
             smooth: true,
             lineStyle: {
                 width: 0
@@ -80,8 +86,10 @@ option = {
             data: theData[1]
         },
         {
-            name: 'Lignite',
+            name: 'Renewables',
             type: 'line',
+            stack: '总量',
+
             smooth: true,
             lineStyle: {
                 width: 0
@@ -104,6 +112,89 @@ option = {
                 return idx * 10+200;
             },
             data: theData[2]
+        },
+        {
+            name: 'Solar',
+            type: 'line',
+            stack: '总量',
+
+            smooth: true,
+            lineStyle: {
+                width: 0
+            },
+            showSymbol: false,
+            areaStyle: {
+                opacity: 0.8,
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgba(0, 21, 255)'
+                }, {
+                    offset: 1,
+                    color: 'rgba(77, 19, 255)'
+                }])
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            animationDelay: function (idx) {
+                return idx * 10+200;
+            },
+            data: theData[3]
+        },
+        {
+            name: 'Hydro',
+            type: 'line',
+            stack: '总量',
+
+            smooth: true,
+            lineStyle: {
+                width: 0
+            },
+            showSymbol: false,
+            areaStyle: {
+                opacity: 0.8,
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgba(0, 112, 255)'
+                }, {
+                    offset: 1,
+                    color: 'rgba(99, 10, 111)'
+                }])
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            animationDelay: function (idx) {
+                return idx * 10+200;
+            },
+            data: theData[4]
+        },
+        {
+            name: 'Wind',
+            type: 'line',
+            stack: '总量',
+            smooth: true,
+            lineStyle: {
+                width: 0
+            },
+            showSymbol: false,
+            areaStyle: {
+                opacity: 0.8,
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgba(12, 23, 255)'
+                }, {
+                    offset: 1,
+                    color: 'rgba(3, 4, 124)'
+                }])
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            animationDelay: function (idx) {
+                return idx * 10+120;
+            },
+            data: theData[5]
         },
     ],
 };

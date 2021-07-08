@@ -135,10 +135,10 @@
         }
 
         /* Fix issue on mobile browser where scroll breaks  */
-        .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan, 
+        /* .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan, 
         .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan .mapboxgl-canvas {
             touch-action: unset;
-        }
+        } */
     </style>
   </head>
   <body>
@@ -235,8 +235,10 @@
             </h6>
           </div>
           <div class="row">
-            <p class="p_desc">
-
+            <p class="p_desc text-center">
+              Coal is the most carbon intensive fossil fuel and phasing it out is a key step to achieve the emissions reductions targets set in the European Green Deal. 
+              Most emissions from coal are in the electricity sector and, as renewable technologies that can replace coal emerge, 
+              coal phase out becomes a relatively cheap and easy option to reduce emissions.
             </p>
           </div>
           <div class="row">
@@ -606,7 +608,7 @@ map.addLayer(
 'type': 'exponential',
 'stops': [
 [1, 0],
-[62, 1]
+[1100, 1]
 ]
 },
 // increase intensity as zoom level increases
@@ -636,7 +638,7 @@ map.addLayer(
 'heatmap-radius': {
 'stops': [
 [1, 15],
-[5, 20]
+[2, 20]
 ]
 },
 // decrease opacity to transition into the circle layer
@@ -695,7 +697,15 @@ map.addLayer(
 'waterway-label'
 );
 })
-        
+map.on('mousemove', 'pplants-heat', function(e){
+      map.getCanvas().style.cursor = "pointer";
+      console.log('moved')
+
+      var heatmapLayer = map.queryRenderedFeatures(e.point, {
+        layers: ['pplants-heat']
+      })
+      console.log(heatmapLayer)
+    })  
     // setup the instance, pass callback functions
     scroller
     .setup({
@@ -735,6 +745,7 @@ map.addLayer(
             chapter.onChapterExit.forEach(setLayerOpacity);
         }
     });
+
 
 // setup resize event
 window.addEventListener('resize', scroller.resize);
