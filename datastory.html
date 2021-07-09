@@ -282,7 +282,11 @@ mix. Nevertheless, most emissions from coal are in the electricity sector and, a
           <p class="p_desc text-center">
             While emission targets and energy efficiency are in the top of the EU agenda, policy makers need to account for the market implications of the phase out plan. 
             Coal activities offer direct employment to around 237,000 people across Europe.
-            78% of these jobs are in the mining sector.
+            78% of these jobs are in the mining sector. An integral part of the European "Green Deal", the "Just Transition Mechanism" (JTM) aims to reconcile the Union's exceptional climate ambition with social justice. Through grants and investment programmes, it aims to secure the professional transition of people likely to lose their jobs, to revitalise and diversify local economies, and to restore land. 
+          </p>
+          <div id="c_chart" class="chart"></div>
+          <p class="p_desc text-center font-weight-normal mt-5">
+            The challenge is crucial: supporting the territories and populations most directly affected by the necessary extinction of the most polluting activities enables both an improvement of the future of the most deprived, and thus demonstrates that Europe can bring added value to these citizens, but also, more fundamentally, to strengthen the political legitimacy of the climate transition, at a time when the Union has set itself the ambitious objective of achieving carbon neutrality by 2050.
           </p>
           </div>
         </div>
@@ -292,25 +296,11 @@ mix. Nevertheless, most emissions from coal are in the electricity sector and, a
         <div class="row">
           <div class="col-lg-6 offset-lg-3">
             <p class="p_desc text-center font-weight-normal">
-              In a briefing requested by the European Parliament’s
-Committee on Regional Development, Cameron et al.
-(2020, p. 3) regroup the proposed types of actions eligible
-under the JTF as follows1:
-▪▪ economic revitalisation: (a) productive investments in
-small and medium-sized enterprises (SMEs), including
-start-ups, leading to economic diversification and
-reconversion; (b) investments in the creation of new
-firms, including through business incubators and consulting
-services; (c) investments in research and innovation
-activities and fostering the transfer of advanced
-technologies; (d) investments in the deployment of
-technology and infrastructures for affordable clean
-energy, and in greenhouse gas emission reduction,
-energy efficiency and renewable energy; (e) investments
-in digitalisation and digital connectivity; (g)
-investments in enhancing the circular economy, including
-through waste prevention, reduction, resource efficiency,
-reuse, repair and recycling;
+              To support the Just Transition Mechanism the EU The prospective Just Transition Fund (JTF) is to be the
+first of three pillars that constitute the Just Transition
+Mechanism (JTM), the others being a dedicated scheme
+under InvestEU and a public sector loan facility managed
+by the EIB Group.The Just Transition Fund is a new instrument with an overall budget of €17.5 billion, of which €7.5 billion are coming from the Multiannual Financial Framework (MFF) and €10 billion from the NextGenerationEU. The JTF is a key element of the European Green Deal and the first pillar of the Just Transition Mechanism (JTM). It aims to alleviate the social and economic costs resulting from the transition towards a climate-neutral economy, through a wide range of activities directed mainly at diversifying the economic activity and helping people adapt in a changing labour market.  
             </p>
           </div>
         </div>
@@ -327,9 +317,9 @@ reuse, repair and recycling;
         <div class="row">
           <div class="col-lg-6 offset-lg-3">
           <p class="p_desc text-center">
-            While emission targets and energy efficiency are in the top of the EU agenda, policy makers need to account for the market implications of the phase out plan. 
-            Coal activities offer direct employment to around 237,000 people across Europe.
-            78% of these jobs are in the mining sector.
+            We turn attention to the place-invariant challenge that can be expected across all regional economies, albeit to different extents. The decarbonised economy commitments will bring about a paradigm shift in coal-dependent and arguably coal-independent regions alike. However, regions have different levels of potential to embark on this paradigm. <br>
+            <br>
+            In other words, regions have different levels of potential to induce structural change because of the different levels of dependency on incumbent industries, which may exacerbate the socioeconomic implications of such a paradigm shift. We plug in ESPON territorial evidence that will be useful for informed decisions on actions under the Just Transition Fund (JTF) related to research and development (R&D) investments and productive investments, as well as business incubation and consultancy for firm creation and development. 
           </p>
           </div>
         </div>
@@ -344,8 +334,6 @@ reuse, repair and recycling;
     </div>
     <div class="container">
 
-
-    
   </div>
   <div class="row">
     <div class="sticky-top">
@@ -499,6 +487,7 @@ reuse, repair and recycling;
     ></script>
     <script src="coal_chart.js"></script>
     <script src="sources_eu.js"></script>
+    <script src="c_chart.js"></script>
 
   </body>
   <script>
@@ -672,16 +661,20 @@ map.on("load", function() {
         })
         map.addSource('total-source',{
           type: 'geojson',
-          data: 'jobs_all.geojson'
+          data: 'jobs.geojson'
         })
         map.addSource('total-mort',{
           type: 'geojson',
-          data: 'ent_mort.geojson'
+          data: 'def.geojson'
         })
         map.addSource('total-patent',{
           type: 'geojson',
-          data: 'patent.geojson'
+          data: 'patent_geometries.geojson'
         })
+        // map.addSource('extrude',{
+        //   type: 'geojson',
+        //   data: 'testd.geojson'
+        // })
         var layers = map.getStyle().layers;
           var firstSymbolId;
           for (var i = 0; i < layers.length; i++) {
@@ -690,6 +683,32 @@ map.on("load", function() {
           break;
           }
         }
+        // map.addLayer({
+        //   'id':'3d',
+        //   'type': 'fill-extrusion',
+        //   'source':'extrude',
+        //   'paint':{
+        //     'fill-extrusion-height' : [
+        //       'interpolate',
+        //       ['linear'],
+        //       ['get', 'capacity'],
+        //       10, 10000,
+        //       50, 50000,
+        //       300, 100000,
+        //       800, 150000,
+        //       2000, 200000
+
+
+        //     ],
+        //     'fill-extrusion-color': [
+        //       'interpolate',
+        //       ['linear'],
+        //       ['get', 'capacity'],
+        //       10, 'blue',
+        //       2000, 'red'
+        //     ]
+        //   }
+        // })
         map.addLayer({
           'id':'patent',
           'type': 'fill',
@@ -699,7 +718,7 @@ map.on("load", function() {
               'interpolate',
               ['linear'],
               ['get', 'VALUE'],
-              -10,'transparent',
+            0,'green',
               1, 'blue',
               9, 'red',
               16,'pink',
@@ -733,16 +752,16 @@ map.on("load", function() {
               'circle-radius':[
                 'interpolate',
                 ['linear'],
-                ['get', 'Unnamed: 4'],
-                -10, 1,
-                50, 5,
-                150, 8,
-                1200, 20
+                ['get', 'labour'],
+                80, 1,
+                1422, 5,
+                6388, 15,
+                10131, 20
               ],
               'circle-color': [
                 'match',
                 ['get', 'Risk zone'],
-                'Low', 'blue', 
+                'Low', 'lightgreen', 
                  'Medium', 'orange',
                 'High', 'red', 
                 'transparent'
@@ -865,18 +884,7 @@ map.addLayer(
 'circle-opacity': 1
 }
 })
-map.addLayer(
-  {
-    "id": '3d',
-    "type": 'fill-extrusion',
-    'source': 'pplants-source',
-    'paint': {
-      'fill-extrusion-height': 100,
-      'fill-extrusion-color': 'blue',
-      'fill-extrusion-base': 100
-    }
-  }
-)
+
 map.addLayer(
 {
 'id': 'pplants-point',
@@ -922,6 +930,41 @@ map.addLayer(
 
 
 })
+var popup = new mapboxgl.Popup({
+          closeButton: false,
+          closeOnClick: false,
+        });
+map.on('mousemove', 'pplants-showcase', function (e) { 
+  map.getCanvas().style.cursor = "pointer";
+
+var region = map.queryRenderedFeatures(e.point, {
+  layers: ["pplants-showcase"],
+});
+
+          var props = region[0].properties;
+          var retire = props.assumed_retire;
+          var emissions = props.emissions_year_mt.toLocaleString()
+          var status = props.status;
+          var name = props.unit;
+          var shutdown = props.year_shutdown;
+          var build = props.year;
+          var capacity = props.capacity;
+
+          var content = "<b>" + name + "</b>" + "<br>";
+          content += "Status " + status + "<br>";
+          content += "Year built: " + build + "<br>";
+          content += "Capacity: " + "<b>" + capacity + "</b>" +"<br>";
+          content += "Emission outputs: " + "<b>" + emissions + "</b>"+ "CO2mt"+ "<br>";
+          content += "Shutdown: " + shutdown + "<br>";
+          content += "Retirement: " + retire + "<br>";
+          popup.setLngLat(e.lngLat).setHTML(content).addTo(map);
+console.log(region)
+ })
+ map.on("mouseleave", "pplants-showcase", function () {
+          map.getCanvas().style.cursor = "";
+
+          popup.remove();
+        });
 // map.on('idle', function (e) { 
 
 //     var heatmapLayer = map.queryRenderedFeatures({

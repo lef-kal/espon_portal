@@ -16,7 +16,7 @@ var config = {
             description: 'There are currently 207 coal-fired power plants in 21 Member States and 103 NUTS 2 regions, and 128 coal mines in 12 Member States and 41 regions. These are not evenly distributed across the individual member states and those most reliant on coal are Poland, Germany, Bulgaria, the Czech Republic and Romania. <br> Germany and Poland alone are jointly responsible for 51% of the EU’s installed coal capacity and 54% of emissions from coal.',
             location: {
                 center: [12, 56],
-                zoom: 3,
+                zoom: 4,
                 pitch: 0,
                 bearing: 0,
             },
