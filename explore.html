@@ -198,7 +198,7 @@
                       list-group-item list-group-item-action
                       changer
                     "
-                    data-ind="1393"
+                    data-ind="1393" data-mt="Total+number+of+material+cultural+heritage+objects"
                     >Total number of material cultural heritage objects</a
                   >
                   <a
@@ -338,6 +338,10 @@
           </div>
         </div>
         <!-- Accordeon end-->
+
+        <div id="metadata">
+
+        </div>
       </div>
       <!--- list-end-->
 
@@ -633,8 +637,10 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
-    <script>
-      function mapExists(map) {
+  </body>
+  <script>
+
+function mapExists(map) {
         if (map && Object.keys(map).length > 0) {
           if (map.style && Object.keys(map.style).length > 0) {
             return true;
@@ -646,8 +652,8 @@
         }
       }
   
-    </script>
-  </body>
+    
+  </script>
   <script>
 
       $('.list-group-item').click(function () {
@@ -670,6 +676,22 @@
 
       mapExists() && map.remove()
 
+      var metadata = $(this).attr("data-mt");
+      var mturl = "https://database.espon.eu/api/select/indicators?";
+      var mtparams = "name" + "=" + metadata;
+      $.getJSON(mturl + mtparams, function (data) {
+      var mtDisplay = '<h6>' + data.results[0].name + '</h6>'
+      mtDisplay += '<span>' + data.results[0].project + '</span>'
+        $('#metadata').html(mtDisplay)
+        console.log(data)
+      })
+      
+      // var nm = metadata.name
+      // var mtDisplay = '<h6>' + nm + '</h6>'
+      // mtDisplay += '<span>' + metadata[0].project + '</span>'
+
+
+
       var chartTitle = $(this).innerHTML;
       // console.log(chartTitle)
       $('#chartTitle').html(chartTitle)
@@ -691,7 +713,6 @@
       var ind = $(this).attr("data-ind");
       var url = "https://database.espon.eu/api/select/indicator-data/?";
       var params = "obj" + "=" + ind;
-
       map.on("load", function () {
         $.getJSON(url + params, function (data) {
           data.forEach((row) => {
