@@ -62,9 +62,9 @@ var config = {
         {
             id: 'jbs',
             alignment: 'right',
-            title: 'Air quality indexes and CO2 emmissions',
+            title: 'Coal-related employment',
             image: '',
-            description: 'Apart from being the largest source of CO2 emissions, coal combustion is also a major threat to public health globally. Pollution from coal plants is responsible for about 23,000 premature death in the EU every year. About 82% of EU, 80% German and virtually all Polish coal power plants do not comply with a new EU regulation on industry air pollution emissions standards that they need to meet by 2021.',
+            description: 'Coal phase-out resonates differently in different territorial realities. ',
             location: {
                 // center: [18, 51.19208],
                 center:[12, 56],
@@ -88,9 +88,9 @@ var config = {
         {
             id: 'Third',
             alignment: 'left',
-            title: 'Wind and solar resource potential',
+            title: 'Employment at risk',
             image: '',
-            description: 'Wind and solar resources exhibit significant variability across Europe, with average solar and wind availability/capacity factors ranging between 12-14% and 15-25%, respectively. The map illustrates the distribution of the mentioned solar and shows that mine sites located in southern countries, namely in Spain, Italy, Greece, Slovenia, Romania and Bulgaria, can benefit from a highly available solar resource, making the conversion of former mine sites for the production of solar energy more attractive.',
+            description: 'Overall, it is estimated that about 109 000 mining jobs are exposed to high risk due to a lack of competitiveness.',
             location: {
                 // center: [18, 51.19208],
                 center:[12, 56],
@@ -114,9 +114,9 @@ var config = {
         {
             id: 'Fourth',
             alignment: 'left',
-            title: 'Assessing the market',
+            title: 'Wind and solar resource potential',
             image: '',
-            description: 'While emission targets and energy efficiency are in the top of the EU agenda, policy makers need to account for the market implications of the phase out plan. Coal activities offer direct employment to around 237,000 people across Europe. 78% of these jobs are in the mining sector. <br>Overall, it is estimated that about 109 000 mining jobs are exposed to high risk due to a lack of competitiveness.',
+            description: 'Wind and solar resources exhibit significant variability across Europe, with average solar and wind availability/capacity factors ranging between 12-14% and 15-25%, respectively. The map illustrates the distribution of the mentioned solar and shows that mine sites located in southern countries, namely in Spain, Italy, Greece, Slovenia, Romania and Bulgaria, can benefit from a highly available solar resource, making the conversion of former mine sites for the production of solar energy more attractive.',
             location: {
                 // center: [18, 51.19208],
                 center:[12, 56],
@@ -140,9 +140,9 @@ var config = {
         {
             id: 'Fifth',
             alignment: 'right',
-            title: 'Assisting policy makers',
+            title: 'Assessing nterpreneural stock',
             image: '',
-            description: 'Coal phase-out resonates differently in different territorial realities. Coal-dependent regions perceive a redistribution of social benefits while marginal economic damage is inflicted upon a few regions.',
+            description: 'Coal-dependent regions perceive a redistribution of social benefits while marginal economic damage is inflicted upon a few regions.',
             location: {
                 // center: [18, 51.19208],
                 center:[12, 56],
@@ -166,9 +166,9 @@ var config = {
         {
             id: 'Sixth',
             alignment: 'right',
-            title: 'Assisting policy makers',
+            title: 'Innovation performance',
             image: '',
-            description: 'Overall, it is estimated that about 109 000 mining jobs are exposed to high risk due to a lack of competitiveness.',
+            description: '',
             location: {
                 // center: [18, 51.19208],
                 center:[12, 56],

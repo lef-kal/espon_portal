@@ -16,7 +16,7 @@
         })
 
 option = {
-    color: ['#80FFA5', '#00DDFF', '#37A2FF'],
+    color: ['gray', 'rgba(12, 177, 114)', 'orange', 'rgba(3, 4, 124)', 'lightblue'],
     // title: {
     //     text: 'Electricity production by sector (TWh)',
     //     subtext: 'Europe, geographical boundaries'
@@ -61,7 +61,6 @@ option = {
             name: 'Coal',
             type: 'line',
             stack: '总量',
-
             smooth: true,
             lineStyle: {
                 width: 0
@@ -71,10 +70,10 @@ option = {
                 opacity: 0.8,
                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                     offset: 0,
-                    color: 'rgba(128, 255, 165)'
+                    color: 'lightgray'
                 }, {
                     offset: 1,
-                    color: 'rgba(1, 191, 236)'
+                    color: 'darkgray'
                 }])
             },
             emphasis: {
@@ -99,10 +98,10 @@ option = {
                 opacity: 0.8,
                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                     offset: 0,
-                    color: 'rgba(0, 221, 255)'
+                    color: 'rgba(3, 220, 200)'
                 }, {
                     offset: 1,
-                    color: 'rgba(77, 119, 255)'
+                    color: 'rgba(12, 177, 114)'
                 }])
             },
             emphasis: {
@@ -127,10 +126,10 @@ option = {
                 opacity: 0.8,
                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                     offset: 0,
-                    color: 'rgba(0, 21, 255)'
+                    color: 'orange'
                 }, {
                     offset: 1,
-                    color: 'rgba(77, 19, 255)'
+                    color: 'rgba(220,218,218)'
                 }])
             },
             emphasis: {
@@ -154,12 +153,13 @@ option = {
             areaStyle: {
                 opacity: 0.8,
                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                    offset: 0,
-                    color: 'rgba(0, 112, 255)'
-                }, {
-                    offset: 1,
-                    color: 'rgba(99, 10, 111)'
-                }])
+
+                offset: 0,
+                color: 'rgba(12, 23, 255)'
+            }, {
+                offset: 1,
+                color: 'rgba(3, 4, 124)'
+            }])
             },
             emphasis: {
                 focus: 'series'
@@ -182,10 +182,10 @@ option = {
                 opacity: 0.8,
                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                     offset: 0,
-                    color: 'rgba(12, 23, 255)'
+                    color: 'lightblue'
                 }, {
                     offset: 1,
-                    color: 'rgba(3, 4, 124)'
+                    color: 'rgba(0, 230, 255)'
                 }])
             },
             emphasis: {

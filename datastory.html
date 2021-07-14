@@ -22,6 +22,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.1.2/echarts.min.js" integrity="sha512-ppWbHq6q2f7HAwS481w6qikuC0XEeBnmkRg6KWnWg3zSIbJwWWBgsCDMAxzSB7SVqXzWwSYQ2s8TSJKjnaikMg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="ecstat.js"></script>
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -129,6 +130,11 @@
         .first{
           border-bottom: 1px solid blue;
           padding-bottom: 3px;
+        }
+        .coal, .lignite{
+          height: 200px;
+          -webkit-box-shadow: 0px 5px 22px 2px rgba(114,114,114,0.45); 
+box-shadow: 0px 5px 22px 2px rgba(114,114,114,0.45);
         }
         @media (max-width: 750px) {
             .centered, .lefty, .righty, .fully {
@@ -244,7 +250,7 @@
           <div class="row">
             <p class="p_desc text-center">
               Coal is the most carbon intensive fossil fuel and phasing it out is a key step to achieve the emissions reductions targets set in the European Green Deal. 
-              Coal has historically been one of the European economy’s main fuels. Today, it accounts
+              Historically, coal been one of the European economy’s main fuels. Today, it accounts
 for 16% of gross inland energy consumption in the EU, and 24% of the power generation
 mix. Nevertheless, most emissions from coal are in the electricity sector and, as renewable technologies that can replace coal emerge, 
               coal phase out becomes a relatively cheap and easy option to reduce emissions.
@@ -255,11 +261,19 @@ mix. Nevertheless, most emissions from coal are in the electricity sector and, a
 
           </div>
           <div class="row">
-            <div class="p_desc text-center">As part of the European Green Deal, the Commission proposed in September 2020 to raise the 2030 greenhouse gas emission reduction target, including emissions and removals, to at least 55% compared to 1990.
+            <div class="p_desc text-center">As part of the European Green Deal, 
+              the Commission proposed in September 2020 to raise the 2030 
+              greenhouse gas emission reduction target, including emissions and removals, 
+              to at least 55% compared to 1990.
 
-              It looked at the actions required across all sectors, including increased energy efficiency and renewable energy, and started the process of making detailed legislative proposals by July 2021 to implement and achieve the increased ambition.
+              It looked at the actions required across all sectors, including increased 
+              energy efficiency and renewable energy, and started the process of 
+              making detailed legislative proposals by July 2021 to implement and achieve the 
+              increased ambition.
               
-              This will enable the EU to move towards a climate-neutral economy and implement its commitments under the Paris Agreement by updating its Nationally Determined Contribution.
+              This will enable the EU to move towards a climate-neutral economy and
+               implement its commitments under the Paris Agreement by updating its 
+               Nationally Determined Contribution.
               
               </div>
           </div>
@@ -280,18 +294,46 @@ mix. Nevertheless, most emissions from coal are in the electricity sector and, a
         <div class="row">
           <div class="col-lg-6 offset-lg-3">
           <p class="p_desc text-center">
-            While emission targets and energy efficiency are in the top of the EU agenda, policy makers need to account for the market implications of the phase out plan. 
+            While emission targets and energy efficiency are in the top of the EU agenda, 
+            policy makers need to account for the market implications of the phase out plan. 
             Coal activities offer direct employment to around 237,000 people across Europe.
-            78% of these jobs are in the mining sector. An integral part of the European "Green Deal", the "Just Transition Mechanism" (JTM) aims to reconcile the Union's exceptional climate ambition with social justice. Through grants and investment programmes, it aims to secure the professional transition of people likely to lose their jobs, to revitalise and diversify local economies, and to restore land. 
+            78% of these jobs are in the mining sector. An integral part of the European 
+            "Green Deal", the "Just Transition Mechanism" (JTM) aims to reconcile the Union's 
+            exceptional climate ambition with social justice. Through grants and investment programmes, 
+            it aims to secure the professional transition of people likely to lose their jobs, 
+            to revitalise and diversify local economies, and to restore land. 
           </p>
-          <div id="c_chart" class="chart"></div>
+          <div class="card-group">
+            <div class="card p-2 m-2 coal">
+              <div class="card-body ml-3 mt-3">
+                <p class="card-title">Coal</p>
+                <h1 class="card-text mt-4">120,823 <sup> <i class="bi bi-people"></i> </sup>   </h1> 
+
+                <span class="mt-5" style="font-size: 11px;">Direct employment, source: JRC</span>
+              </div>
+            </div>
+            <div class="card p-2 m-2 lignite">
+              <div class="card-body ml-3 mt-3">
+                <p class="card-title">Lignite</p>
+                <h1 class="card-text mt-4">63,946 <sup> <i class="bi bi-people"></i> </sup>   </h1>
+                <span class="mt-5" style="font-size: 11px;">Direct employment, source: JRC</span>
+              </div>
+            </div>
+          </div>
           <p class="p_desc text-center font-weight-normal mt-5">
-            The challenge is crucial: supporting the territories and populations most directly affected by the necessary extinction of the most polluting activities enables both an improvement of the future of the most deprived, and thus demonstrates that Europe can bring added value to these citizens, but also, more fundamentally, to strengthen the political legitimacy of the climate transition, at a time when the Union has set itself the ambitious objective of achieving carbon neutrality by 2050.
+            The challenge is crucial: 
+            supporting the territories and populations most 
+            directly affected by the necessary extinction of the most 
+            polluting activities enables both an improvement of the future of 
+            the most deprived, and thus demonstrates that Europe can 
+            bring added value to these citizens, but also, more fundamentally, 
+            to strengthen the 
           </p>
           </div>
         </div>
         <div class="col-lg-6 offset-lg-3">
-          <div id="chart_two" class="chart mt-5"></div>
+          <div id="c_chart" class="chart"></div>
+          <!-- <div id="chart_two" class="chart mt-5"></div> -->
           </div>
         <div class="row">
           <div class="col-lg-6 offset-lg-3">
@@ -333,20 +375,31 @@ by the EIB Group.The Just Transition Fund is a new instrument with an overall bu
     </div>
     </div>
     <div class="container">
-
+      <div class="row mt-5 mb-5">
+        <div class="col-lg-6 offset-lg-3 mt-5">
+          <h2 class="text-center">
+            Want to know more?
+          </h2>
+          <p class="p_desc text-center">
+            This brief synthesizes extant literature, recent research and policy advice in relation to structural change in coal phase-out regions and plugs in ESPON territorial evidence for policy questions that have not been
+addressed as yet. These relate to the efficient use of JTF resources, potential links with other funding streams and the design of interventions based on territorial parameters relating to the knowledge and entrepreneurial stock in coal-dependent localities.
+     
+          </p>
+          <div class="text-center">
+          <button type="button" class="btn btn-outline-primary">
+            <a href="https://www.espon.eu/sites/default/files/attachments/Policy%20Brief%20structural%20change%20in%20coal%20phase-out%20regions.pdf">Preview file</a> 
+          </button>
+          <p class="p_desc text-center mt-2" style="font-weight: 400; font-size: 11px;">
+            Acrobat Document | 3.42MB
+          </p>
+        </div>
+        </div>
+      </div>
   </div>
-  <div class="row">
-    <div class="sticky-top">
-        <div id="map2"></div>
-        <div id="story2"></div>
-    </div>
+
     </div>
     <script src="./config.js"></script>
-    <script src="./config2.js"></script>
 
-    <script type="text/javascript">
-
-    </script>
     <!--core-end-->
 
     <!--footer-start-->
@@ -669,7 +722,7 @@ map.on("load", function() {
         })
         map.addSource('total-patent',{
           type: 'geojson',
-          data: 'patent_geometries.geojson'
+          data: 'patent-tot.geojson'
         })
         // map.addSource('extrude',{
         //   type: 'geojson',
@@ -718,10 +771,10 @@ map.on("load", function() {
               'interpolate',
               ['linear'],
               ['get', 'VALUE'],
-            0,'green',
-              1, 'blue',
-              9, 'red',
-              16,'pink',
+              0,'#43a2ca',
+              1, '#f0f9e8',
+              9, '#bae4bc',
+              16,'#7bccc4',
             ],
             'fill-opacity':0
 
