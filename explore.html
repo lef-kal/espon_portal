@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Title</title>
+    <title>ESPON Portal</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -93,7 +93,6 @@
         padding: 0;
       }
       .spinner{display: none;}
- 
     </style>
   </head>
   <body>
@@ -123,19 +122,19 @@
       </button>
       <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="index.html"
-              >Home<span class="sr-only">(current)</span></a
+              >Home</a
             >
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="explore.html">Explore</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="explore.html">Explore<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="datastory.html">Datastories</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Dashboards</a>
+            <a class="nav-link" href="dashboard.html">Dashboards</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Data playground</a>
@@ -192,19 +191,11 @@
             >
               <div class="card-body">
                 <div class="list-group">
-                  <a
-                    href="#"
-                    class="
-                      list-group-item list-group-item-action
-                      changer
-                    "
-                    data-ind="1393" data-mt="Total+number+of+material+cultural+heritage+objects"
-                    >Total number of material cultural heritage objects</a
-                  >
+                  
                   <a
                     href="#"
                     class="list-group-item list-group-item-action changer"
-                    data-ind="2183"
+                    data-ind="2183" data-mt="Population+by+sex"
                     >Population by NUTS 2 regions</a
                   >
                   <a
@@ -230,6 +221,7 @@
                   data-target="#collapseThree"
                   aria-expanded="false"
                   aria-controls="collapseThree"
+                  disabled
                 >
                   Environment and Energy
                 </button>
@@ -253,6 +245,7 @@
                   data-target="#collapseFour"
                   aria-expanded="false"
                   aria-controls="collapseFour"
+                  disabled
                 >
                   Economy, finance and trade
                 </button>
@@ -276,6 +269,7 @@
                   data-target="#collapseThree"
                   aria-expanded="false"
                   aria-controls="collapseFive"
+                  disabled
                 >
                   Territorial Structure
                 </button>
@@ -310,6 +304,65 @@
               aria-labelledby="headingThree"
               data-parent="#accordion"
             >
+              <div class="card-body">
+                <a
+                    href="#"
+                    class="
+                      list-group-item list-group-item-action
+                      changer
+                    "
+                    data-ind="1393" data-mt="Total+number+of+material+cultural+heritage+objects"
+                    >Total number of material cultural heritage objects</a
+                  >
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button
+                  class="btn btn-link collapsed"
+                  data-toggle="collapse"
+                  data-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                  disabled
+                >
+                  Labour market
+                </button>
+              </h5>
+            </div>
+            <div
+              id="collapseThree"
+              class="collapse"
+              aria-labelledby="headingThree"
+              data-parent="#accordion"
+            >
+              <div class="card-body"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button
+                  class="btn btn-link collapsed"
+                  data-toggle="collapse"
+                  data-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                  disabled
+                >
+                  Agriculture and fisheries
+                </button>
+              </h5>
+            </div>
+            <div
+              id="collapseThree"
+              class="collapse"
+              aria-labelledby="headingThree"
+              data-parent="#accordion"
+            >
               <div class="card-body"></div>
             </div>
           </div>
@@ -322,8 +375,33 @@
                   data-target="#collapseThree"
                   aria-expanded="false"
                   aria-controls="collapseThree"
+                  disabled
                 >
-                  Labour market
+                  Science and technology
+                </button>
+              </h5>
+            </div>
+            <div
+              id="collapseThree"
+              class="collapse"
+              aria-labelledby="headingThree"
+              data-parent="#accordion"
+            >
+              <div class="card-body"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button
+                  class="btn btn-link collapsed"
+                  data-toggle="collapse"
+                  data-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                  disabled
+                >
+                  Transport & accessibility
                 </button>
               </h5>
             </div>
@@ -339,14 +417,22 @@
         </div>
         <!-- Accordeon end-->
 
-        <div id="metadata">
 
-        </div>
       </div>
       <!--- list-end-->
 
       <!-- map-start-->
       <div class="col-lg-7">
+        <div class="row">
+          <div class="col-lg-12">
+            <div id="metadata">
+              <p class="placeholder">
+                Choose an indicator from the list to start exploring.
+              </p>
+
+            </div>
+          </div>
+        </div>
         <div class="row">
 
           <div class="col-lg-3">
@@ -363,14 +449,14 @@
           </div>
           <div class="col-lg-6">
             <div class="btn-group btn-group-sm buttons-nuts">
-              <button type="button" class="btn btn-outline-primary">
+              <button type="button" class="btn btn-outline-primary" disabled>
                 NUTS 0
               </button>
-              <button type="button" class="btn btn-outline-primary">
+              <button type="button" class="btn btn-outline-primary" disabled>
                 NUTS 1
               </button>
               <button type="button" class="btn btn-primary">NUTS 2</button>
-              <button type="button" class="btn btn-outline-primary">
+              <button type="button" class="btn btn-outline-primary" disabled>
                 NUTS 3
               </button>
             </div>
@@ -395,7 +481,7 @@
                       Download options
                     </h6>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" disabled>
                       <label class="form-check-label" for="defaultCheck1">
                         Include metadata
                       </label>
@@ -408,9 +494,10 @@
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-sm btn-primary"> <a id="csv">CSV</a> </button>
                     <button type="button" class="btn btn-sm btn-primary"> <a id='json'>JSON</a></button>
+                    <button type="button" class="btn btn-sm btn-primary" disabled> <a id='geojson'>GeoJSON</a></button>
+                    <button type="button" class="btn btn-sm btn-primary" disabled> <a id='shape'>Shape (zip)</a></button>
 
                   </div>
                 </div>
@@ -675,17 +762,23 @@ function mapExists(map) {
       $('.spinner').show()
 
       mapExists() && map.remove()
-
+      var mtdt = []
       var metadata = $(this).attr("data-mt");
       var mturl = "https://database.espon.eu/api/select/indicators?";
       var mtparams = "name" + "=" + metadata;
       $.getJSON(mturl + mtparams, function (data) {
-      var mtDisplay = '<h6>' + data.results[0].name + '</h6>'
-      mtDisplay += '<span>' + data.results[0].project + '</span>'
+      var mtDisplay = '<h4>' + data.results[0].name + '</h4>'
+      mtDisplay += '<p> Project: <strong>' + data.results[0].project + ' </strong> <br>'
+      mtDisplay += 'Indicator type: <strong>' + data.results[0].set_type + ' </strong> </br>'
+      mtDisplay += 'Available spatial extent: <strong>' + data.results[0].spatial_exts[0] + ' </strong><br>'
+      mtDisplay += 'Available years: <strong>' + data.results[0].years_string + ' </strong> <br>'
+      mtDisplay += 'Territorial level: <strong>' + data.results[0].territorial_level[0].nomenclature +data.results[0].territorial_level[0].level + '</strong> </p>'
         $('#metadata').html(mtDisplay)
         console.log(data)
+
+        let version = data.results[0].territorial_level[0].nomenclature
+
       })
-      
       // var nm = metadata.name
       // var mtDisplay = '<h6>' + nm + '</h6>'
       // mtDisplay += '<span>' + metadata[0].project + '</span>'
@@ -854,7 +947,8 @@ function mapExists(map) {
               name: 'Region data',
               marker:{
               color: 'rgba(0,120,255,0.4)'
-              }
+              },
+              boxmean: 'sd'
             },
           ];
           console.log(this)

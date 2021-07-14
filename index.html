@@ -76,44 +76,6 @@
       #chartID{
         width: 100%;
       }
-/**
-* Set rules for how the map overlays
-* (information box and legend) will be displayed
-* on the page. */
-.map-overlay {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background: rgba(255, 255, 255, 0.8);
-  margin-right: 20px;
-  font-family: Arial, sans-serif;
-  overflow: auto;
-  border-radius: 3px;
-}
-
-#features {
-  top: 0;
-  height: 100px;
-  margin-top: 20px;
-  width: 250px;
-}
-
-#legend {
-  padding: 10px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  line-height: 18px;
-  height: 150px;
-  margin-bottom: 40px;
-  width: 100px;
-}
-
-.legend-key {
-  display: inline-block;
-  border-radius: 20%;
-  width: 10px;
-  height: 10px;
-  margin-right: 5px;
-}
     </style>
   </head>
   <body>
@@ -155,7 +117,7 @@
             <a class="nav-link" href="datastory.html">Datastories</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Dashboards</a>
+            <a class="nav-link" href="dashboard.html">Dashboards</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Data playground</a>
@@ -250,8 +212,8 @@
 
       <!-- map-start-->
       <div class="col-lg-7 mt-5">
-        <div class="row">
-          <div class="col-lg-4">
+        <div class="row mt-5">
+          <div class="col-lg-2">
         <button
           type="button"
           class="btn btn-sm btn-primary"
@@ -273,20 +235,20 @@
         <i class="bi bi-house-door-fill"></i>
         </button>
       </div>
-      <div class="col-lg-4">
-        <div class="form-check">
+      <div class="col-lg-8">
+        <div class="form-check form-check-inline">
           <input class="form-check-input radio-toggles" type="checkbox" value="" id="flexCheckDefault" checked disabled data-layer='region-layer'>
           <label class="form-check-label" for="flexCheckDefault">
             2014 data
           </label>
         </div>
-        <div class="form-check">
+        <div class="form-check form-check-inline">
           <input class="form-check-input radio-toggles" type="checkbox" value="" id="flexCheckChecked" data-layer="region-layer-2006" >
           <label class="form-check-label" for="flexCheckChecked">
             2006 data
           </label>
         </div>
-        <div class="form-check">
+        <div class="form-check form-check-inline">
           <input class="form-check-input radio-toggles" type="checkbox" value="" id="flexCheckChecked" data-layer="region-layer-dif">
           <label class="form-check-label" for="flexCheckChecked">
             Show difference
@@ -486,6 +448,7 @@
       center: [12, 56],
       transformRequest: transformRequest,
     });
+    
     var chartData = []
     map.on("load", function () {
       csvPromise.then(function (results) {
@@ -508,6 +471,14 @@
           );
         });
       });
+      var layers = map.getStyle().layers;
+          var firstSymbolId;
+          for (var i = 0; i < layers.length; i++) {
+          if (layers[i].type === 'symbol') {
+          firstSymbolId = layers[i].id;
+          break;
+          }
+        }
       //YOUR TURN: Add source layer
       map.addSource("NUTS_RG_03M_2013_4326_LEVL_2.geojson", {
         type: "geojson",
@@ -525,15 +496,16 @@
           "fill-color": [
             "step",
             ["to-number", ["feature-state", "values"]],
-            "#ffb784",
-            1, "#ffb784",
-            2, "#e3dabf",
-            4, "#79929c",
-            6,"#42d4f5",
-            8,'#007db4',
+            'transparent',
+            0.1,"#0645A4",
+            1, "#0645A4",
+            2, "#2480CD",
+            4, "#509BDE",
+            6,"#84BCF3",
+            8,'#B7D6F7',
           ],
-        },
-      });
+        }
+      },firstSymbolId);
       map.addLayer({
         id: "region-layer-2006",
         type: "fill",
@@ -543,15 +515,16 @@
           "fill-color": [
             "step",
             ["to-number", ["feature-state", "values_2006"]],
-            "#ffb784",
-            1, "#ffb784",
-            2, "#e3dabf",
-            4, "#79929c",
-            6,"#42d4f5",
-            8,'#007db4',
+            'transparent',
+            0.1,"#0645A4",
+            1, "#0645A4",
+            2, "#2480CD",
+            4, "#509BDE",
+            6,"#84BCF3",
+            8,'#B7D6F7',
           ],
-        },
-      });
+        }
+      },firstSymbolId);
       map.addLayer({
         id: "region-layer-dif",
         type: "fill",
@@ -561,15 +534,13 @@
           "fill-color": [
             "step",
             ["to-number", ["feature-state", "difference"]],
-            "#c2e3af",
-            -10, "#c2e3af",
-            -5, "#c2e3af",
-            0, "#79929c",
-            5,"#42d4f5",
-            10,'#007db4',
+            'transparent',
+            -20, "#3DBDFF",
+            0, "#A4FFEC",
+            5,"#A4FFEC"
           ]
-        },
-      });
+        }
+      },firstSymbolId);
 
       map.addLayer({
         id: "region-line-layer",
@@ -580,8 +551,8 @@
           'line-color': 'white',
           'line-opacity': 0.5,
           'line-width': 0.5
-        },
-      });
+        }
+      },firstSymbolId);
 
 
     });
