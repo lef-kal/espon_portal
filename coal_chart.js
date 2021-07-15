@@ -1,4 +1,4 @@
-    const csvUrl = "europe_electricity_sources.csv";
+    const csvUrl = "data/europe_electricity_sources.csv";
     const csvPromise = papaPromise(csvUrl);
     var theDom = document.getElementById('chart_one');
     var myChart = echarts.init(theDom);

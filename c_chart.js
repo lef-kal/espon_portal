@@ -1,4 +1,4 @@
-const rl = "jtf_allocation.csv";
+const rl = "data/jtf_allocation.csv";
 const prim = papaPromise(rl);
 var dm = document.getElementById('c_chart');
 var ch = echarts.init(dm);

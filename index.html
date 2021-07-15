@@ -424,7 +424,7 @@
     ></script>
   </body>
   <script>
-    const csvUrl = "waste_data_time.csv";
+    const csvUrl = "data/waste_data_time.csv";
     const csvPromise = papaPromise(csvUrl);
     //YOUR TURN: Replace with your Mapbox Token
     mapboxgl.accessToken =
@@ -473,7 +473,7 @@
       //YOUR TURN: Add source layer
       map.addSource("NUTS_RG_03M_2013_4326_LEVL_2.geojson", {
         type: "geojson",
-        data: "NUTS_RG_03M_2013_4326_LEVL_2.geojson",
+        data: "data/NUTS_RG_03M_2013_4326_LEVL_2.geojson",
         generateId: true,
         promoteId: "FID",
 
